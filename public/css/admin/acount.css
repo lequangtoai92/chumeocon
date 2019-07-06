@@ -1,0 +1,61 @@
+.page-admin-acount .container_page {
+    margin-left: 0px;
+}
+
+.page-admin-acount .container_page .sidebar {
+    margin-left: 0px;
+    width: 180px;
+    height: 100vh;
+    background-color: gray;
+    overflow-x: hidden;
+}
+
+.page-admin-acount .form-control.select-option-top {
+    margin-bottom: 10px;
+    width: 200px;
+    float: right;
+    margin-right: 10px;
+}
+
+.page-admin-acount #table_account {
+    width: 100%;
+}
+
+#table_account {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#table_account td, #table_account th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#table_account tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#table_account tr:hover {
+    background-color: #ddd;
+}
+
+#table_account th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+
+#table_account .th-1 {width: 13%}
+#table_account .th-2 {width: 12%}
+#table_account .th-3 {width: 10%}
+#table_account .th-4 {width: 7%}
+#table_account .th-5 {width: 15%}
+#table_account .th-6 {width: 10%}
+#table_account .th-7 {width: 8%}
+#table_account .th-8 {width: 10%}
+#table_account .th-9 {width: 11%}
+#table_account .th-10 {width: 5%}
+
+#table_account select{ padding: 0px 5px 0px 5px;}

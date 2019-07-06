@@ -1,0 +1,68 @@
+/* Color palette */
+
+/* Color palette */
+
+:root {
+  --bright-blue: #005cff;
+  --slate: #3f4f63;
+  --white: #e4e4e4;
+  --bright-orange: #fe5500;
+  --scarlet: #d0011b;
+  --white-two: #d2d2d2;
+  --azure: #0094fb;
+  --pale-olive-green: #b5db66;
+  --bluegrey: #96a5c4;
+  --pale-grey: #e9ecf3;
+  --turquoise: #09c199;
+  --bluey-grey: #9da7bf;
+  --light-blue-grey: #c9d4e8;
+  --squash: #f6a623;
+  --maize: #f6bf58;
+  --battleship-grey: #667884;
+  --pale-grey-two: #f8f8fa;
+  --dark-sky-blue: #4c97ed;
+  --cerulean: #0066cc;
+  --very-light-pink: #fffaf4;
+  --blue-grey: #848ea2;
+  --pale-grey-three: #e2e7ee;
+  --black: #000000;
+  --white-three: #ffffff;
+  --pale-grey-four: #f2f2f3;
+  --seafoam-blue: #66cedb;
+  --battleship-grey-two: #70797d;
+  --dark-grey-blue: #374e60;
+  --midnight: #010133;
+  --pale-grey-five: #f1f2f7;
+  --cloudy-blue: #c6cedb;
+  --aqua-marine: #43d3e8;
+  --purpley-grey: #9b9b9b;
+  --black-two: #1d1d1b;
+  --dusk: #475575;
+  --dusk-two: #485676;
+  --dusk-three: #526286;
+  --charcoal-grey: #4a4a4a;
+  --pale-grey-six: #f2f4f8;
+  --azure-two: #008aff;
+  --dark-sage: #507c5c;
+  --light-khaki: #cff09e;
+  --dark-grey-blue-two: #3a5162;
+  --slate-two: #435367;
+  --pale-grey-seven: #f1f1f7;
+  --charcoal-grey-two: #31393c;
+  --steel: #6c7b90;
+  --very-light-pink-two: #ffd4d4;
+  --battleship-grey-three: #687a85;
+  --green: #18c215;
+  --azure-three: #1991eb;
+  --dark-sky-blue-two: #5ab8eb;
+  --apple-green: #78b82b;
+  --light-indigo: #8660d1;
+  --soft-blue: #5a7deb;
+  --topaz: #15cec6;
+  --purply-pink: #df5aeb;
+  --camel: #c3a359;
+  --duck-egg-blue: #f2f9fd;
+  --azure-four: #0396fc;
+  --water-blue: #1682d3;
+  --grapefruit: #ff5656;
+}

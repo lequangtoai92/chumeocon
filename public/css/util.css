@@ -1,0 +1,385 @@
+/*Ghi chú đầy đủ mỗi component giúp anh nhé, comment chỗ bắt đầu và kết thúc từng component theo mẫu*/
+
+/************************************/
+/*************DROPDOWN***************/
+/************************************/
+
+/* custom dropdown */
+.qb-dropdown{ width:158px;  height:30px;  border-radius:3px;  border:solid 1px var(--light-blue-grey);  background-color:var(--pale-grey-two);  margin-left: 10px;  font-size: 12px;  text-align: left;  padding-left: 8px;  color:var(--slate);  }
+.qb-dropdown::after{ float: right;  margin: 7px 5px 0 0; }
+.qb-dropdown-item{font-size: 12px;}
+.qb-dropdown:focus{outline: none;}
+/* Example */
+/*
+<div class="dropdown">
+    <button class="qb-dropdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Nội dung list
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item qb-dropdown-item" href="#">Action</a>
+        <a class="dropdown-item qb-dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item qb-dropdown-item" href="#">Something else here</a>
+    </div>
+</div>
+*/
+
+/************************************/
+/***********SWITCH CHECKBOX**********/
+/************************************/
+/* Example: */
+/*
+<div class="switch_box">
+    <input type="checkbox" class="switch_cb">
+</div>
+ */
+/* Style Switch Checkbox */
+input[type="checkbox"].switch_cb{border: none !important;}
+input[type="checkbox"].switch_cb{font-size:30px;-webkit-appearance:none;-moz-appearance:none;width:1.3em;height:0.6em;background:var(--light-blue-grey);border-radius:3em;position:relative;cursor:pointer;outline:none;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out;}
+input[type="checkbox"].switch_cb:checked{background:#008aff;}
+input[type="checkbox"].switch_cb:after{position:absolute;content:"";width:0.6em;height:0.6em;border-radius:50%;background:#fff;-webkit-transform:scale(.7);transform:scale(.7);left:0;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out;}
+input[type="checkbox"].switch_cb:checked:after{left:calc(100% - 0.6em);}
+
+/************************************/
+/*************POPUP SLIDER***********/
+/************************************/
+/* Example: */
+/*
+
+----With Button Save And Close----
+
+<div class="popup-slider" id="demo">
+    <div class="popup-slider-content popup-slider-small">
+        <div class="popup-slider-small-top">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Title Popup</h3>
+                        <a href="#" class="close-popup-slider"><span class="faci-close float-right close-slide"></span></a>
+                    </div>
+                </div>
+            </div>
+        <div class="popup-slider-small-body">
+                <div class="row">
+                    <div class="col-12">
+                        Body
+                    </div>
+                </div>
+            </div>
+        <div class="popup-slider-small-footer">
+                <div class="row justify-content-end">
+                    <a href="#" class="btn btn-close close-popup-slider">ĐÓNG</a>
+                    <a href="#" class="btn btn-save">LƯU</a>
+                </div>
+            </div>
+    </div>
+</div>
+
+----Large----
+
+<div class="popup-slider" id="large">
+    <div class="popup-slider-content popup-slider-large">
+        <div class="popup-slider-large-top">
+            <div class="row">
+                <div class="col-12">
+                    <h3>Title Popup</h3>
+                    <a href="#" class="close-popup-slider"><span class="faci-close float-right close-slide"></span></a>
+                </div>
+            </div>
+        </div>
+        <div class="popup-slider-large-content">
+            <div class="row">
+                <div class="col-12">
+                    Body Popup
+                </div>
+            </div>
+        </div>
+        <div class="popup-slider-large-footer">
+            <div class="row justify-content-end">
+                <a href="#" class="btn btn-close close-popup-slider">ĐÓNG</a>
+                <a href="#" class="btn btn-save">LƯU</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+ */
+ /* Style Popup Slider */
+ .popup-slider{width: 100vw;height: 100vh;background-color: rgba(0, 0, 0, 0);position: fixed;right: 0;top:0;visibility: hidden;opacity: 0;transition: all 0.3s;  -moz-transition: all 0.3s;  -webkit-transition: all 0.3s;  -o-transition: all 0.3s;}
+ .popup-slider .popup-slider-content{width: 100%;height: 100vh;background-color: var(--white-three);transition: all 0.3s;  -moz-transition: all 0.3s;  -webkit-transition: all 0.3s;  -o-transition: all 0.3s;position: fixed;right: -110vw;top:0;}
+ .popup-slider.on{visibility: visible;opacity: 1;}
+ .popup-slider.on .popup-slider-content{right: 0;opacity: 1}
+
+/* Style Popup Slider Small */
+ .popup-slider-small{max-width: 672px;height: 100vh;background-color: var(--white-three);box-shadow: 0 -1px 10px 0 rgba(90, 104, 122, 0.3);padding: 0;transition: all 0.3s;  -moz-transition: all 0.3s;  -webkit-transition: all 0.3s;  -o-transition: all 0.3s;position: fixed;right: -110vw;top:0;}
+ .popup-slider-small .popup-slider-small-top{padding: 30px 20px 0 20px;height: 50px;margin-bottom: 30px;}
+ .popup-slider-small .popup-slider-small-top h3{font-size: 18px;font-weight: 600;color: var(--azure);display: inline;}
+ .popup-slider-small .popup-slider-small-top span.close-slide::before{color: var(--black);}
+ .popup-slider-small .popup-slider-small-body{width:100%;height: calc(100vh - 165px);overflow-y: auto;overflow-x: hidden;padding: 0 20px 0 20px;}
+ .popup-slider-small .popup-slider-small-footer{height: 60px;margin-bottom: 10px;padding: 0 20px 0 20px;}
+ .popup-slider-small .popup-slider-small-footer .justify-content-end{position: relative;top: 16px;right:15px;}
+ .popup-slider-small .popup-slider-small-footer .btn-close, .btn-save{  font-size: 14px !important; width: 81px; height: 31px; padding: 0.4rem .75rem !important; }
+ .popup-slider-small .popup-slider-small-footer .btn-close:focus {box-shadow: none;}
+ .popup-slider-small .popup-slider-small-footer .btn-save:focus {box-shadow: none;}
+ .popup-slider-small .popup-slider-small-footer .btn-close{ color: var(--slate); margin-right: 10px;}
+ .popup-slider-small .popup-slider-small-footer .btn-save{ background-color: var(--bright-blue); color: #ffffff; }
+ .popup-slider-small .popup-slider-small-footer .btn-save:hover{color: #ffffff; }
+
+/* Style Popup Slider large */
+.popup-slider-large{max-width: 1210px;height: 100vh;background-color: var(--white-three);box-shadow: 0 -1px 10px 0 rgba(90, 104, 122, 0.3);transition: all 0.3s;  -moz-transition: all 0.3s;  -webkit-transition: all 0.3s;  -o-transition: all 0.3s;position: fixed;right: -110vw;top:0;}
+.popup-slider-large .popup-slider-large-top{width:100%;height:45px;background-color:#f0f5ff;padding:11px 0 0 14px;position: relative;}
+.popup-slider-large .popup-slider-large-top h3{font-size:14px;color:var(--azure);padding-left: 10px;font-weight: bold;display: inline;position: relative;bottom: 2px;}
+.popup-slider-large .popup-slider-large-top a.close-popup-slider{float: right;padding: 2px 24px 0 0;}
+.popup-slider-large .popup-slider-large-top span.close-slide::before{color:var(--azure);}
+.popup-slider-large .popup-slider-large-content{width:100%;height: calc(100vh - 110px);padding: 10px 10px 10px 10px;overflow-y: auto;}
+.popup-slider-large .popup-slider-large-footer{height: 60px;padding-right: 20px;}
+.popup-slider-large .popup-slider-large-footer .justify-content-end{position: relative;top: 16px;right:15px;}
+.popup-slider-large .popup-slider-large-footer .btn-close:focus {box-shadow: none;}
+.popup-slider-large .popup-slider-large-footer .btn-save:focus {box-shadow: none;}
+.popup-slider-large .popup-slider-large-footer .btn-close, .btn-save{  font-size: 14px !important; width: 81px; height: 31px; padding: 0.4rem .75rem !important; }
+.popup-slider-large .popup-slider-large-footer .btn-close{ color: var(--slate); margin-right: 10px;}
+.popup-slider-large .popup-slider-large-footer .btn-save{ background-color: var(--bright-blue); color: #ffffff; }
+.popup-slider-large .popup-slider-large-footer .btn-save:hover{color: #ffffff; }
+
+/************************************/
+/****************TABLE***************/
+/************************************/
+/* Example: */
+/*
+<table class="table table-responsive qb-table">
+    <thead>
+    <tr class="header-table">
+        <th>PHIẾU YÊU CẦU</th>
+        <th>MÃ VẬT TƯ</th>
+        <th>TÊN VẬT TƯ</th>
+        <th>ĐƠN VỊ</th>
+        <th>MỤC ĐÍCH</th>
+        <th>SỐ LƯỢNG</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>NMBS-002668</td>
+            <td>031801000091</td>
+            <td>BAO CHE ONG XA CLINKER (ONG TELESCOPE D=960; LMAX=3720;LMIN=577)</td>
+            <td>Cái</td>
+            <td></td>
+            <td>0.0</td>
+        </tr>
+    </tbody>
+</table>
+ */
+/* Style Table */
+table.qb-table thead tr th::after {  content: "";  height: 70%;  width: 1px;  background: var(--light-blue-grey);  position: absolute;  right: -2px;  top: 15%;  }
+table.qb-table thead tr th:last-child::after{  background: #fff;  }
+
+table.qb-table tr.header-table th{border-bottom: none;}
+table.qb-table tr:last-child{border-bottom: solid 1px var(--light-blue-grey);}
+table.qb-table tr.header-table{font-size:13px;color:var(--white-three);background-color:var(--bright-blue);}
+table.qb-table tr.header-table th{position:relative;font-weight:600 !important;text-align:center;vertical-align:middle;}
+table.qb-table td{font-size:12px;text-align:center;}
+table.qb-table tbody tr:hover{background-color: var(--pale-grey);}
+
+/************************************/
+/****************DIALOG**************/
+/************************************/
+/* Example: */
+/*
+<div class="qb-dialog">
+     <div class="qb-dialog-overlay">
+         <div class="container-fluid qb-dialog-body">
+
+             <!-- Header Dialog -->
+             <div class="qb-dialog-header">
+                 <div class="row">
+                     <div class="col-12">
+                         <span class="faci-votes ic-title-dialog"></span>
+                         <h3 class="title-dialog">Title Dialog</h3>
+                         <a href="#" class="faci-close ic-close-dialog"></a>
+                     </div>
+                 </div>
+             </div>
+
+             <!-- Content Dialog -->
+             <div class="qb-dialog-content">
+                 <p>Body Dialog</p>
+             </div>
+
+             <!-- Footer Dialog -->
+             <div class="qb-dialog-footer">
+                 <div class="row justify-content-end">
+                     <div class="col-12 text-right">
+                         <a href="#" class="btn-close">ĐÓNG</a>
+                         <a href="#" class="btn-save">LƯU</a>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ */
+/* Style Dialog */
+.qb-dialog{  width: 100%;  height: 100%;  position: fixed;  top: 0;  bottom: 0;  left: 0;  right: 0;  background: rgba(0, 0, 0, 0);  visibility: hidden; }
+.qb-dialog.on{visibility: visible;opacity: 1;}
+.qb-dialog-overlay{width:100%;height:100%;transition: all 0.4s; -moz-transition: all 0.4s;  -webkit-transition: all 0.4s;  -o-transition: all 0.4s;display: flex;align-items: center;position: fixed;bottom: -110vh;opacity: 0;}
+.qb-dialog-overlay.open{bottom: 0;opacity: 1;}
+.qb-dialog-body{max-width: 831px;height: 300px;border-radius:3px;background-color:var(--white-three);box-shadow:0 -1px 10px 0 rgba(90, 104, 122, 0.5);font-size:14px;font-weight:600;color:var(--slate);padding: 0 !important;position: relative;}
+.qb-dialog-body .qb-dialog-header{width:100%;height:45px;padding:14px;background-color:var(--cerulean);}
+.qb-dialog-body .qb-dialog-header span.ic-title-dialog{font-size: 20px;float: left;position: relative;bottom: 2px;}
+.qb-dialog-body .qb-dialog-header span.ic-title-dialog:before{color: var(--white-three); }
+.qb-dialog-body .qb-dialog-header h3.title-dialog{font-size:14px;text-align:left;float:left;text-transform:uppercase;margin-left:13px;color:var(--white-three);font-weight: 600;}
+.qb-dialog-body .qb-dialog-header a.ic-close-dialog{float: right;}
+.qb-dialog-body .qb-dialog-content{padding: 22px;overflow-x: hidden;overflow-y: auto;}
+.qb-dialog-body .qb-dialog-footer{position: absolute;bottom: 22px;right: 22px;}
+.qb-dialog-body .qb-dialog-footer a.btn-close, a.btn-save{max-width:81px;max-height:30px;font-size: 14px; width: 81px; height: 31px; border-radius: 3px;display: inline-block;text-align: center;line-height: 18px;}
+.qb-dialog-body .qb-dialog-footer a.btn-close{ color: var(--slate); margin-right: 10px;}
+.qb-dialog-body .qb-dialog-footer a.btn-save{ background-color: var(--bright-blue); color: #ffffff; }
+.qb-dialog-body .qb-dialog-footer a.btn-save:hover{color: #ffffff; }
+
+/************************************/
+/*************CHECKBOX***************/
+/************************************/
+/*Example:
+    <input type="checkbox" id="c1" name="cb" class="qb-checkbox" />
+    <label for="c1" class="qb-checkbox-label"></label>
+*/
+.qb-checkbox{display:none;outline: none;}
+.qb-checkbox-label {cursor: pointer;margin:0;outline:none}
+.qb-checkbox + .qb-checkbox-label:before{border:1px solid var(--light-blue-grey);content:"";display:inline-block;font:16px/1em sans-serif;height:18px;margin:0;padding:0;vertical-align:top;width:18px;border-radius:3px}
+.qb-checkbox:checked + .qb-checkbox-label:before{background:var(--azure);color:var(--white-three);content:"\e910";text-align:center;font-family:facilio-icon;text-align:center;font-size:9px;padding-top:4px;border: 0;}
+.qb-checkbox:checked + .qb-checkbox-label:after { font-weight: bold;}
+
+/******************************/
+/********DATE PICKER RANGER***/
+/******************************/
+/*Example:
+    <div class="qb-daterange">
+        <i class="faci-calendar qb-icon-ca"></i>
+        <input type="text" id="qb_daterange" class="daterange" name="daterange"/>
+        <i id="icon-down" class="faci-arrow-down qb-icon-down"></i>
+    </div>
+*/
+.qb-daterange{float: right;}
+.qb-icon-ca{float:left;padding:5px 10px;padding-top:6px;border:1px solid var(--light-blue-grey);background:var(--pale-grey-two);border-radius:3px;border-right:0;font-size:20px;color:var(--battleship-grey);}
+
+.daterange{outline: none;float:left;padding:7px 0;padding-bottom:6px;font-size:12px;font-weight:600;background-color:var(--pale-grey-two);border:solid 1px var(--light-blue-grey);border-left:0;margin-left:-1px;border-right:0;}
+
+.qb-icon-down{float:left;font-size:6px;padding:13px 8px;padding-bottom:12px;background-color:var(--pale-grey-two);border:solid 1px var(--light-blue-grey);border-left:0;border-radius:3px;margin-left:-1px;}
+
+/**************************************************/
+/************DATE TIME PICKER********************/
+/*************************************************/
+/*Example:
+<div>
+<i class="faci-calendar qb-icon-ca"></i>
+<input type="text" class="qb-txt-calendar" id="qb_date_time"placeholder="10/9/2017">
+<i class="faci-clock qb-icon-clock"></i>
+<input type="text" class="qb-txt-clock" id="qb_time_clock"placeholder="15:00">
+</div>
+**********************************/
+.qb-txt-calendar{outline: none;float:left;padding-top:7px;padding-bottom:5px;font-size:13px;border:1px solid var(--light-blue-grey);background:var(--pale-grey-two);border-left:0;border-right:0;margin-left:-1px;width:94px;font-weight:600;color:var(--slate);}
+.qb-icon-clock{padding:5px;padding-top:6px;float:left;border:1px solid var(--light-blue-grey);background:var(--pale-grey-two);border-left:0;border-right:0;font-size:20px;color:var(--battleship-grey);}
+.qb-txt-clock{outline: none;float:left;padding-top:7px;padding-bottom:5px;font-size:13px;font-weight:600;background:var(--pale-grey-two);border:1px solid var(--light-blue-grey);border-left:0;border-radius:3px;margin-left:-1px;width:45px;color:var(--slate);}
+
+/**************************************/
+/*******PRIORITY**********************/
+/**************************************/
+/*Example:
+    <span class="priority low"></span>
+    <span class="priority medium"></span>
+    <span class="priority hight"></span>
+*****/
+.priority{width: 18px;height: 18px;display: inline-block;border-radius: 50%;font-size: 10px;line-height: 18px;text-align: center;}
+.priority.low{background-color: var(--white-two);}
+.priority.low:before{content: "3";}
+.priority.medium{background-color: var(--maize);}
+.priority.medium:before{content: "2";}
+.priority.high{background-color: var(--bright-orange);}
+.priority.high:before{content: "1";}
+
+
+/*******************************/
+/*****RANGE SLIDER**************/
+/*******************************/
+
+
+.qb-range .ui-slider-range{background-color:var(--turquoise);}
+/**********************INPUT*****************/
+/*Example:
+    <input class="qb-input" />
+*/
+.qb-input{width:275px;height:35px;border-radius:3px;border:solid 1px var(--light-blue-grey);margin-bottom:10px;padding-left: 5px;}
+.qb-input:focus{border:solid 1px var(--dark-sky-blue); outline:0;}
+/***********CẶP NÚT ĐÓNG VÀ LƯU***********/
+/*Example:
+    <div class="qb-footer">
+        <a class="qb-exit">ĐÓNG</a>
+        <a class="qb-save">LƯU</a>
+    </div>
+*/
+.qb-footer{float:right;font-size:14px;padding-right: 27px;}
+.qb-footer .qb-exit{padding-right:35px;cursor: pointer;}
+.qb-footer .qb-save{padding:7px 27px;background:var(--bright-blue);color:var(--white-three)!important;border-radius:3px;letter-spacing:-0.4px;font-size:13px;cursor: pointer;}
+/******************************************************/
+/*
+    Example:
+    <!-- Modal content -->
+    <div class="qb-modal">
+        <div class="qb-header">
+            <span class="qb-icon"></span>
+            <span class="qb-title">THIẾT LẬP HỒ SƠ</span>
+            <span class="faci-close qb-close"></span>
+        </div>
+        <div class="qb-body">
+        </div>
+        <div class="qb-footer">
+            <a class="qb-exit">ĐÓNG</a>
+            <a class="qb-save">LƯU</a>
+        </div>
+    </div>
+*/
+.qb-content{background-color: var(--white-three);box-shadow: 0 -1px 20px 0 rgba(90, 104, 122, 0.3);border-radius: 3px;}
+.qb-header{padding:11px 14px;background-color:var(--dark-sky-blue);height:45px;}
+.qb-icon{font-size:23px;padding-right:18px;float: left;}
+.qb-icon:before{color:var(--white-three);}
+.qb-title{padding-top: 3px;float: left;font-family:'Open Sans';font-size:14px;font-weight:600;letter-spacing:-0.4px;text-align:left;color:var(--white-three);}
+.qb-close{float:right;}
+/******************************************************************************/
+/******************** The switch slider********************* ******************/
+/******************************************************************************/
+/*
+Example:
+    <label class="qb-switch">
+        <input type="checkbox">
+        <span class="qb-slider round"></span>
+    </label>
+*/
+.qb-switch{position:relative;display:inline-block;width:38px;height:19px;border-radius:100px;}
+.qb-switch input{display:none;}
+.qb-slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:var(--light-blue-grey);-webkit-transition:.4s;transition:.4s;}
+.qb-slider:before{position:absolute;content:"";width:15px;height:15px;left:2px;bottom:2px;background-color:var(--white-three);-webkit-transition:.4s;transition:.4s;}
+.qb-switch input:checked + .qb-slider{background-color:var(--azure-two);}
+.qb-switch input:checked + .qb-slider:before{-webkit-transform:translateX(15px);-ms-transform:translateX(15px);transform:translateX(18px);}
+.qb-slider.round{border-radius:34px;}
+.qb-slider.round:before{border-radius:50%;}
+/******************************************************************************/
+/**************************RADIO BUTTON********************* ******************/
+/******************************************************************************/
+/*<label class="qb-container">
+    <input type="radio" name="radio">
+    <span class="qb-checkmark"></span>
+  </label>
+*/
+
+/* The container */
+.qb-container{display:block;position:relative;padding-left:35px;margin-bottom:12px;cursor:pointer;font-size:22px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+.qb-container input{position:absolute;opacity:0;}
+.qb-checkmark{position:absolute;top:0;left:0;width:16px;height:16px;border:solid 2px var(--light-blue-grey);border-radius:50%;}
+.qb-container:hover input ~ .qb-checkmark{border:solid 1px var(--water-blue);background-color:var(--azure-three);}
+ .qb-container input:checked ~ .qb-checkmark{border:solid 1px var(--water-blue);background-color:var(--azure-three);}
+.qb-checkmark:after{content:"";position:absolute;display:none;}
+.qb-container input:checked ~ .qb-checkmark:after{display:block;}
+.qb-container input:hover ~ .qb-checkmark:after{display:block;}
+.qb-container .qb-checkmark:after{top:4px;left:4px;width:6px;height:6px;border-radius:50%;background-color:var(--white-three);}
+/******************************************************************************/
+/********************************BUTTON********************* ******************/
+/******************************************************************************/
+.qb-button{font-size:13px;font-weight:600;letter-spacing:-0.4px;color:var(--white-three);border:0;border-radius:3px;background-color:var(--bright-blue);padding:10px 29px 7px 29px;}

@@ -1,0 +1,12 @@
+.page-info .body-info {
+    width: 50%;
+    padding: 10px;
+}
+
+.page-info input, select {
+    margin: 5px 0px 5px 0px;
+}
+
+.page-info .footer-info{width: 100%;}
+.page-info .footer-info .group-scores{margin-top: 40px;}
+.page-info .footer-info .group-scores article{padding: 5px 0px 5px 0px}

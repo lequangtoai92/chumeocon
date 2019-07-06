@@ -1,0 +1,59 @@
+.page-admin-feedback .container_page {
+    margin-left: 0px;
+}
+
+.page-admin-feedback .container_page .sidebar {
+    margin-left: 0px;
+    width: 180px;
+    height: 100vh;
+    background-color: gray;
+    overflow-x: hidden;
+}
+
+.page-admin-feedback .form-control.select-option-top {
+    margin-bottom: 10px;
+    width: 200px;
+    float: right;
+    margin-right: 10px;
+}
+
+.page-admin-feedback #table_feedback {
+    width: 100%;
+}
+
+#table_feedback {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#table_feedback td, #table_feedback th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#table_feedback tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#table_feedback tr:hover {
+    background-color: #ddd;
+}
+
+#table_feedback th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+
+#table_feedback .th-1 {width: 13%}
+#table_feedback .th-2 {width: 45%}
+#table_feedback .th-3 {width: 8%}
+#table_feedback .th-4 {width: 8%}
+#table_feedback .th-5 {width: 8%}
+#table_feedback .th-6 {width: 8%}
+#table_feedback .th-7 {width: 11%}
+#table_feedback .th-8 {width: 5%}
+
+#table_feedback select{ padding: 0px 5px 0px 5px;}
