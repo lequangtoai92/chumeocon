@@ -68,8 +68,14 @@ $(document).ready(function(){
 });
 
 function showDialog(){
-    var updateButton = document.getElementById('updateDetails');
-    var favDialog = document.getElementById('favDialog');
+    var updateButton1 = document.getElementById('openInfo');
+    var favDialog1 = document.getElementById('dialog_intro');
+    updateButton1.addEventListener('click', function() {
+        favDialog1.showModal();
+  });
+
+    var updateButton = document.getElementById('openChangePW');
+    var favDialog = document.getElementById('dialog_change_pw');
     updateButton.addEventListener('click', function() {
     favDialog.showModal();
   });

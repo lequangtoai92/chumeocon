@@ -115,6 +115,25 @@ Route:: get('admin/feedback', [
 
 // end admin
 
+Route::get('signin',[
+	'as'=>'signin',
+	'uses'=>'PageController@getSignin'
+]);
+
+Route::post('signin',[
+	'as'=>'signin',
+	'uses'=>'PageController@postSignin'
+]);
+
+Route::get('login',[
+	'as'=>'login',
+	'uses'=>'PageController@getLogin'
+]);
+Route::post('login',[
+	'as'=>'login',
+	'uses'=>'PageController@postLogin'
+]);
+
 
 
 

@@ -1,41 +1,42 @@
 @extends('master')
 @section('content')
-<link rel="stylesheet" href="css/feedback.css">
-<section class="wrapper">
+<link rel="stylesheet" href="css/signin.css">
+<section class="wrapper page page-login">
     <div class="container media container_page">
-        <div class="content-body container" id="id_feedback">
-            <div class="row">
-                <div class="content-left ">
-                    <textarea class="form-control" rows="2" placeholder="Nội dung góp ý"></textarea>
-                </div>
-                <div class="content-right footer-save form-group row">
-                    <div class="text-thank">
-                        <span>Cám ơn những đóng góp của các bạn, chúng tôi sẽ cố gắng giải quyết để đem đến trãi nghiệm
-                            tốt nhất</span>
+        <div class="media-body">
+        <form action="{{route('login')}}" method="post" class="beta-form-checkout">
+                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                @if(Session::has('flag'))
+						<div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}</div>
+					@endif
+                <div class="row">
+                    <div class="col-left">
+                        <div class="form-block">
+                            <label for="your_last_name">Tên đăng nhập</label>
+                            <input type="text" name="fullname" placeholder="Tên đăng nhập" required>
+                        </div>
+                        <div class="form-block">
+                            <label for="phone">Mật khẩu</label>
+                            <input type="password" name="password" placeholder="Mật khẩu" required>
+                        </div>
+                        <div class="form-block col-button">
+                            <a>Quên mật khẩu?</a>
+                        </div>
+                        <div class="form-block col-button">
+                            <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                        </div>
                     </div>
-                    <div class="button-right">
-                        <button type="button" class="btn btn-primary save-content">Gửi</button>
-                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="item-in-here">
-                <div class="content-feedback-result">
-                    <p>Trang web quá xấu xí</p>
-                    <div class="daytime">
-                        <span>20/10/2019</span>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
         <div class="hidden-sm hidden-xs sidebar">
             <div class="wrapper-youtube">
                 <div class="heading">
                     <h2>MotoTube</h2>
                 </div>
-                <iframe width="300" height="250" src="https://www.youtube.com/embed/LopMoV5ahqg" frameborder="0"
+                <!-- <iframe width="300" height="250" src="https://www.youtube.com/embed/LopMoV5ahqg" frameborder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+                    allowfullscreen></iframe> -->
             </div>
             <div class="wrapper-ranking">
                 <div class="heading">
@@ -123,4 +124,5 @@
         </div>
     </div>
 </section>
+@include('include.dialog_forgot_password')
 @endsection

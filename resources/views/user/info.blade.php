@@ -58,8 +58,8 @@
                     <div class="footer-info">
                         <ul class="list-button">
                             <button class="btn btn-success" id="updateDetails">Cập nhật</button>
-                            <button class="btn btn-info" href="">Giới thiệu</button>
-                            <button class="btn btn-primary" href="">Đổi mật khẩu</button>
+                            <button class="btn btn-info" id="openInfo" href="">Giới thiệu</button>
+                            <button class="btn btn-primary" id="openChangePW" href="">Đổi mật khẩu</button>
                         </ul>
                         <div class="group-scores">
                             <div class="heading">
@@ -200,7 +200,8 @@
     </div>
 </section>
 
-@include('include.dialog')
+@include('include.dialog_intro')
+@include('include.dialog_change_pass_word')
 
 <!-- <script>
 (function() {

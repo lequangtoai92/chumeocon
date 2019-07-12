@@ -1,0 +1,8 @@
+.page .row{margin: 5px 0px;}
+.page input{margin: 5px 0px}
+.page .col-left, .col-right{width: 50%;}
+.page-signin .col-left{padding-right: 15px;}
+.page-signin .col-right{padding-left: 15px;}
+.page .col-button{margin-top: 10px; width: 100%;text-align: right;}
+
+.page-login .col-left{margin-left: 25%;}
