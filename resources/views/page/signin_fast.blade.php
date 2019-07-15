@@ -4,10 +4,17 @@
 <section class="wrapper page page-login">
     <div class="container media container_page">
         <div class="media-body">
-        <form action="{{route('login')}}" method="post" class="beta-form-checkout">
+        <form action="{{route('signin_fast')}}" method="post" class="beta-form-checkout">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
-                @if(Session::has('flag'))
-						<div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}</div>
+                    @if(count($errors)>0)
+						<div class="alert alert-danger">
+							@foreach($errors->all() as $err)
+							{{$err}}
+							@endforeach
+						</div>
+					@endif
+					@if(Session::has('thanhcong'))
+						<div class="alert alert-success">{{Session::get('thanhcong')}}</div>
 					@endif
                 <div class="row">
                     <div class="col-left">
@@ -19,8 +26,9 @@
                             <label for="password">Mật khẩu</label>
                             <input type="password" name="password" placeholder="Mật khẩu" required>
                         </div>
-                        <div class="form-block col-button">
-                            <a>Quên mật khẩu?</a>
+                        <div class="form-block">
+                            <label for="password">Nhập lại mật khẩu(*)</label>
+                            <input type="password" name="re_password" placeholder="Nhập lại mật khẩu" required>
                         </div>
                         <div class="form-block col-button">
                             <button type="submit" class="btn btn-primary">Đăng nhập</button>

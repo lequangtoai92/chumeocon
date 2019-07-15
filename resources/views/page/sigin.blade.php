@@ -7,6 +7,16 @@
             <form action="{{route('signin')}}" method="post" class="beta-form-checkout">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <div class="row">
+                @if(count($errors)>0)
+						<div class="alert alert-danger">
+							@foreach($errors->all() as $err)
+							{{$err}}
+							@endforeach
+						</div>
+					@endif
+					@if(Session::has('thanhcong'))
+						<div class="alert alert-success">{{Session::get('thanhcong')}}</div>
+					@endif
                     <div class="col-left">
                         <div class="form-block">
                             <label for="your_last_name">Họ và tên(*)</label>
@@ -14,7 +24,7 @@
                         </div>
 
                         <div class="form-block">
-                            <label for="your_last_name">Tên đăng nhập(*)</label>
+                            <label for="username">Tên đăng nhập(*)</label>
                             <input type="text" name="username" required>
                         </div>
 
@@ -24,23 +34,23 @@
                         </div>
 
                         <div class="form-block">
-                            <label for="phone">Mật khẩu(*)</label>
+                            <label for="password">Mật khẩu(*)</label>
                             <input type="password" name="password" required>
                         </div>
                         <div class="form-block">
-                            <label for="phone">Nhập lại mật khẩu(*)</label>
+                            <label for="password">Nhập lại mật khẩu(*)</label>
                             <input type="password" name="re_password" required>
                         </div>
                     </div>
                     <div class="col-right">
                         <div class="form-block">
-                            <label for="email">Ngày sinh(*)</label>
-                            <input type="text" name="birdth" required>
+                            <label for="birdth">Ngày sinh</label>
+                            <input type="text" name="birdth">
                         </div>
 
                         <div class="form-block">
-                            <label for="your_last_name">Giới tính(*)</label>
-                            <input type="text" name="fullname" required>
+                            <label for="gender">Giới tính</label>
+                            <input type="text" name="gender">
                         </div>
 
                         <div class="form-block">
@@ -56,7 +66,7 @@
 
                         <div class="form-block">
                             <label for="phone">Biệt danh</label>
-                            <input type="text" name="phone">
+                            <input type="text" name="nickname">
                         </div>
                     </div>
 

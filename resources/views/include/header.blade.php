@@ -8,20 +8,22 @@
             </ul>
             <ul class="login">
                 <li class="has-child dropdown">
-                    <a href="#" class="btn-register"><i class="icon icon-user" aria-hidden="true"></i> Đăng nhập</a>
-                    <span class="hidden-xs hidden-sm">|</span>
-                    <a href="#" class="btn-register">Đăng ký</a>
+                    @if(Auth::check())
                     <a href="#" class="expand dropdown-toggle login-success-top dotted-line-1" data-toggle="dropdown"
-                        aria-expanded="false"><i class="icon icon-user" aria-hidden="true"></i> Huynh Loi</a>
+                        aria-expanded="false"><i class="icon icon-user" aria-hidden="true"></i>
+                        {{Auth::user()->full_name}}</a>
                     <a href="#" class="btn-logout hidden-md hidden-lg"><i
-                            class=" hidden-xs hidden-sm icon icon-sign-out" aria-hidden="true"></i> Log out</a>
+                            class=" hidden-xs hidden-sm icon icon-sign-out" aria-hidden="true"></i> Đăng xuất</a>
+                    @else
+                    <a href="dang-nhap" class="btn-register"><i class="icon icon-user" aria-hidden="true"></i> Đăng
+                        nhập</a>
+                    <span class="hidden-xs hidden-sm">|</span>
+                    <a href="dang-ky" class="btn-register">Đăng ký</a>
+                    @endif
                     <div class="hidden-xs hidden-sm sub dropdown-menu sub-menu-user">
                         <ul class="sub-menu-user">
-                            <li class="login-ct">
-                                <a href="#" class="btn-login">Đăng nhập</a>
-                                <p>or</p>
-                                <a href="#" class="btn-login">Đăng ký nhanh</a>
-                            </li>
+
+                            @if(Auth::check())
                             <li>
                                 <a href="info">Tài khoản</a>
                             </li>
@@ -38,9 +40,17 @@
                                 <a href="notifice">Thông báo</a>
                             </li>
                             <li>
-                                <a href="" class="btn-logout"><i class="icon icon-sign-out" aria-hidden="true"></i>
+                                <a href="dang-xuat" class="btn-logout"><i class="icon icon-sign-out"
+                                        aria-hidden="true"></i>
                                     Log out</a>
                             </li>
+                            @else
+                            <li class="login-ct">
+                                <a href="dang-nhap" class="btn-login">Đăng nhập</a>
+                                <p>or</p>
+                                <a href="dang-ky-nhanh" class="btn-login">Đăng ký nhanh</a>
+                            </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
@@ -55,7 +65,7 @@
                         <nav class="navbar hidden-md hidden-lg menu-media">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="dropdown-item" href="truye-moi">Truyện mới</a>
+                                    <a class="dropdown-item" href="truyen-moi">Truyện mới</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"

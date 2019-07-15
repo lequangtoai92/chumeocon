@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Account;
-use App\Login;
+use App\User;
+use App\Feedback;
 use Hash;
+use Auth;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -45,7 +46,30 @@ class PageController extends Controller
     }
 
     public function getFeedback(){
-        return view('page.feedback');
+        $list_feedback = Feedback::where('status','=',1)->paginate(3);
+        return view('page.feedback',compact('list_feedback'));
+    }
+
+    public function postFeedback(Request $req){
+        $this->validate($req,
+            [
+                'contentfeedback'=>'required'
+            ],
+            [
+                'contentfeedback.unique'=>'Vui lòng nhập nội dung',
+            ]);
+        $feedback = new Feedback();
+        $browser = null;
+        $feedback->id_account = isset($req->browser) ? $req->browser : null;
+        $feedback->content = isset($req->contentfeedback) ? $req->contentfeedback : '';
+        $feedback->name_author = isset($req->browser) ? $req->browser : '';
+        $feedback->driver = isset($req->browser) ? $req->browser : '';
+        $feedback->browser = isset($req->browser) ? $req->browser : '';
+        $feedback->version = isset($req->browser) ? $req->browser : '';
+        $feedback->status = 1;
+
+        $feedback->save();
+        return redirect()->back()->with('thanhcong','Cảm ơn bạn đã góp ý cho chúng tôi');
     }
 
     // user
@@ -92,31 +116,67 @@ class PageController extends Controller
     public function postSignin(Request $req){
         $this->validate($req,
             [
-                'email'=>'required|email|unique:account,email',
+                'email'=>'email',
                 'password'=>'required|min:6|max:20',
+                'username'=>'required|unique:users,user_name',
                 'fullname'=>'required',
                 're_password'=>'required|same:password'
             ],
             [
-                'email.required'=>'Vui lòng nhập email',
                 'email.email'=>'Không đúng định dạng email',
-                'email.unique'=>'Email đã có người sử dụng',
+                'username.unique'=>'username đã có người sử dụng',
                 'password.required'=>'Vui lòng nhập mật khẩu',
                 're_password.same'=>'Mật khẩu không giống nhau',
                 'password.min'=>'Mật khẩu ít nhất 6 kí tự'
             ]);
-        $account = new Account();
+        $account = new User();
         $account->full_name = $req->fullname;
+        $account->user_name = $req->username;
         $account->email = $req->email;
-        $account->phone = $req->phone;
-        $account->address = $req->address;
+        $account->password = Hash::make($req->password);
+        // $account->birthday = isset($req->birdth) ? $req->birdth : '';
+        $account->sex = isset($req->gender) ? $req->gender : 0;
+        $account->address = isset($req->address) ? $req->address : '';
+        $account->phone = isset($req->phone) ? $req->phone : null;
+        $account->address =isset($req->nickname) ? $req->nickname: '';
+        $account->authorities = 5;
+        $account->status = 6;
 
-        $login = new Login();
-        $login->user_name = $req->fullname;
-        $login->pass_word = Hash::make($req->password);
-        $login->id_account = 2;
         $account->save();
-        $login->save();
+        return redirect()->back()->with('thanhcong','Tạo tài khoản thành công');
+    }
+
+    public function getSigninFast(){
+        return view('page.signin_fast');
+    }
+
+    public function postSigninFast(Request $req){
+        $this->validate($req,
+            [
+                'password'=>'required|min:6|max:20',
+                'username'=>'required|unique:users,user_name',
+                're_password'=>'required|same:password'
+            ],
+            [
+                'username.required'=>'Vui lòng nhập tên đăng nhập',
+                'username.unique'=>'username đã có người sử dụng',
+                'password.required'=>'Vui lòng nhập mật khẩu',
+                're_password.same'=>'Mật khẩu không giống nhau',
+                'password.min'=>'Mật khẩu ít nhất 6 kí tự'
+            ]);
+        $account = new User();
+        $account->full_name = isset($req->full_name) ? $req->full_name : '';
+        $account->user_name = $req->username;
+        $account->email = isset($req->email) ? $req->email : '';
+        $account->password = Hash::make($req->password);
+        $account->sex = isset($req->gender) ? $req->gender : 0;
+        $account->address = isset($req->address) ? $req->address : '';
+        $account->phone = isset($req->phone) ? $req->phone : null;
+        $account->address =isset($req->nickname) ? $req->nickname: '';
+        $account->authorities = 5;
+        $account->status = 6;
+
+        $account->save();
         return redirect()->back()->with('thanhcong','Tạo tài khoản thành công');
     }
 
@@ -127,26 +187,23 @@ class PageController extends Controller
     public function postLogin(Request $req){
         $this->validate($req,
             [
-                'email'=>'required|email',
+                'username'=>'required',
                 'password'=>'required|min:6|max:20'
             ],
             [
-                'email.required'=>'Vui lòng nhập email',
-                'email.email'=>'Email không đúng định dạng',
+                'username.required'=>'Vui lòng nhập email',
                 'password.required'=>'Vui lòng nhập mật khẩu',
                 'password.min'=>'Mật khẩu ít nhất 6 kí tự',
                 'password.max'=>'Mật khẩu không quá 20 kí tự'
             ]
         );
-        $credentials = array('email'=>$req->email,'password'=>$req->password);
-        $user = User::where([
-                ['email','=',$req->email],
-                ['status','=','1']
+        $credentials = array('user_name'=>$req->username,'password'=>$req->password);
+        $account = User::where([
+                ['user_name','=',$req->username],
+                ['status','=','6']
             ])->first();
-
-        if($user){
+        if($account){
             if(Auth::attempt($credentials)){
-
             return redirect()->back()->with(['flag'=>'success','message'=>'Đăng nhập thành công']);
             }
             else{

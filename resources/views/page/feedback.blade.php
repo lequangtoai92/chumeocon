@@ -4,28 +4,44 @@
 <section class="wrapper">
     <div class="container media container_page">
         <div class="content-body container" id="id_feedback">
-            <div class="row">
-                <div class="content-left ">
-                    <textarea class="form-control" rows="2" placeholder="Nội dung góp ý"></textarea>
-                </div>
-                <div class="content-right footer-save form-group row">
-                    <div class="text-thank">
-                        <span>Cám ơn những đóng góp của các bạn, chúng tôi sẽ cố gắng giải quyết để đem đến trãi nghiệm
-                            tốt nhất</span>
+            <form action="{{route('feedback')}}" method="post" class="beta-form-checkout">
+                <div class="row">
+                    @if(count($errors)>0)
+                    <div class="alert alert-danger">
+                        @foreach($errors->all() as $err)
+                        {{$err}}
+                        @endforeach
                     </div>
-                    <div class="button-right">
-                        <button type="button" class="btn btn-primary save-content">Gửi</button>
+                    @endif
+                    @if(Session::has('thanhcong'))
+                    <div class="alert alert-success">{{Session::get('thanhcong')}}</div>
+                    @endif
+                    <div class="content-left ">
+                        <textarea class="form-control" rows="2" placeholder="Nội dung góp ý"
+                            name="contentfeedback"></textarea>
+                    </div>
+                    <div class="content-right footer-save form-group row">
+                        <div class="text-thank">
+                            <span>Cám ơn những đóng góp của các bạn, chúng tôi sẽ cố gắng giải quyết để đem đến trãi
+                                nghiệm
+                                tốt nhất</span>
+                        </div>
+                        <div class="button-right">
+                            <button type="submit" class="btn btn-primary save-content">Gửi</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
             <hr>
             <div class="item-in-here">
+                @foreach($list_feedback as $item)
                 <div class="content-feedback-result">
-                    <p>Trang web quá xấu xí</p>
+                    <p>{{$item->content}}</p>
                     <div class="daytime">
-                        <span>20/10/2019</span>
+                        <span>{{$item->time_creat}}</span>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
         <div class="hidden-sm hidden-xs sidebar">
@@ -33,9 +49,9 @@
                 <div class="heading">
                     <h2>MotoTube</h2>
                 </div>
-                <iframe width="300" height="250" src="https://www.youtube.com/embed/LopMoV5ahqg" frameborder="0"
+                <!-- <iframe width="300" height="250" src="https://www.youtube.com/embed/LopMoV5ahqg" frameborder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+                    allowfullscreen></iframe> -->
             </div>
             <div class="wrapper-ranking">
                 <div class="heading">

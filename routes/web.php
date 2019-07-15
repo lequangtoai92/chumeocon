@@ -63,8 +63,13 @@ Route:: get('truyen-cuoi', [
 ]);
 
 Route:: get('gop-y', [
-    'as' => 'trang-chu',
+    'as' => 'feedback',
     'uses' => 'PageController@getFeedback'
+]);
+
+Route:: post('gop-y', [
+    'as' => 'feedback',
+    'uses' => 'PageController@postFeedback'
 ]);
 
 // user
@@ -115,23 +120,38 @@ Route:: get('admin/feedback', [
 
 // end admin
 
-Route::get('signin',[
+Route::get('dang-ky',[
 	'as'=>'signin',
 	'uses'=>'PageController@getSignin'
 ]);
 
-Route::post('signin',[
+Route::post('dang-ky',[
 	'as'=>'signin',
 	'uses'=>'PageController@postSignin'
 ]);
 
-Route::get('login',[
+Route::get('dang-ky-nhanh',[
+	'as'=>'signin_fast',
+	'uses'=>'PageController@getSigninFast'
+]);
+
+Route::post('dang-ky-nhanh',[
+	'as'=>'signin_fast',
+	'uses'=>'PageController@postSigninFast'
+]);
+
+Route::get('dang-nhap',[
 	'as'=>'login',
 	'uses'=>'PageController@getLogin'
 ]);
-Route::post('login',[
+Route::post('dang-nhap',[
 	'as'=>'login',
 	'uses'=>'PageController@postLogin'
+]);
+
+Route::get('dang-xuat',[
+	'as'=>'logout',
+	'uses'=>'PageController@postLogout'
 ]);
 
 

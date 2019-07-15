@@ -1,6 +1,28 @@
 
 
 -- THÔNG TIN TÀI KHOẢN
+CREATE TABLE IF NOT EXISTS `users`(
+    `id_account` INT(11) NOT NULL AUTO_INCREMENT,
+    `full_name` VARCHAR(255), -- ho va ten
+    `email` VARCHAR(255), -- email
+    `address` TEXT(0), -- dia chi
+    `sex` INT(1), -- gioi tinh
+    `phone` INT(13), -- so dt
+    `nick_name` VARCHAR(255), -- biet danh
+    `time_creat` TIMESTAMP(0), -- thoi gian tao tai khoan
+    `birthday` TIMESTAMP(0), -- nam sinh
+    `authorities` INT(1), -- quyen 1-admin 2-sub-admin 3-sub-admin 4-subadmin 5-user 6-subuser
+    `user_name` VARCHAR(255), -- ten dang nhap
+    `password` VARCHAR(255), -- mat khau
+    `status` INT(2), -- trang thai 9-tamkhoa 8-canhbao, 7-canhbao, 6-binhthuong 
+    `remember_token` VARCHAR(100),
+    `time_change` TIMESTAMP(0), -- thoi gian chinh sua
+    `time_log` TIMESTAMP(0), -- thoi gian log
+    `created_at` TIMESTAMP,
+    `updated_at` TIMESTAMP,
+PRIMARY KEY(`id_account`))
+
+-- THÔNG TIN TÀI KHOẢN
 CREATE TABLE IF NOT EXISTS `account`(
     `id_account` INT(11) NOT NULL AUTO_INCREMENT,
     `full_name` VARCHAR(255), -- ho va ten
@@ -11,7 +33,10 @@ CREATE TABLE IF NOT EXISTS `account`(
     `nick_name` VARCHAR(255), -- biet danh
     `time_creat` TIMESTAMP(0), -- thoi gian tao tai khoan
     `birthday` TIMESTAMP(0), -- nam sinh
-    `authorities` INT(1), -- quyen
+    `authorities` INT(1), -- quyen 1-admin 2-sub-admin 3-sub-admin 4-subadmin 5-user 6-subuser
+    `user_name` VARCHAR(255), -- ten dang nhap
+    `pass_word` VARCHAR(255), -- mat khau
+    `status` INT(2), -- trang thai 9-tamkhoa 8-canhbao, 7-canhbao, 6-binhthuong 
     `time_change` TIMESTAMP(0), -- thoi gian chinh sua
     `time_log` TIMESTAMP(0), -- thoi gian log
 PRIMARY KEY(`id_account`))
@@ -20,7 +45,6 @@ PRIMARY KEY(`id_account`))
 -- ĐĂNG NHẬP
 CREATE TABLE IF NOT EXISTS `login`(
     `id_login` INT(11) NOT NULL AUTO_INCREMENT,
-    `id_account` INT(11) NOT NULL, -- id tai khoan
     `user_name` VARCHAR(255), -- ten dang nhap
     `pass_word` VARCHAR(255), -- mat khau
     `authorities` INT(1), -- quyen
