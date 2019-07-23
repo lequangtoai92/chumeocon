@@ -45,7 +45,7 @@
                     <div class="col-right">
                         <div class="form-block">
                             <label for="birdth">Ngày sinh</label>
-                            <input type="text" name="birdth">
+                            <input data-toggle="datepicker-birthday" name="birdth">
                         </div>
 
                         <div class="form-block">
@@ -61,7 +61,7 @@
 
                         <div class="form-block">
                             <label for="phone">Số điện thoại</label>
-                            <input type="text" name="phone">
+                            <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
                         </div>
 
                         <div class="form-block">

@@ -80,8 +80,13 @@ Route:: get('info', [
 ]);
 
 Route:: get('posts', [
-    'as' => 'thong-tin',
+    'as' => 'posts',
     'uses' => 'PageController@getPosts'
+]);
+
+Route::post('posts',[
+	'as'=>'posts',
+	'uses'=>'PageController@postPosts'
 ]);
 
 Route:: get('my-posts', [

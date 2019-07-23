@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Posts;
 use App\Feedback;
+use Session;
 use Hash;
 use Auth;
 use Illuminate\Http\Request;
@@ -92,6 +94,22 @@ class PageController extends Controller
     public function getPosts(){
         return view('user.posts');
     }
+
+    public function postPosts(Request $req){
+        $posts = new Posts();
+        $posts->id_personality = 1;
+        $posts->id_account = 1;
+        $posts->title = $req->name_posts;
+        $posts->content = $req->main_content;
+        $posts->summary = $req->summary;
+        $posts->categories = 1;
+        $posts->age = isset($req->ages) ? $req->ages : null;
+        $posts->source =isset($req->source) ? $req->source: '';
+        $posts->status_post = 6;
+        $posts->save();
+        return redirect()->back()->with('thanhcong','Tạo tài khoản thành công');
+    }
+
     // end user
 
 
@@ -204,7 +222,7 @@ class PageController extends Controller
             ])->first();
         if($account){
             if(Auth::attempt($credentials)){
-            return redirect()->back()->with(['flag'=>'success','message'=>'Đăng nhập thành công']);
+            return redirect()->back()->with(['flag'=>'success','message'=> Auth::check() , Auth::user()]);
             }
             else{
                 return redirect()->back()->with(['flag'=>'danger','message'=>'Đăng nhập không thành công']);

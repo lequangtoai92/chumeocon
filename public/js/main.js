@@ -64,7 +64,10 @@ $(document).ready(function(){
         return false;
     });
 
-    showDialog();
+    // showDialog();
+    tinymce_init();
+
+    $('[data-toggle="datepicker-birthday"]').datepicker();
 });
 
 function showDialog(){
@@ -79,5 +82,20 @@ function showDialog(){
     updateButton.addEventListener('click', function() {
     favDialog.showModal();
   });
+}
+
+function tinymce_init(){
+    tinymce.init({
+        height: 500,
+        selector: "#content_main",
+        plugins: "code link textcolor colorpicker emoticons visualchars searchreplace wordcount charmap anchor textpattern preview",
+        menubar: "edit format insert view ",
+        toolbar: 'fontselect | fontsizeselect | undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor emoticons',
+        removed_menuitems: 'newdocument',
+        relative_urls: false,
+        remove_script_host: false,
+        document_base_url: (!window.location.origin ? window.location.protocol + "//" + window.location.host : window.location.origin) + "/",
+        file_browser_callback: function (field_name, url, type, win) { },
+      });
 }
 

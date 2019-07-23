@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="https://www.webike.in/favicon.ico" type="image/x-icon">
     <link rel="icon" href="https://www.webike.in/favicon.ico" type="image/x-icon">
     <!-- <link rel="stylesheet" href="dist/bootstrap/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="css/datepicker.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/template.css">
     <link rel="stylesheet" href="css/top.css">
@@ -34,6 +35,8 @@
     @include('include.footer')
 </body>
 <script src="js/jquery.js"></script>
+<script src="js/datepicker.js"></script>
+<script type="text/javascript" src="dist/tinymce/js/tinymce/tinymce.min.js" ></script>
 <script src="vendor/unveil-master/jquery.unveil.min.js"></script>
 <script src="vendor/bootstrap-4.3.1/js/bootstrap.min.js"></script>
 <script src="vendor/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
