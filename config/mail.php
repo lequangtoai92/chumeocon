@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => 'tuhoconlinetainha@gmail.com',
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => 'qungjjhjoxravscd',
 
     /*
     |--------------------------------------------------------------------------
@@ -100,6 +100,7 @@ return [
     */
 
     'sendmail' => '/usr/sbin/sendmail -bs',
+    'pretend' => false,
 
     /*
     |--------------------------------------------------------------------------

@@ -7,10 +7,13 @@ use App\Feedback;
 use Session;
 use Hash;
 use Auth;
+use Mail;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    protected $namespace = 'App\Http\Controllers';
+
     public function getIndex(){
         return view('page.index');
     }
@@ -20,6 +23,7 @@ class PageController extends Controller
     }
 
     public function getVietnameseFairyTales (){
+        
         return view('page.category');
     }
 
@@ -80,6 +84,17 @@ class PageController extends Controller
     }
 
     public function getMessages(){
+        return view('user.messages');
+    }
+
+    public function addFeedback(Request $request)
+    {
+        $input = $request->all();
+        Mail::send('mailfb', array('name'=>$input["name"],'email'=>$input["email"], 'content'=>$input['comment']), function($message){
+	        $message->to('toailq92@gmail.com', 'Visitor')->subject('Visitor Feedback!');
+	    });
+        Session::flash('flash_message', 'Send message successfully!');
+
         return view('user.messages');
     }
 

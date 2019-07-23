@@ -99,6 +99,10 @@ Route:: get('messages', [
     'uses' => 'PageController@getMessages'
 ]);
 
+Route::post('messages', [
+    'uses' => 'PageController@addFeedback',
+    'as' => 'front.fb']);
+
 Route:: get('notifice', [
     'as' => 'thong-tin',
     'uses' => 'PageController@getNotifice'

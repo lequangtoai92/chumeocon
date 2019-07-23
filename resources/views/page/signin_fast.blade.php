@@ -4,7 +4,7 @@
 <section class="wrapper page page-login">
     <div class="container media container_page">
         <div class="media-body">
-        <form action="{{route('signin_fast')}}" method="post" class="beta-form-checkout">
+            <form action="{{route('signin_fast')}}" method="post" class="beta-form-checkout">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                     @if(count($errors)>0)
 						<div class="alert alert-danger">
