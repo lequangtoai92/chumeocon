@@ -9,8 +9,6 @@
                 @if(Session::has('flag'))
 						<div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}</div>
 					@endif
-                    <?php var_dump(Auth::check()); ?>
-                    <?php var_dump(Auth::user()); ?>
                 <div class="row">
                     <div class="col-left">
                         <div class="form-block">

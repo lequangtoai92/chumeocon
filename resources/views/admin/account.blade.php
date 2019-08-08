@@ -1,4 +1,4 @@
-@extends('master')
+@extends('master_admin')
 @section('content')
 <link rel="stylesheet" href="../css/admin/acount.css">
 <section class="wrapper page-admin-acount">
@@ -33,15 +33,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in items" class="td-hover">
-                        <td class="td-1">Công tằng tôn nữ nguyễn</td>
-                        <td class="td-2">Nhantam</td>
-                        <td class="td-3">bin_knight@gmail.com</td>
-                        <td class="td-4">Nam</td>
-                        <td class="td-5">số 2 thống nhất bình thọ thủ đứcTP.HCM</td>
-                        <td class="td-6">01634538492</td>
-                        <td class="td-7">mắt bão</td>
-                        <td class="td-8">20/10/1992</td>
+                @foreach($account as $item)
+                    <tr class="td-hover">
+                        <td class="td-1">{{$item->full_name}}</td>
+                        <td class="td-2">{{$item->user_name}}</td>
+                        <td class="td-3">{{$item->email}}</td>
+                        <td class="td-4">{{$item->sex}}</td>
+                        <td class="td-5">{{$item->address}}</td>
+                        <td class="td-6">{{$item->phone}}</td>
+                        <td class="td-7">{{$item->nick_name}}</td>
+                        <td class="td-8">{{$item->time_creat}}</td>
                         <td class="td-9">
                             <select class="form-control select-option" v-model="type">
                                 <option class="select-option" disabled value="">Duyệt</option>
@@ -55,7 +56,9 @@
                             <button class="btn btn-primary">Duyệt</button>
                         </td>
                     </tr>
-                    <tr v-for="item in items" class="td-hover">
+                    @endforeach
+                    
+                    <!-- <tr v-for="item in items" class="td-hover">
                         <td class="td-1">Nhẫn Tâm Bin</td>
                         <td class="td-2">Nhantam</td>
                         <td class="td-3">bin@gmail.com</td>
@@ -76,9 +79,10 @@
                         <td class="td-11">
                             <button class="btn btn-primary">Duyệt</button>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
+            <div class="row">{{$account->links()}}</div>
         </div>
 
     </div>

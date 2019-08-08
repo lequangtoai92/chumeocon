@@ -2,10 +2,9 @@
 @section('content')
 <link rel="stylesheet" href="css/posts.css">
 <section class="wrapper page-post">
-    <div class="container media container_page">
-
-        <div class="media-body">
-            <form action="{{route('posts')}}" method="post">
+    <form action="{{route('posts')}}" enctype="multipart/form-data" method="post">
+        <div class="container media container_page">
+            <div class="media-body">
                 <div class="name-title">
                     <input type="text" name="name_posts" placeholder="Tên tác phẩm(*)">
                 </div>
@@ -13,10 +12,8 @@
                     <textarea id="content_main" rows="20" name="main_content" class="form-control"
                         placeholder="Nội dung(*)"></textarea>
                 </div>
-            </form>
-        </div>
-        <div class="sidebar">
-            <form action="{{route('posts')}}" method="post">
+            </div>
+            <div class="sidebar">
                 <div class="wrapper-post">
                     <div class="heading">
                         <h2>ĐĂNG BÀI</h2>
@@ -38,13 +35,25 @@
                                 placeholder="Giới thiệu bài viết"></textarea>
                         </article>
                         <article class="media news-items">
-                            <input type="text" name="author" placeholder="Tác giả">
+                            <input type="text" name="author" value="{{Auth::user()->full_name}}"
+                                placeholder="Tác giả">
                         </article>
                         <article class="media news-items">
-                            <input type="text" name="virtue" placeholder="Đức tính">
+                            <select name="categories">
+                                @foreach($list_categories as $item)
+                                <option value="{{$item->id}}">{{$item->name_categories}}</option>
+                                @endforeach
+                            </select>
                         </article>
                         <article class="media news-items">
-                            <input type="text" name="ages" placeholder="Lứa tuổi">
+                            <select name="personality">
+                                @foreach($list_personality as $item)
+                                <option value="{{$item->id_personality}}">{{$item->name_personality}}</option>
+                                @endforeach
+                            </select>
+                        </article>
+                        <article class="media news-items">
+                            <input type="number" name="ages" min="0" max="15" placeholder="Lứa tuổi">
                         </article>
                         <article class="media news-items">
                             <input type="text" name="source" placeholder="Nguồn">
@@ -55,15 +64,32 @@
                     <div class="heading">
                         <h2>Hình ảnh</h2>
                     </div>
-                    <div>
+                    <div class="show-image">
+                        <img id="blah" src="http://placehold.it/180" alt="your image" />
                         <ul class="list-button">
-                            <button class="btn" href="">Ảnh có sẵn</button>
-                            <button class="btn btn-primary" href="">Tải ảnh lên</button>
+                            <input type="file" id="upload_image" name="image_upload" class="inputfile"
+                                onchange="readURL(this);">
+                            <label for="upload_image">Choose a file</label>
                         </ul>
                     </div>
                 </div>
-            </form>
+                <!-- </form> -->
+            </div>
         </div>
-    </div>
+    </form>
 </section>
 @endsection
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#blah')
+                .attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>

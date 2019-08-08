@@ -1,7 +1,33 @@
 
 .page-post .name-title{margin-bottom: 20px;}
-.page-post .name-title input{font-size: 1.5rem}
-.page-post .content-main textarea{font-size: 1.3rem; height: auto;}
-.page-post .wrapper-setting textarea{font-size: 1.1rem; height: auto;}
+.page-post .name-title input{font-size: 1.2rem}
+/* .page-post .content-main textarea{font-size: 1.3rem; height: auto;} */
+.page-post .wrapper-setting textarea{font-size: 1rem; padding-top: 5px; height: auto; font-family: Helvetica, Arial, Verdana, "Microsoft JhengHei", "微軟正黑體", "PMingLiU", sans-serif;}
 .page-post .list-button button{width: 48%;}
+.page-post .wrapper-image .show-image{text-align: center}
+.page-post .wrapper-image .show-image img{max-width:180px;}
 
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 1.25em;
+    color: #333;
+    background-color: #ccc;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: #9e9d9d;
+}

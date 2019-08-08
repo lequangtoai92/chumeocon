@@ -27,12 +27,7 @@
 </head>
 <body class="">
     @include('header')
-
-
     @yield('content')
-
-
-    @include('footer')
 </body>
 <script src="js/jquery.js"></script>
 <script src="js/datepicker.js"></script>

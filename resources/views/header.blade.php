@@ -22,7 +22,6 @@
                     @endif
                     <div class="hidden-xs hidden-sm sub dropdown-menu sub-menu-user">
                         <ul class="sub-menu-user">
-
                             @if(Auth::check())
                             <li>
                                 <a href="info">Tài khoản</a>

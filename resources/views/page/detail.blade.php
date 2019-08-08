@@ -1,3 +1,5 @@
+@extends('master')
+@section('content')
 <section class="wrapper">
     <div class="container media container_page">
         <div class="media-body">
@@ -189,3 +191,4 @@ Tuy vậy Thủy Tinh vẫn không quên được chuyện xưa. Hàng năm cứ
         </div>
     </div>
 </section>
+@endsection

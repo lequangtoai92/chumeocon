@@ -79,14 +79,19 @@ Route:: get('info', [
     'uses' => 'PageController@getInfo'
 ]);
 
+Route:: post('info', [
+    'as' => 'update_pass_word',
+    'uses' => 'PageController@updatePassWord'
+]);
+
 Route:: get('posts', [
     'as' => 'posts',
-    'uses' => 'PageController@getPosts'
+    'uses' => 'PostController@getPosts'
 ]);
 
 Route::post('posts',[
 	'as'=>'posts',
-	'uses'=>'PageController@postPosts'
+	'uses'=>'PostController@postPosts'
 ]);
 
 Route:: get('my-posts', [
@@ -108,64 +113,62 @@ Route:: get('notifice', [
     'uses' => 'PageController@getNotifice'
 ]);
 
+Route:: post('notifice', [
+    'as' => 'upload',
+    'uses' => 'Filecontroller@doUpload'
+]);
 // end user
 
 
 // admin
 Route:: get('admin/account', [
     'as' => 'thong-tin',
-    'uses' => 'PageController@getAdminAccount'
+    'uses' => 'AdminController@getAdminAccount'
 ]);
 
 Route:: get('admin/post', [
     'as' => 'thong-tin',
-    'uses' => 'PageController@getAdminPosts'
+    'uses' => 'AdminController@getAdminPosts'
 ]);
 
 Route:: get('admin/feedback', [
     'as' => 'thong-tin',
-    'uses' => 'PageController@getAdminFeeback'
+    'uses' => 'AdminController@getAdminFeeback'
 ]);
 
 // end admin
 
 Route::get('dang-ky',[
 	'as'=>'signin',
-	'uses'=>'PageController@getSignin'
+	'uses'=>'LoginController@getSignin'
 ]);
 
 Route::post('dang-ky',[
 	'as'=>'signin',
-	'uses'=>'PageController@postSignin'
+	'uses'=>'LoginController@postSignin'
 ]);
 
 Route::get('dang-ky-nhanh',[
 	'as'=>'signin_fast',
-	'uses'=>'PageController@getSigninFast'
+	'uses'=>'LoginController@getSigninFast'
 ]);
 
 Route::post('dang-ky-nhanh',[
 	'as'=>'signin_fast',
-	'uses'=>'PageController@postSigninFast'
+	'uses'=>'LoginController@postSigninFast'
 ]);
 
 Route::get('dang-nhap',[
 	'as'=>'login',
-	'uses'=>'PageController@getLogin'
+	'uses'=>'LoginController@getLogin'
 ]);
 Route::post('dang-nhap',[
 	'as'=>'login',
-	'uses'=>'PageController@postLogin'
+	'uses'=>'LoginController@postLogin'
 ]);
 
 Route::get('dang-xuat',[
 	'as'=>'logout',
-	'uses'=>'PageController@postLogout'
+	'uses'=>'LoginController@postLogout'
 ]);
-
-
-
-
-
-
 

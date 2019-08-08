@@ -4,281 +4,30 @@
     <div class="container media container_page">
         <div class="media-body">
             <div class="list-news">
-                <article class="news-items">
-                    <a href="detail.html"><img class="lazy" src="img/bg-img.jpg"
-                            data-src="img/img_test/news/img-news11.jpg" alt="name image"></a>
-                    <div class="news-items-body">
-                        <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
-                                Industry</a></p>
-                        <h3 class="title"><a href="detail.html">The initial production of Engine Cover and Oil Pump
-                                Cover for Kawasaki Z1/Z2 are completed.</a></h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">Harley-Davidson showed off a new model this
-                            week that’s easy to overlook. In fact, I spent a few days thinking about it, and as I did,
-                            Harley-Davidson showed off a new model this week that’s easy to overlook. In fact, I spent a
-                            few days thinking about it, and as I did</p>
-                        <div class="meta">
-                            <time>81,083 views</time>
-                            <a class="category" href="category.html">YOSHIMURA JAPAN FACEBOOK</a>
-                        </div>
-                    </div>
-                </article>
-                <article class="news-items">
-                    <a href="detail.html"><img class="lazy" src="img/bg-img.jpg"
-                            data-src="img/img_test/news/img-news12.jpg" alt="name image"></a>
-                    <div class="news-items-body">
-                        <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
-                                Industry</a></p>
-                        <h3 class="title"><a href="detail.html">The initial production of Engine Cover and Oil Pump.</a>
-                        </h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">Harley-Davidson showed off a new model this
-                            week that’s easy to overlook. In fact, I spent a few days thinking about it, and as I did,
-                            Harley-Davidson showed off a new model this week that’s easy to overlook. In fact, I spent a
-                            few days thinking about it, and as I did</p>
-                        <div class="meta">
-                            <time>81,083 views</time>
-                            <a class="category" href="category.html">K-FACTORY</a>
-                        </div>
-                    </div>
-                </article>
-                <article class="news-items">
-                    <a href="detail.html"><img class="lazy" src="img/bg-img.jpg"
-                            data-src="img/img_test/news/img-news09.jpg" alt="name image"></a>
-                    <div class="media-body news-items-body">
-                        <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
-                                Industry</a></p>
-                        <h3 class="title"><a href="detail.html">The initial production of Engine Cover and Oil Pump
-                                Cover for Kawasaki Z1/Z2 are completed.</a></h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">Harley-Davidson showed off a new model this
-                            week that’s easy to overlook. In fact, I spent a few days thinking about it, and as I did,
-                            Harley-Davidson showed off a new model this week that’s easy to overlook. In fact, I spent a
-                            few days thinking about it, and as I did</p>
-                        <div class="meta">
-                            <time>81,083 views</time>
-                            <a class="category" href="category.html">SP TAKEGAWA</a>
-                        </div>
-                    </div>
-                </article>
-                <article class="news-items">
-                    <a href="detail.html"><img class="lazy" src="img/bg-img.jpg"
-                            data-src="img/img_test/news/img-news01.jpg" alt="name image"></a>
-                    <div class="news-items-body">
-                        <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
-                                Industry</a></p>
-                        <h3 class="title"><a href="detail.html">The initial production of Engine Cover and Oil Pump
-                                Cover for Kawasaki Z1/Z2 are completed.</a></h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">Harley-Davidson showed off a new model this
-                            week that’s easy to overlook. In fact, I spent a few days thinking about it, and as I did,
-                            Harley-Davidson showed off a new model this week that’s easy to overlook. In fact, I spent a
-                            few days thinking about it, and as I did</p>
-                        <div class="meta">
-                            <time>81,083 views</time>
-                            <a class="category" href="category.html"> Young Machine</a>
-                        </div>
-                    </div>
-                </article>
+                @foreach($list_posts as $key=>$item)
+                @if ($key == 4)
                 <div class="ads">
                     <a href="#">
                         <img src="img/img_test/ad/img-ad01.png" alt="name image">
                     </a>
                 </div>
+                @endif
                 <article class="news-items">
                     <a href="detail.html"><img class="lazy" src="img/bg-img.jpg"
-                            data-src="img/img_test/news/img-news02.jpg" alt="name image"></a>
+                            data-src='{{$item->image}}' alt="name image"></a>
                     <div class="news-items-body">
                         <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
                                 Industry</a></p>
-                        <h3 class="title"><a href="detail.html">The initial production of Engine Cover and Oil Pump
-                                Cover for Kawasaki Z1/Z2 are completed.</a></h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">Harley-Davidson showed off a new model this
-                            week that’s easy to overlook. In fact, I spent a few days thinking about it, and as I did,
-                            Harley-Davidson showed off a new model this week that’s easy to overlook. In fact, I spent a
-                            few days thinking about it, and as I did</p>
+                        <h3 class="title"><a href="detail.html">{{$item->title}}</a></h3>
+                        <p class="hidden-sm hidden-xs dotted-line-2 summary">{{$item->summary}}</p>
                         <div class="meta">
-                            <time>81,083 views</time>
-                            <a class="category" href="category.html">YOSHIMURA JAPAN FACEBOOK</a>
+                            <time>{{$item->num_view}} views</time>
+                            <a class="category" href="category.html">{{$item->author}}</a>
                         </div>
                     </div>
                 </article>
-                <article class="news-items">
-                    <a href="detail.html"><img class="lazy" src="img/bg-img.jpg"
-                            data-src="img/img_test/news/img-news03.jpg" alt="name image"></a>
-                    <div class="news-items-body">
-                        <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
-                                Industry</a></p>
-                        <h3 class="title"><a href="detail.html">The initial production of Engine Cover and Oil Pump
-                                Cover for Kawasaki Z1/Z2 are completed.</a></h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">Harley-Davidson showed off a new model this
-                            week that’s easy to overlook. In fact, I spent a few days thinking about it, and as I did,
-                            Harley-Davidson showed off a new model this week that’s easy to overlook. In fact, I spent a
-                            few days thinking about it, and as I did</p>
-                        <div class="meta">
-                            <time>81,083 views</time>
-                            <a class="category" href="category.html">K-FACTORY</a>
-                        </div>
-                    </div>
-                </article>
-                <article class="news-items">
-                    <a href="detail.html"><img class="lazy" src="img/bg-img.jpg"
-                            data-src="img/img_test/news/img-news04.jpg" alt="name image"></a>
-                    <div class="news-items-body">
-                        <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
-                                Industry</a></p>
-                        <h3 class="title"><a href="detail.html">The initial production of Engine Cover and Oil Pump
-                                Cover for Kawasaki Z1/Z2 are completed.</a></h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">Harley-Davidson showed off a new model this
-                            week that’s easy to overlook. In fact, I spent a few days thinking about it, and as I did,
-                            Harley-Davidson showed off a new model this week that’s easy to overlook. In fact, I spent a
-                            few days thinking about it, and as I did</p>
-                        <div class="meta">
-                            <time>81,083 views</time>
-                            <a class="category" href="category.html">SP TAKEGAWA</a>
-                        </div>
-                    </div>
-                </article>
-                <article class="news-items">
-                    <a href="detail.html"><img class="lazy" src="img/bg-img.jpg"
-                            data-src="img/img_test/news/img-news05.jpg" alt="name image"></a>
-                    <div class="news-items-body">
-                        <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
-                                Industry</a></p>
-                        <h3 class="title"><a href="detail.html">The initial production of Engine Cover and Oil Pump
-                                Cover for Kawasaki Z1/Z2 are completed.</a></h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">Harley-Davidson showed off a new model this
-                            week that’s easy to overlook. In fact, I spent a few days thinking about it, and as I did,
-                            Harley-Davidson showed off a new model this week that’s easy to overlook. In fact, I spent a
-                            few days thinking about it, and as I did</p>
-                        <div class="meta">
-                            <time>81,083 views</time>
-                            <a class="category" href="category.html"> Young Machine</a>
-                        </div>
-                    </div>
-                </article>
-                <article class="news-items">
-                    <a href="detail.html"><img class="lazy" src="img/bg-img.jpg"
-                            data-src="img/img_test/news/img-news06.jpg" alt="name image"></a>
-                    <div class="news-items-body">
-                        <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
-                                Industry</a></p>
-                        <h3 class="title"><a href="detail.html">The initial production of Engine Cover and Oil Pump
-                                Cover for Kawasaki Z1/Z2 are completed.</a></h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">Harley-Davidson showed off a new model this
-                            week that’s easy to overlook. In fact, I spent a few days thinking about it, and as I did,
-                            Harley-Davidson showed off a new model this week that’s easy to overlook. In fact, I spent a
-                            few days thinking about it, and as I did</p>
-                        <div class="meta">
-                            <time>81,083 views</time>
-                            <a class="category" href="category.html">YOSHIMURA JAPAN FACEBOOK</a>
-                        </div>
-                    </div>
-                </article>
-                <article class="news-items">
-                    <a href="detail.html"><img class="lazy" src="img/bg-img.jpg"
-                            data-src="img/img_test/news/img-news07.jpg" alt="name image"></a>
-                    <div class="news-items-body">
-                        <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
-                                Industry</a></p>
-                        <h3 class="title"><a href="detail.html">The initial production of Engine Cover and Oil Pump
-                                Cover for Kawasaki Z1/Z2 are completed.</a></h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">Harley-Davidson showed off a new model this
-                            week that’s easy to overlook. In fact, I spent a few days thinking about it, and as I did,
-                            Harley-Davidson showed off a new model this week that’s easy to overlook. In fact, I spent a
-                            few days thinking about it, and as I did</p>
-                        <div class="meta">
-                            <time>81,083 views</time>
-                            <a class="category" href="category.html">K-FACTORY</a>
-                        </div>
-                    </div>
-                </article>
-                <article class="news-items">
-                    <a href="detail.html"><img class="lazy" src="img/bg-img.jpg"
-                            data-src="img/img_test/news/img-news08.jpg" alt="name image"></a>
-                    <div class="news-items-body">
-                        <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
-                                Industry</a></p>
-                        <h3 class="title"><a href="detail.html">The initial production of Engine Cover and Oil Pump
-                                Cover for Kawasaki Z1/Z2 are completed.</a></h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">Harley-Davidson showed off a new model this
-                            week that’s easy to overlook. In fact, I spent a few days thinking about it, and as I did,
-                            Harley-Davidson showed off a new model this week that’s easy to overlook. In fact, I spent a
-                            few days thinking about it, and as I did</p>
-                        <div class="meta">
-                            <time>81,083 views</time>
-                            <a class="category" href="category.html">SP TAKEGAWA</a>
-                        </div>
-                    </div>
-                </article>
-                <article class="news-items">
-                    <a href="detail.html"><img class="lazy" src="img/bg-img.jpg"
-                            data-src="img/img_test/news/img-news09.jpg" alt="name image"></a>
-                    <div class="news-items-body">
-                        <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
-                                Industry</a></p>
-                        <h3 class="title"><a href="detail.html">The initial production of Engine Cover and Oil Pump
-                                Cover for Kawasaki Z1/Z2 are completed.</a></h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">Harley-Davidson showed off a new model this
-                            week that’s easy to overlook. In fact, I spent a few days thinking about it, and as I did,
-                            Harley-Davidson showed off a new model this week that’s easy to overlook. In fact, I spent a
-                            few days thinking about it, and as I did</p>
-                        <div class="meta">
-                            <time>81,083 views</time>
-                            <a class="category" href="category.html"> Young Machine</a>
-                        </div>
-                    </div>
-                </article>
-                <article class="news-items">
-                    <a href="detail.html"><img class="lazy" src="img/bg-img.jpg"
-                            data-src="img/img_test/news/img-news10.jpg" alt="name image"></a>
-                    <div class="news-items-body">
-                        <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
-                                Industry</a></p>
-                        <h3 class="title"><a href="detail.html">The initial production of Engine Cover and Oil Pump
-                                Cover for Kawasaki Z1/Z2 are completed.</a></h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">Harley-Davidson showed off a new model this
-                            week that’s easy to overlook. In fact, I spent a few days thinking about it, and as I did,
-                            Harley-Davidson showed off a new model this week that’s easy to overlook. In fact, I spent a
-                            few days thinking about it, and as I did</p>
-                        <div class="meta">
-                            <time>81,083 views</time>
-                            <a class="category" href="category.html">YOSHIMURA JAPAN FACEBOOK</a>
-                        </div>
-                    </div>
-                </article>
-                <article class="news-items">
-                    <a href="detail.html"><img class="lazy" src="img/bg-img.jpg"
-                            data-src="img/img_test/news/img-news11.jpg" alt="name image"></a>
-                    <div class="news-items-body">
-                        <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
-                                Industry</a></p>
-                        <h3 class="title"><a href="detail.html">The initial production of Engine Cover and Oil Pump
-                                Cover for Kawasaki Z1/Z2 are completed.</a></h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">Harley-Davidson showed off a new model this
-                            week that’s easy to overlook. In fact, I spent a few days thinking about it, and as I did,
-                            Harley-Davidson showed off a new model this week that’s easy to overlook. In fact, I spent a
-                            few days thinking about it, and as I did</p>
-                        <div class="meta">
-                            <time>81,083 views</time>
-                            <a class="category" href="category.html">K-FACTORY</a>
-                        </div>
-                    </div>
-                </article>
-                <article class="news-items">
-                    <a href="detail.html"><img class="lazy" src="img/bg-img.jpg"
-                            data-src="img/img_test/news/img-news12.jpg" alt="name image"></a>
-                    <div class="news-items-body">
-                        <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
-                                Industry</a></p>
-                        <h3 class="title"><a href="detail.html">The initial production of Engine Cover and Oil Pump
-                                Cover for Kawasaki Z1/Z2 are completed.</a></h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">Harley-Davidson showed off a new model this
-                            week that’s easy to overlook. In fact, I spent a few days thinking about it, and as I did,
-                            Harley-Davidson showed off a new model this week that’s easy to overlook. In fact, I spent a
-                            few days thinking about it, and as I did</p>
-                        <div class="meta">
-                            <time>81,083 views</time>
-                            <a class="category" href="category.html">SP TAKEGAWA</a>
-                        </div>
-                    </div>
-                </article>
+                @endforeach
+                
             </div>
         </div>
         <div class="hidden-sm hidden-xs sidebar">

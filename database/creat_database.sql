@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `personality`(
     `id_personality` INT(11) NOT NULL AUTO_INCREMENT,
     `name_personality` VARCHAR(255) NOT NULL, -- ten tinh cach
     `rank_personality` INT(2), -- xep hang
+    `status` INT(1), -- trang thai
 PRIMARY KEY(`id_personality`))
 
 -- BÌNH LUẬN
@@ -97,6 +98,8 @@ CREATE TABLE IF NOT EXISTS `posts`(
     `source` VARCHAR(255), -- nguon
     `categories` INT(2), -- nhom danh muc
     `age` INT(1), -- do tuoi
+    `image` VARCHAR(255), -- do tuoi
+    `author` VARCHAR(255), -- tac gia
     `time_creat` TIMESTAMP(0), -- ngay tao
     `tiem_update` TIMESTAMP(0), -- ngay update
     `num_like` INT(11), -- so luot thich
@@ -167,3 +170,11 @@ CREATE TABLE IF NOT EXISTS `notification`(
     `time_creat` TIMESTAMP(0),
     `status` INT(1),
 PRIMARY KEY(`id_notification`))
+-- danh muc
+CREATE TABLE IF NOT EXISTS `categories`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `name_categories` VARCHAR(255),
+    `group` INT(2),
+    `status` INT(1),
+PRIMARY KEY(`id`))
+

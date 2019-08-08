@@ -1,4 +1,4 @@
-@extends('master')
+@extends('master_admin')
 @section('content')
 <link rel="stylesheet" href="../css/admin/feedback.css">
 <section class="wrapper page-admin-feedback">
@@ -30,7 +30,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in items" class="td-hover ">
+                @foreach($list_feedback_admin as $item)
+                    <tr class="td-hover ">
+                        <td class="td-1">{{$item->name_author}}</td>
+                        <td class="td-2">{{$item->content}}</td>
+                        <td class="td-3">{{$item->driver}}</td>
+                        <td class="td-4">{{$item->browser}}</td>
+                        <td class="td-5">{{$item->version}}</td>
+                        <td class="td-6">{{$item->time_creat}}</td>
+                        <td class="td-7">
+                            <select class="form-control select-option">
+                                <option class="select-option" disabled value="">Duyệt</option>
+                                <option class="select-option" value="1">Chấp nhận</option>
+                                <option class="select-option" value="2">Xóa</option>
+                            </select>
+                        </td>
+                        <td class="td-11">
+												<button class="btn btn-primary">Duyệt</button>
+                        </td>
+					</tr>
+                @endforeach
+                    <!-- <tr class="td-hover ">
                         <td class="td-1">Nhẫn tâm bin</td>
                         <td class="td-2">Trang web quá xấu</td>
                         <td class="td-3">window 1o</td>
@@ -47,8 +67,8 @@
                         <td class="td-11">
 												<button class="btn btn-primary">Duyệt</button>
                         </td>
-										</tr>
-										<tr v-for="item in items" class="td-hover ">
+					</tr>
+					<tr v-for="item in items" class="td-hover ">
                         <td class="td-1">Nhẫn tâm bin</td>
                         <td class="td-2">Tính năng đăng bài không hoạt động</td>
                         <td class="td-3">samsung galaxy a8 start</td>
@@ -65,7 +85,7 @@
                         <td class="td-11">
 												<button class="btn btn-primary">Duyệt</button>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
