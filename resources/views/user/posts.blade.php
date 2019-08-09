@@ -65,7 +65,7 @@
                         <h2>Hình ảnh</h2>
                     </div>
                     <div class="show-image">
-                        <img id="blah" src="http://placehold.it/180" alt="your image" />
+                        <img id="blah" src="img/no_image.png" alt="your image" />
                         <ul class="list-button">
                             <input type="file" id="upload_image" name="image_upload" class="inputfile"
                                 onchange="readURL(this);">
@@ -93,3 +93,4 @@ function readURL(input) {
     }
 }
 </script>
+

@@ -178,3 +178,23 @@ CREATE TABLE IF NOT EXISTS `categories`(
     `status` INT(1),
 PRIMARY KEY(`id`))
 
+
+INSERT INTO categories
+VALUES (3, 'Cổ tích Nhật Bản', 1, 1),
+(4, 'Truyện cổ Grimms', 1, 1),
+(5, 'Thần thoại Hi Lạp', 1, 1),
+(6, 'Cao dao tục ngữ', 1, 1),
+(7, 'Lời hay ý đẹp', 1, 1),
+(8, 'Truyện cười', 1, 1);
+
+
+INSERT INTO personality
+VALUES 
+(3, 'Dũng cảm', 1, 1),
+(4, 'Khiêm tốn', 1, 1),
+(5, 'Siêng năng', 1, 1),
+(6, 'Kiên nhẫn', 1, 1),
+(7, 'Lể phép', 1, 1),
+(8, 'Trách nhiệm', 1, 1);
+
+

@@ -72,6 +72,11 @@ Route:: post('gop-y', [
     'uses' => 'PageController@postFeedback'
 ]);
 
+Route::get('bai-viet/{id}',[
+	'as'=>'baiviet',
+	'uses'=>'PageController@getViewPosts'
+]);
+
 // user
 
 Route:: get('info', [

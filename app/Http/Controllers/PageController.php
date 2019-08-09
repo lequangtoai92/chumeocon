@@ -109,11 +109,17 @@ class PageController extends Controller
     }
 
     public function getMyPosts(){
-        return view('user.my_posts');
+        $list_posts = Posts::where([['id_account','=',Auth::user()->id], ['status','=',6]])->get();
+        return view('user.my_posts',compact('list_posts'));
     }
 
     public function getNotifice(){
         return view('user.notifice');
+    }
+
+    public function getViewPosts(Request $req){
+        $posts = Posts::where('id_post',$req->id)->first();
+        return view('page.detail',compact('posts'));
     }
 
     
