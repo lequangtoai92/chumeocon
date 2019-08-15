@@ -118,7 +118,7 @@ class LoginController extends Controller
         if($account){
             if(Auth::attempt($credentials, true)){
                 // return view('header1');
-                return view('page.category');
+                return redirect()->back();
             }
             else{
                 return redirect()->back()->with(['flag'=>'danger','message'=>'Đăng nhập không thành công']);
@@ -131,8 +131,8 @@ class LoginController extends Controller
     }
     public function postLogout(){
         Auth::logout();
-        return view('page.category');
-        // return redirect()->route('index');
+        // return view('page.category');
+        return redirect()->back();
     }
 
     public function updatePassWord(Request $req){

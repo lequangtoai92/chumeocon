@@ -8,6 +8,7 @@ use Session;
 use Hash;
 use Auth;
 use Mail;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -18,46 +19,61 @@ class PageController extends Controller
     // }
 
     public function getIndex(){
-        return view('page.index');
+        // $list_top = Posts::where('status','=',6)->skip(0)->take(3)->get();
+        $list_top = DB::table('posts')
+            ->join('categories', 'posts.categories', '=', 'categories.id')
+            ->where('posts.status', '6')
+            ->skip(0)->take(3)->get();
+        // $list_posts = Posts::where('status','=',6)->skip(3)->take(10)->get();
+        $list_posts = DB::table('posts')
+            ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
+            ->where('posts.status', '6')
+            ->skip(3)->take(10)->get();
+        return view('page.index', compact('list_top', 'list_posts'));
     }
 
     public function getNewStory(){
-        $list_posts = Posts::where('status','=',6)->paginate(10);
+        // $list_posts = Posts::where([['category.id','=',1], ['posts.status','=',6]])->paginate(10);
+        $list_posts = DB::table('posts')
+            ->join('categories', 'posts.categories', '=', 'categories.id')
+            ->where('categories.id', '1')
+            ->where('posts.status', '6')
+            ->get();
         return view('page.category',compact('list_posts'));
     }
 
     public function getVietnameseFairyTales (){
-        $list_posts = Posts::where('status','=',6)->get();
+        $list_posts = Posts::where([['categories','=',2], ['status','=',6]])->get();
         return view('page.category',compact('list_posts'));
     }
 
     public function getJapanFairyTales(){
-        $list_posts = Posts::where('status','=',6)->paginate(10);
+        $list_posts = Posts::where([['categories','=',3], ['status','=',6]])->paginate(10);
         return view('page.category',compact('list_posts'));
     }
 
     public function getGrimmsFairyTales(){
-        $list_posts = Posts::where('status','=',6)->paginate(10);
+        $list_posts = Posts::where([['categories','=',4], ['status','=',6]])->paginate(10);
         return view('page.category',compact('list_posts'));
     }
 
     public function getGreekMythology(){
-        $list_posts = Posts::where('status','=',6)->paginate(10);
+        $list_posts = Posts::where([['categories','=',5], ['status','=',6]])->paginate(10);
         return view('page.category',compact('list_posts'));
     }
 
     public function getVietnameseProverbs(){
-        $list_posts = Posts::where('status','=',6)->paginate(10);
+        $list_posts = Posts::where([['categories','=',6], ['status','=',6]])->paginate(10);
         return view('page.category',compact('list_posts'));
     }
 
     public function getGoodWord(){
-        $list_posts = Posts::where('status','=',6)->paginate(10);
+        $list_posts = Posts::where([['categories','=',7], ['status','=',6]])->paginate(10);
         return view('page.category',compact('list_posts'));
     }
 
     public function getFunnyStory(){
-        $list_posts = Posts::where('status','=',6)->paginate(10);
+        $list_posts = Posts::where([['categories','=',8], ['status','=',6]])->paginate(10);
         return view('page.category',compact('list_posts'));
     }
 
@@ -109,8 +125,21 @@ class PageController extends Controller
     }
 
     public function getMyPosts(){
-        $list_posts = Posts::where([['id_account','=',Auth::user()->id], ['status','=',6]])->get();
+        // $list_posts = Posts::where([['id_account','=',Auth::user()->id], ['status','=',6]])->get();
+        $list_posts = DB::table('posts')
+            ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
+            ->where('id_account','=',Auth::user()->id)
+            ->where('posts.status', '6')
+            ->get();
         return view('user.my_posts',compact('list_posts'));
+    }
+
+    public function getDeleteMyPost(Request $req){
+        $posts = Posts::where('id_post',$req->id)->first();
+        if ( Auth::user()->id == $posts->id_account ){
+            $res = Posts::where('id_post' ,$req->id)->update(['status' => 9]);
+        }
+        return redirect()->back();
     }
 
     public function getNotifice(){

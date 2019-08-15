@@ -88,9 +88,9 @@ function tinymce_init(){
     tinymce.init({
         height: 500,
         selector: "#content_main",
-        plugins: "code link textcolor colorpicker emoticons visualchars searchreplace wordcount charmap anchor textpattern preview",
-        menubar: "edit format insert view ",
-        toolbar: 'fontselect | fontsizeselect | undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor emoticons',
+        plugins: "image code link textcolor colorpicker emoticons visualchars searchreplace wordcount charmap anchor textpattern preview",
+        menubar: "edit format insert view image",
+        toolbar: 'fontselect | fontsizeselect | undo redo | styleselect image | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor emoticons',
         removed_menuitems: 'newdocument',
         relative_urls: false,
         remove_script_host: false,

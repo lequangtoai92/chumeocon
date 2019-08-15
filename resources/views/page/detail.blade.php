@@ -1,5 +1,6 @@
 @extends('master')
 @section('content')
+<link rel="stylesheet" href="../css/detail.css">
 <section class="wrapper">
     <div class="container media container_page">
         <div class="media-body">

@@ -12,14 +12,11 @@
     <link rel="shortcut icon" href="https://www.webike.in/favicon.ico" type="image/x-icon">
     <link rel="icon" href="https://www.webike.in/favicon.ico" type="image/x-icon">
     <!-- <link rel="stylesheet" href="dist/bootstrap/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="css/datepicker.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/template.css">
-    <link rel="stylesheet" href="css/top.css">
+    <link rel="stylesheet" href="../css/datepicker.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/template.css">
     <link rel="stylesheet" href="../css/top.css">
-    <!-- <link rel="stylesheet" href="css/detail.css"> -->
+    
     <!-- <link rel="stylesheet" href="css/category.css"> -->
     <!-- <link rel="stylesheet" href="css/mototube.css"> -->
     <!-- <link rel="stylesheet" href="css/admin/acount.css"> -->
@@ -34,15 +31,15 @@
 
     @include('footer')
 </body>
-<script src="js/jquery.js"></script>
-<script src="js/datepicker.js"></script>
-<script type="text/javascript" src="dist/tinymce/js/tinymce/tinymce.min.js" ></script>
-<script src="vendor/unveil-master/jquery.unveil.min.js"></script>
-<script src="vendor/bootstrap-4.3.1/js/bootstrap.min.js"></script>
-<script src="vendor/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
+<script src="../js/jquery.js"></script>
+<script src="../js/datepicker.js"></script>
+<script type="text/javascript" src="../dist/tinymce/js/tinymce/tinymce.min.js" ></script>
+<script src="../vendor/unveil-master/jquery.unveil.min.js"></script>
+<script src="../vendor/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+<script src="../vendor/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.3">
 </script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<script src="js/main.js"></script>
+<script src="../js/main.js"></script>
 
 </html>

@@ -14,20 +14,20 @@
                 </div>
                 @endif
                 <article class="news-items">
-                    <a href="detail.html">
+                    <a href="../bai-viet/{{$item->id_post}}">
                         <img class="lazy" src="img/bg-img.jpg" data-src="{{$item->image}}"
                             alt="name image">
                     </a>
                     <div class="news-items-body">
-                        <p class="tag-category industry"><a class="dotted-line-1" href="category.html">News</a></p>
-                        <h3 class="title"><a href="detail.html">{{$item->title}}</a></h3>
+                        <p class="tag-category industry"><a class="dotted-line-1" href="{{$item->categories}}">{{$item->name_categories}}</a></p>
+                        <h3 class="title"><a href="../bai-viet/{{$item->id_post}}">{{$item->title}}</a></h3>
                         <p class="hidden-sm hidden-xs dotted-line-2 summary">{{$item->summary}}</p>
                         <div class="meta">
                             <time>{{$item->num_view}} views</time>
                             <ul class="list-button">
-                                <button class="btn btn-danger" href="">Xóa</button>
+                                <a class="btn btn-danger" href="../delete-my-posts/{{$item->id_post}}">Xóa</a>
                                 <!-- <button class="btn btn-warning" href="">Ẩn</button> -->
-                                <button class="btn btn-primary" href="">Chỉnh sửa</button>
+                                <a class="btn btn-primary" href="../change-my-posts/{{$item->id_post}}">Chỉnh sửa</a>
                             </ul>
                         </div>
                     </div>

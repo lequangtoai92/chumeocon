@@ -174,13 +174,15 @@ PRIMARY KEY(`id_notification`))
 CREATE TABLE IF NOT EXISTS `categories`(
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `name_categories` VARCHAR(255),
+    `categories` VARCHAR(255),
     `group` INT(2),
     `status` INT(1),
 PRIMARY KEY(`id`))
 
 
 INSERT INTO categories
-VALUES (3, 'Cổ tích Nhật Bản', 1, 1),
+VALUES 
+(3, 'Cổ tích Nhật Bản', 1, 1),
 (4, 'Truyện cổ Grimms', 1, 1),
 (5, 'Thần thoại Hi Lạp', 1, 1),
 (6, 'Cao dao tục ngữ', 1, 1),

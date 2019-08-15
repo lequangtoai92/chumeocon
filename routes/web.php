@@ -104,6 +104,16 @@ Route:: get('my-posts', [
     'uses' => 'PageController@getMyPosts'
 ]);
 
+Route::get('delete-my-posts/{id}',[
+	'as'=>'delete-posts',
+	'uses'=>'PageController@getDeleteMyPost'
+]);
+
+Route::get('change-my-posts/{id}',[
+	'as'=>'delete-posts',
+	'uses'=>'PostController@getChangeMyPost'
+]);
+
 Route:: get('messages', [
     'as' => 'thong-tin',
     'uses' => 'PageController@getMessages'
