@@ -13,12 +13,12 @@
                 </div>
                 @endif
                 <article class="news-items">
-                    <a href="../bai-viet/{{$item->id_post}}"><img class="lazy" src="img/bg-img.jpg"
+                    <a href="../bai-viet/{{$item->id}}"><img class="lazy" src="img/bg-img.jpg"
                             data-src='{{$item->image}}' alt="name image"></a>
                     <div class="news-items-body">
                         <p class="hidden-md hidden-lg tag-category industry"><a href="category.html">Motorcycle &
                                 Industry</a></p>
-                        <h3 class="title"><a href="../bai-viet/{{$item->id_post}}">{{$item->title}}</a></h3>
+                        <h3 class="title"><a href="../bai-viet/{{$item->id}}">{{$item->title}}</a></h3>
                         <p class="hidden-sm hidden-xs dotted-line-2 summary">{{$item->summary}}</p>
                         <div class="meta">
                             <time>{{$item->num_view}} views</time>

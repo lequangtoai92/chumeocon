@@ -1,16 +1,17 @@
 @extends('master')
 @section('content')
-<link rel="stylesheet" href="css/posts.css">
+<link rel="stylesheet" href="../css/posts.css">
 <section class="wrapper page-post">
-    <form action="{{route('posts')}}" enctype="multipart/form-data" method="post">
+    <form action="{{route('change_my_posts', $posts->id)}}" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="id_post"  value="{{$posts->id}}">
         <div class="container media container_page">
             <div class="media-body">
                 <div class="name-title">
                     <input type="text" name="name_posts"  value="{{$posts->title}}" placeholder="Tên tác phẩm(*)">
                 </div>
                 <div class="content-main">
-                    <textarea id="content_main" rows="20" value="{{$posts->title}}" name="main_content" class="form-control"
-                        placeholder="Nội dung(*)"></textarea>
+                    <textarea id="content_main" rows="20" name="main_content" class="form-control"
+                        placeholder="Nội dung(*)">{{$posts->content}}</textarea>
                 </div>
             </div>
             <div class="sidebar">
@@ -20,7 +21,18 @@
                     </div>
                     <div>
                         <ul class="list-button">
-                            <button class="btn" href="javascript:void(0);">Lưu nháp</button>
+                            <article class="media list-select">
+                                <select name="status" value="{{$posts->status}}">
+                                    @foreach($list_status as $item)
+                                    @if ($item->id == $posts->status)
+                                        <option selected="selected" value="{{$item->id}}">{{$item->name_status}}</option>
+                                    @else
+                                    <option name="status" value="{{$item->id}}">{{$item->name_status}}</option>
+                                    @endif
+                                    
+                                    @endforeach
+                                </select>
+                            </article>
                             <button type="submit" class="btn btn-primary" href="javascript:void(0);">Đăng bài</button>
                         </ul>
                     </div>
@@ -31,29 +43,38 @@
                     </div>
                     <div class="list-news">
                         <article class="media news-items">
-                            <textarea id="content_main" value="{{$posts->title}}" rows="4" name="summary" class="form-control"
-                                placeholder="Giới thiệu bài viết"></textarea>
+                            <textarea rows="4" name="summary" class="form-control"
+                                placeholder="Giới thiệu bài viết">{{$posts->summary}}</textarea>
                         </article>
                         <article class="media news-items">
                             <input type="text" name="author" value="{{$posts->author}}"
                                 placeholder="Tác giả">
                         </article>
                         <article class="media news-items">
-                            <select name="categories">
+                            <select name="categories" value="{{$posts->categories}}">
                                 @foreach($list_categories as $item)
-                                <option value="{{$posts->categories}}">{{$item->name_categories}}</option>
+                                    @if ($item->id == $posts->categories)
+                                        <option selected="selected" value="{{$item->id}}">{{$item->name_categories}}</option>
+                                    @else
+                                        <option value="{{$item->id}}">{{$item->name_categories}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </article>
                         <article class="media news-items">
-                            <select name="personality">
+                            <select name="personality" value="{{$posts->id_personality}}">
                                 @foreach($list_personality as $item)
-                                <option value="{{$posts->id_personality}}">{{$item->name_personality}}</option>
+                                    @if ($item->id == $posts->id_personality)
+                                        <option selected="selected" value="{{$item->id}}">{{$item->name_personality}}</option>
+                                    @else
+                                         <option value="{{$item->id}}">{{$item->name_personality}}</option>
+                                    @endif
+                                
                                 @endforeach
                             </select>
                         </article>
                         <article class="media news-items">
-                            <input type="number" value="{{$posts->title}}" name="ages" min="0" max="15" placeholder="Lứa tuổi">
+                            <input type="number" value="{{$posts->age}}" name="ages" min="0" max="15" placeholder="Lứa tuổi">
                         </article>
                         <article class="media news-items">
                             <input type="text" value="{{$posts->source}}" name="source" placeholder="Nguồn">
@@ -65,8 +86,8 @@
                         <h2>Hình ảnh</h2>
                     </div>
                     <div class="show-image">
-                        <img id="blah" src="{{$posts->image}}" alt="your image" />
-                        <ul class="list-button">
+                        <img id="image_select" src="{{$posts->image}}" alt="your image" />
+                        <ul class="list-button-image">
                             <input type="file" id="upload_image" name="image_upload" class="inputfile"
                                 onchange="readURL(this);">
                             <label for="upload_image">Choose a file</label>
@@ -85,7 +106,7 @@ function readURL(input) {
         var reader = new FileReader();
 
         reader.onload = function(e) {
-            $('#blah')
+            $('#image_select')
                 .attr('src', e.target.result);
         };
 

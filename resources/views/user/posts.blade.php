@@ -20,7 +20,13 @@
                     </div>
                     <div>
                         <ul class="list-button">
-                            <button class="btn" href="javascript:void(0);">Lưu nháp</button>
+                            <article class="media list-select">
+                                <select name="status">
+                                    @foreach($list_status as $item)
+                                        <option name="status" value="{{$item->id}}">{{$item->name_status}}</option>
+                                    @endforeach
+                                </select>
+                            </article>
                             <button type="submit" class="btn btn-primary" href="javascript:void(0);">Đăng bài</button>
                         </ul>
                     </div>
@@ -65,8 +71,8 @@
                         <h2>Hình ảnh</h2>
                     </div>
                     <div class="show-image">
-                        <img id="blah" src="img/no_image.png" alt="your image" />
-                        <ul class="list-button">
+                        <img id="image_select" src="img/no_image.png" alt="your image" />
+                        <ul class="list-button-image">
                             <input type="file" id="upload_image" name="image_upload" class="inputfile"
                                 onchange="readURL(this);">
                             <label for="upload_image">Choose a file</label>
@@ -85,7 +91,7 @@ function readURL(input) {
         var reader = new FileReader();
 
         reader.onload = function(e) {
-            $('#blah')
+            $('#image_select')
                 .attr('src', e.target.result);
         };
 

@@ -21,6 +21,7 @@ class PageController extends Controller
     public function getIndex(){
         // $list_top = Posts::where('status','=',6)->skip(0)->take(3)->get();
         $list_top = DB::table('posts')
+            ->select('posts.*', 'categories.name_categories')
             ->join('categories', 'posts.categories', '=', 'categories.id')
             ->where('posts.status', '6')
             ->skip(0)->take(3)->get();
@@ -92,7 +93,7 @@ class PageController extends Controller
             ]);
         $feedback = new Feedback();
         $browser = null;
-        $feedback->id_account = isset($req->browser) ? $req->browser : null;
+        $feedback->id = isset($req->browser) ? $req->browser : null;
         $feedback->content = isset($req->contentfeedback) ? $req->contentfeedback : '';
         $feedback->name_author = isset($req->browser) ? $req->browser : '';
         $feedback->driver = isset($req->browser) ? $req->browser : '';
@@ -125,8 +126,9 @@ class PageController extends Controller
     }
 
     public function getMyPosts(){
-        // $list_posts = Posts::where([['id_account','=',Auth::user()->id], ['status','=',6]])->get();
+        // $list_posts = Posts::where([['id','=',Auth::user()->id], ['status','=',6]])->get();
         $list_posts = DB::table('posts')
+            ->select('posts.*', 'categories.name_categories')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('id_account','=',Auth::user()->id)
             ->where('posts.status', '6')
@@ -135,9 +137,9 @@ class PageController extends Controller
     }
 
     public function getDeleteMyPost(Request $req){
-        $posts = Posts::where('id_post',$req->id)->first();
+        $posts = Posts::where('id',$req->id)->first();
         if ( Auth::user()->id == $posts->id_account ){
-            $res = Posts::where('id_post' ,$req->id)->update(['status' => 9]);
+            $res = Posts::where('id' ,$req->id)->update(['status' => 9]);
         }
         return redirect()->back();
     }
@@ -147,7 +149,7 @@ class PageController extends Controller
     }
 
     public function getViewPosts(Request $req){
-        $posts = Posts::where('id_post',$req->id)->first();
+        $posts = Posts::where('id',$req->id)->first();
         return view('page.detail',compact('posts'));
     }
 

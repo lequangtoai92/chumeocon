@@ -25,6 +25,7 @@ class VerifyCsrfToken extends Middleware
         '/messages',
         '/notifice',
         '/info',
+        '/change-my-posts'
         //
     ];
 }

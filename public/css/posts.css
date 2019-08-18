@@ -3,6 +3,8 @@
 .page-post .name-title input{font-size: 1.2rem}
 /* .page-post .content-main textarea{font-size: 1.3rem; height: auto;} */
 .page-post .wrapper-setting textarea{font-size: 1rem; padding-top: 5px; height: auto; font-family: Helvetica, Arial, Verdana, "Microsoft JhengHei", "微軟正黑體", "PMingLiU", sans-serif;}
+.page-post .list-button {display: flex;}
+.page-post .list-button .list-select{width: 48%; margin-right: 4%;}
 .page-post .list-button button{width: 48%;}
 .page-post .wrapper-image .show-image{text-align: center}
 .page-post .wrapper-image .show-image img{max-width:180px;}

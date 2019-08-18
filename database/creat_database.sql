@@ -2,7 +2,7 @@
 
 -- THÔNG TIN TÀI KHOẢN
 CREATE TABLE IF NOT EXISTS `users`(
-    `id_account` INT(11) NOT NULL AUTO_INCREMENT,
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
     `full_name` VARCHAR(255), -- ho va ten
     `email` VARCHAR(255), -- email
     `address` TEXT(0), -- dia chi
@@ -20,11 +20,11 @@ CREATE TABLE IF NOT EXISTS `users`(
     `time_log` TIMESTAMP(0), -- thoi gian log
     `created_at` TIMESTAMP,
     `updated_at` TIMESTAMP,
-PRIMARY KEY(`id_account`))
+PRIMARY KEY(`id`))
 
 -- THÔNG TIN TÀI KHOẢN
 CREATE TABLE IF NOT EXISTS `account`(
-    `id_account` INT(11) NOT NULL AUTO_INCREMENT,
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
     `full_name` VARCHAR(255), -- ho va ten
     `email` VARCHAR(255), -- email
     `address` TEXT(0), -- dia chi
@@ -39,12 +39,12 @@ CREATE TABLE IF NOT EXISTS `account`(
     `status` INT(2), -- trang thai 9-tamkhoa 8-canhbao, 7-canhbao, 6-binhthuong 
     `time_change` TIMESTAMP(0), -- thoi gian chinh sua
     `time_log` TIMESTAMP(0), -- thoi gian log
-PRIMARY KEY(`id_account`))
+PRIMARY KEY(`id`))
 
 
 -- ĐĂNG NHẬP
 CREATE TABLE IF NOT EXISTS `login`(
-    `id_login` INT(11) NOT NULL AUTO_INCREMENT,
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
     `user_name` VARCHAR(255), -- ten dang nhap
     `pass_word` VARCHAR(255), -- mat khau
     `authorities` INT(1), -- quyen
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `login`(
 PRIMARY KEY(`id_login`))
 
 CREATE TABLE IF NOT EXISTS `account_info`(
-    `id_info` INT(11) NOT NULL AUTO_INCREMENT,
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
     `id_account` INT(11) NOT NULL, -- id tai khoan
     `power` INT(11), -- cap bac
     `be_like` INT(11), -- duoc like
@@ -65,7 +65,7 @@ PRIMARY KEY(`id_info`))
 --  TÍNH CÁCH
 
 CREATE TABLE IF NOT EXISTS `personality`(
-    `id_personality` INT(11) NOT NULL AUTO_INCREMENT,
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
     `name_personality` VARCHAR(255) NOT NULL, -- ten tinh cach
     `rank_personality` INT(2), -- xep hang
     `status` INT(1), -- trang thai
@@ -74,7 +74,7 @@ PRIMARY KEY(`id_personality`))
 -- BÌNH LUẬN
 
 CREATE TABLE IF NOT EXISTS `comment`(
-    `id_comment` INT(11) NOT NULL AUTO_INCREMENT,
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
     `id_post` INT(11) NOT NULL,
     `id_account` INT(11) NOT NULL,
     `content` TEXT(0), -- noi dung
@@ -89,7 +89,7 @@ PRIMARY KEY(`id_comment`))
 -- BÀI VIẾT
 
 CREATE TABLE IF NOT EXISTS `posts`(
-    `id_post` INT(11) NOT NULL AUTO_INCREMENT,
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
     `id_account` INT(11) NOT NULL,
     `id_personality` INT(11) NOT NULL,
     `title` VARCHAR(255), -- tieu de
@@ -110,12 +110,12 @@ CREATE TABLE IF NOT EXISTS `posts`(
     `version` VARCHAR(255), -- phien ban
     `ranking` INT(1), -- danh gia
     `status_post` INT(1), -- trang thai
-    PRIMARY KEY(`id_post`))
+    PRIMARY KEY(`id`))
 
 -- TÌM KIẾM
 
 CREATE TABLE IF NOT EXISTS `search`(
-    `id_search` INT(11) NOT NULL AUTO_INCREMENT,
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
     `id_post` INT(11) NOT NULL,
     `id_account` INT(11) NOT NULL,
     `post_summary` VARCHAR(255), -- tom tat bai viet
@@ -126,7 +126,7 @@ PRIMARY KEY(`id_search`))
 -- CÂU HỎI
 
 CREATE TABLE IF NOT EXISTS `question`(
-    `id_question` INT(11) NOT NULL AUTO_INCREMENT,
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
     `id_post` INT(11) NOT NULL,
     `id_account` INT(11) NOT NULL,
     `question` VARCHAR(255), -- cau hoi
@@ -140,7 +140,7 @@ PRIMARY KEY(`id_question`))
 -- GÓP Ý
 
 CREATE TABLE IF NOT EXISTS `feedback`(
-    `id_feedback` INT(11) NOT NULL AUTO_INCREMENT,
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
     `id_account` INT(11) NOT NULL,
     `content` TEXT(0), -- noi dung
     `name_author` VARCHAR(255), -- ten nguoi gop y
@@ -154,7 +154,7 @@ PRIMARY KEY(`id_feedback`))
 -- TIN NHẮN
 
 CREATE TABLE IF NOT EXISTS `messeger`(
-    `id_messeger` INT(11) NOT NULL AUTO_INCREMENT,
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
     `id_sender` INT(11) NOT NULL,
     `id_receiver` INT(11) NOT NULL,
     `content` TEXT(0),
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `messeger`(
 PRIMARY KEY(`id_messeger`))
 
 CREATE TABLE IF NOT EXISTS `notification`(
-    `id_notification` INT(11) NOT NULL AUTO_INCREMENT,
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
     `id_sender` INT(11) NOT NULL,
     `id_receiver` INT(11) NOT NULL,
     `content` TEXT(0),
@@ -200,3 +200,13 @@ VALUES
 (8, 'Trách nhiệm', 1, 1);
 
 
+CREATE TABLE IF NOT EXISTS `status`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `name_status` VARCHAR(255),
+    `status` INT(1),
+PRIMARY KEY(`id`))
+
+INSERT INTO status
+VALUES 
+(1, 'Lưu nháp', 1),
+(6, 'Đăng bài', 1);

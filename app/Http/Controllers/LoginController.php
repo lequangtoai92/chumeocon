@@ -153,7 +153,7 @@ class LoginController extends Controller
                 // var_dump($req->password);
                 // var_dump(Hash::make($req->password));exit;
         DB::table('users')
-            ->where('id_account', 1)
+            ->where('id', 1)
             ->update(['password' => Hash::make($req->new_pass)]);
         // $account = new User();
         // $account->password = Hash::make($req->password);

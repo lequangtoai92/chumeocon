@@ -100,7 +100,7 @@ Route::post('posts',[
 ]);
 
 Route:: get('my-posts', [
-    'as' => 'thong-tin',
+    'as' => 'my_post',
     'uses' => 'PageController@getMyPosts'
 ]);
 
@@ -110,8 +110,13 @@ Route::get('delete-my-posts/{id}',[
 ]);
 
 Route::get('change-my-posts/{id}',[
-	'as'=>'delete-posts',
+	'as'=>'change_my_posts',
 	'uses'=>'PostController@getChangeMyPost'
+]);
+
+Route::post('change-my-posts',[
+	'as'=>'change_my_posts',
+	'uses'=>'PostController@postChangeMyPosts'
 ]);
 
 Route:: get('messages', [

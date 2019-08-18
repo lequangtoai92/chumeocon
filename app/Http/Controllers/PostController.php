@@ -6,15 +6,17 @@ use Illuminate\Http\Request;
 use App\Posts;
 use App\Personality;
 use App\Categories;
+use App\Status;
 use Auth;
 
 class PostController extends Controller
 {
     public function getPosts(){
         // var_dump(Auth::user()->id);
+        $list_status = Status::where('status','=',1)->get();
         $list_personality = Personality::where('status','=',1)->get();
         $list_categories = Categories::where('status','=',1)->get();
-        return view('user.posts',compact('list_personality', 'list_categories'));
+        return view('user.posts',compact('list_personality', 'list_categories', 'list_status'));
     }
 
     public function postPosts(Request $req){
@@ -24,17 +26,18 @@ class PostController extends Controller
             $src = $folder_image . round(microtime(true) * 1000) . '.' . $file->getClientOriginalExtension();
             $file->move($folder_image, $src);
         }
+        $link = '../'.$src;
         $driver = 'windown';
         $browser = 'chorme';
         $version = '72.000';
         $posts = new Posts();
         $posts->id_personality = $req->personality; // duc tinh
-        $posts->id_account = Auth::user()->id;//id tac gia
+        $posts->id = Auth::user()->id;//id tac gia
         $posts->title = $req->name_posts;// tieu de
         $posts->content = $req->main_content;// noi dung
         $posts->summary = $req->summary; // tom tat
         $posts->categories = $req->categories; // nhom danh muc
-        $posts->image = isset($src) ? $src: 'img/no_image.png'; // hinh anh
+        $posts->image = isset($src) ? $link: '../img/no_image.png'; // hinh anh
         $posts->age = isset($req->ages) ? $req->ages : 5; // tuoi
         $posts->source =isset($req->source) ? $req->source: 'Sưu tầm'; //nguon
         $posts->author =isset($req->author) ? $req->author: 'Ẩn danh'; //Tác giả
@@ -52,7 +55,7 @@ class PostController extends Controller
 
     function creatFolder(){
         $month=date("Y-m");
-        $structure = './image_post/'.$month.'/';
+        $structure = 'public/image_post/'.$month.'/';
         if (!file_exists($structure)) {
             mkdir($structure, 0777, true);
         }
@@ -88,10 +91,15 @@ class PostController extends Controller
     }
 
     public function getChangeMyPost(Request $req){
-        $posts = Posts::where('id_post',$req->id)->first();
-        $list_personality = Personality::where('status','=',1)->get();
-        $list_categories = Categories::where('status','=',1)->get();
-        return view('user.change_my_posts',compact('posts', 'list_personality', 'list_categories'));
+        $posts = Posts::where('id',$req->id)->first();
+        if ( $this->checkAuthor($posts->id_account) && $posts->status == 6){
+            $list_status = Status::where('status','=',1)->get();
+            $list_personality = Personality::where('status','=',1)->get();
+            $list_categories = Categories::where('status','=',1)->get();
+            return view('user.change_my_posts',compact('posts', 'list_personality', 'list_categories', 'list_status'));
+        } else {
+            return redirect()->back();
+        }
     }
 
     public function postChangeMyPosts(Request $req){
@@ -104,26 +112,51 @@ class PostController extends Controller
         $driver = 'windown';
         $browser = 'chorme';
         $version = '72.000';
+        // var_dump($req->personality);exit;
+        // $posts = Posts::where('id',$req->id_post)
+        // ->update([['id_personality' => $req->personality],
+        //         ['title' => $req->name_posts], 
+        //         ['content' => $req->main_content], 
+        //         ['summary' => $req->summary], 
+        //         ['categories' => $req->categories], 
+        //         ['image' => isset($src) ? $src: ], 
+        //         ['age' => isset($req->ages) ? $req->ages : 5],
+        //         ['source' => isset($req->source) ? $req->source: 'Sưu tầm'],
+        //         ['author' => isset($req->author) ? $req->author: 'Ẩn danh'],
+        //         ['driver' => isset($driver) ? $driver: 'windown'],
+        //         ['browser' => isset($browser) ? $browser: 'chorme'],
+        //         ['version' => isset($version) ? $version: '72.000'],
+        //         ['status' => isset($req->status) ? $req->status: 6]]); 
+
         $posts = new Posts();
+        $posts->exists = true;
+        $posts->id = $req->id_post;
         $posts->id_personality = $req->personality; // duc tinh
         $posts->id_account = Auth::user()->id;//id tac gia
         $posts->title = $req->name_posts;// tieu de
         $posts->content = $req->main_content;// noi dung
         $posts->summary = $req->summary; // tom tat
         $posts->categories = $req->categories; // nhom danh muc
-        $posts->image = isset($src) ? $src: 'img/no_image.png'; // hinh anh
+        if (isset($src)) {
+            $posts->image = '../'.$src;// hinh anh
+        }
         $posts->age = isset($req->ages) ? $req->ages : 5; // tuoi
         $posts->source =isset($req->source) ? $req->source: 'Sưu tầm'; //nguon
         $posts->author =isset($req->author) ? $req->author: 'Ẩn danh'; //Tác giả
         $posts->driver =isset($driver) ? $driver: 'windown'; //Tác giả
         $posts->browser =isset($browser) ? $browser: 'chorme'; //Tác giả
         $posts->version =isset($version) ? $version: '72.000'; //Tác giả
-        $posts->num_like = 0; // trang thai
-        $posts->num_dislike = 0; // trang thai
-        $posts->num_view = 0; // trang thai
-        $posts->status = 6; // trang thai
+        $posts->status = $req->status; // trang thai
         $posts->save();
-        // var_dump($posts);exit;
         return redirect()->back()->with('thanhcong','Tạo bài thành công');
     }
+
+    public function checkAuthor($id){
+        if ( Auth::user()->id == $id ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
 }
