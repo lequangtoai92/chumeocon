@@ -9,7 +9,7 @@ class Posts extends Model
     public $timestamps = false;
     protected $table = "posts";
 
-    public function category(){
-    	return $this->belongsTo('App\Categories','id_post','id');
-    }
+    // public function category(){
+    // 	return $this->belongsTo('App\Categories','id','id');
+    // }
 }

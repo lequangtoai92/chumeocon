@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS `users`(
     `sex` INT(1), -- gioi tinh
     `phone` INT(13), -- so dt
     `nick_name` VARCHAR(255), -- biet danh
+    `avartar` VARCHAR(255), -- avartar
     `time_creat` TIMESTAMP(0), -- thoi gian tao tai khoan
     `birthday` TIMESTAMP(0), -- nam sinh
     `authorities` INT(1), -- quyen 1-admin 2-sub-admin 3-sub-admin 4-subadmin 5-user 6-subuser
@@ -182,12 +183,11 @@ PRIMARY KEY(`id`))
 
 INSERT INTO categories
 VALUES 
-(3, 'Cổ tích Nhật Bản', 1, 1),
-(4, 'Truyện cổ Grimms', 1, 1),
-(5, 'Thần thoại Hi Lạp', 1, 1),
-(6, 'Cao dao tục ngữ', 1, 1),
-(7, 'Lời hay ý đẹp', 1, 1),
-(8, 'Truyện cười', 1, 1);
+(9, 'Thơ', 'tho', 1, 1),
+(10, 'Phim hoạt hình', 'phim-hoat-hinh', 1, 1),
+(11, 'Đô rê mon', 'do-re-mon', 1, 1),
+(12, 'Tom and Jerry', 'tom-and-jerry', 1, 1);
+(13, 'Phim hoạt hình', 'phim-hoat-hinh', 1, 1);
 
 
 INSERT INTO personality
@@ -210,3 +210,30 @@ INSERT INTO status
 VALUES 
 (1, 'Lưu nháp', 1),
 (6, 'Đăng bài', 1);
+
+CREATE TABLE IF NOT EXISTS `intro`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255),
+    `content` TEXT(0),,
+    `id_author` INT(11),
+    `group` INT(2),
+    `status` INT(1),
+PRIMARY KEY(`id`))
+
+CREATE TABLE IF NOT EXISTS `ranking`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `id_post` INT(11) NOT NULL,
+    `id_author` INT(11),
+    `id_categories` NT(11) NOT NULL,
+    `time` TIMESTAMP,
+PRIMARY KEY(`id`))
+
+INSERT INTO status
+VALUES 
+(1, '', '<p style="text-align: center;"><span style="font-size: 18pt;"><strong>MẮT BÃO</strong></span></p>
+<p style="text-align: left;"><span style="font-size: 12pt;">&nbsp; Xin chào mọi người, mình t&ecirc;n là Bin, bi&ecirc;̣t danh của mình là Mắt Bão,&nbsp;bi&ecirc;̣t danh&nbsp;th&acirc;̣t là ng&acirc;̀u đúng kh&ocirc;ng nào.</span></p>
+<p style="text-align: left;"><span style="font-size: 12pt;">&nbsp; Ở đ&acirc;y mình sẽ giới thi&ecirc;̣u th&ocirc;ng tin cơ bản của mình cho mọi người bi&ecirc;́t nhé.<br /></span></p>
+<p style="text-align: left;"><span style="font-size: 12pt;">&nbsp; Mình sinh ra và lớn l&ecirc;n ở Hu&ecirc;́, m&ocirc;̣t mảnh đ&acirc;́t mi&ecirc;̀n trung đ&acirc;̀y nắng và gió, nhưng cũng may thay mình được mang trong mình dòng máu lảng mạng của m&ocirc;̣t người con xứ Hu&ecirc;́ đ&acirc;̀y thơ mọng. Với ni&ecirc;̀m đang m&ecirc; vi&ecirc;́t lách từ nhỏ, mình r&acirc;́t vui khi được bi&ecirc;́t đ&ecirc;́n m&ocirc;̣t địa chỉ chia sẻ tài năng như th&ecirc;́ này, đ&ocirc;̀ng thời cũng là m&ocirc;̣t nơi đ&ecirc;̉ chắp cánh cho những m&acirc;̀m non mới bước vào đời.</span></p>
+<p style="text-align: left;"><span style="font-size: 12pt;">&nbsp; Mình thì kh&ocirc;ng có gì hơn, chỉ c&ocirc;́ gắng vi&ecirc;́t th&acirc;̣t nhi&ecirc;̀u chuy&ecirc;̣n đ&ecirc;̉ cho b&ocirc;́ mẹ các bé có th&ecirc;̉ k&ecirc;̉ cho con mình nghe hằng đ&ecirc;m, đ&ecirc;̉ mang con đ&ecirc;́n với những gi&acirc;́c mơ và tri thức m&ocirc;̣t cách v&ocirc; cùng đơn giản.</span></p>
+<p style="text-align: left;"><span style="font-size: 12pt;">&nbsp; Cảm ơn các bạn đã đọc bài giới thi&ecirc;̣u của mình, hãy đ&ocirc;̀ng hành cùng mình nhé.</span></p>
+<p style="text-align: left;"><span style="font-size: 12pt;">&nbsp; Mãi y&ecirc;u ^^.</span></p>', 5, 1, 1);

@@ -17,7 +17,7 @@
                 </ul>
                 <div><?php echo $posts->content ?></div>
                 <!-- <div>{{$posts->content}}</div> -->
-                <p class="source">({{$posts->source}})</p>
+                <p class="source" href="../tac-gia/{{$posts->id_account}}"><a href="../tac-gia/{{$posts->id_account}}">{{$posts->author}} </a> ({{$posts->source}})</p>
                 <ul class="single-meta">
                     <li class="social-detail bottom">
                         <a href=""><i class="icon icon-detail-facebook"></i></a>

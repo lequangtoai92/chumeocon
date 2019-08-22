@@ -1,8 +1,9 @@
 <dialog class="dialog-cat-child" id="dialog_intro">
-  <form method="dialog">
+  <form  action="{{route('update_intro')}}" enctype="multipart/form-data" method="post">
     <p>Giới thiệu bản thân:</p>
-    <textarea id="content_main" rows="20" name="maincontent" class="form-control"
-                    placeholder="Nội dung(*)"></textarea>
+    <textarea id="content_main" rows="15" name="content_intro" class="form-control"
+                    placeholder="Nội dung(*)">{{$intro->content}}</textarea>
+                    
     
     <menu>
       <button class="btn">Đóng</button>

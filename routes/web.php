@@ -47,6 +47,26 @@ Route:: get('than-thoai-hi-lap', [
     'uses' => 'PageController@getGreekMythology'
 ]);
 
+Route:: get('phim-hoat-hinh', [
+    'as' => 'trang-chu',
+    'uses' => 'PageController@getCartoon'
+]);
+
+Route:: get('do-re-mon', [
+    'as' => 'trang-chu',
+    'uses' => 'PageController@getDoremon'
+]);
+
+Route:: get('tom-and-jerry', [
+    'as' => 'trang-chu',
+    'uses' => 'PageController@getTomAndJerry'
+]);
+
+Route:: get('tho', [
+    'as' => 'trang-chu',
+    'uses' => 'PageController@getVerse'
+]);
+
 Route:: get('ca-dao-tuc-ngu', [
     'as' => 'trang-chu',
     'uses' => 'PageController@getVietnameseProverbs'
@@ -77,22 +97,47 @@ Route::get('bai-viet/{id}',[
 	'uses'=>'PageController@getViewPosts'
 ]);
 
-// user
-
-Route:: get('info', [
-    'as' => 'thong-tin',
-    'uses' => 'PageController@getInfo'
+Route::get('tac-gia/{id}',[
+	'as'=>'tacgia',
+	'uses'=>'PageController@getViewAuthor'
 ]);
 
-Route:: post('info', [
+// user
+
+Route:: get('tai-khoan', [
+    'as' => 'thong-tin',
+    'uses' => 'UserController@getInfo'
+]);
+
+Route:: post('tai-khoan', [
     'as' => 'update_pass_word',
-    'uses' => 'PageController@updatePassWord'
+    'uses' => 'LoginController@updatePassWord'
+]);
+
+Route:: post('tai-khoan', [
+    'as' => 'update_info',
+    'uses' => 'UserController@updateInfo'
+]);
+
+Route:: post('tai-khoan/update-password', [
+    'as' => 'update_pass_word',
+    'uses' => 'UserController@updatePassWord'
+]);
+
+Route:: post('tai-khoan/update-intro', [
+    'as' => 'update_intro',
+    'uses' => 'UserController@updateIntro'
 ]);
 
 Route:: get('posts', [
     'as' => 'posts',
     'uses' => 'PostController@getPosts'
 ]);
+
+// Route:: get('dang-phim-hoat-hinh', [
+//     'as' => 'posts',
+//     'uses' => 'PostController@getPostsCarton'
+// ]);
 
 Route::post('posts',[
 	'as'=>'posts',
@@ -101,12 +146,12 @@ Route::post('posts',[
 
 Route:: get('my-posts', [
     'as' => 'my_post',
-    'uses' => 'PageController@getMyPosts'
+    'uses' => 'UserController@getMyPosts'
 ]);
 
 Route::get('delete-my-posts/{id}',[
 	'as'=>'delete-posts',
-	'uses'=>'PageController@getDeleteMyPost'
+	'uses'=>'UserController@getDeleteMyPost'
 ]);
 
 Route::get('change-my-posts/{id}',[
@@ -121,16 +166,16 @@ Route::post('change-my-posts',[
 
 Route:: get('messages', [
     'as' => 'thong-tin',
-    'uses' => 'PageController@getMessages'
+    'uses' => 'UserController@getMessages'
 ]);
 
 Route::post('messages', [
-    'uses' => 'PageController@addFeedback',
+    'uses' => 'UserController@addFeedback',
     'as' => 'front.fb']);
 
 Route:: get('notifice', [
     'as' => 'thong-tin',
-    'uses' => 'PageController@getNotifice'
+    'uses' => 'UserController@getNotifice'
 ]);
 
 Route:: post('notifice', [

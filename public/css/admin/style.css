@@ -2,7 +2,7 @@
 
 /* @media (max-width: 768px) { font-size: 0.9rem } */
 
-body { background: url(../images/background/background5.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; } 
+body { -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; } 
 
 nav .title-name { font-size:30px; cursor:pointer; font-weight:600; } 
 .navbar-two { padding: 0px; } 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Feedback;
 use App\Posts;
+use App\Intro;
+use App\Ranking;
 use Session;
 use Hash;
 use Auth;
@@ -19,14 +21,13 @@ class PageController extends Controller
     // }
 
     public function getIndex(){
-        // $list_top = Posts::where('status','=',6)->skip(0)->take(3)->get();
         $list_top = DB::table('posts')
             ->select('posts.*', 'categories.name_categories')
-            ->join('categories', 'posts.categories', '=', 'categories.id')
+            ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('posts.status', '6')
             ->skip(0)->take(3)->get();
-        // $list_posts = Posts::where('status','=',6)->skip(3)->take(10)->get();
         $list_posts = DB::table('posts')
+            ->select('posts.*', 'categories.name_categories')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('posts.status', '6')
             ->skip(3)->take(10)->get();
@@ -34,9 +35,9 @@ class PageController extends Controller
     }
 
     public function getNewStory(){
-        // $list_posts = Posts::where([['category.id','=',1], ['posts.status','=',6]])->paginate(10);
         $list_posts = DB::table('posts')
-            ->join('categories', 'posts.categories', '=', 'categories.id')
+            ->select('posts.*', 'categories.name_categories')
+            ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('categories.id', '1')
             ->where('posts.status', '6')
             ->get();
@@ -63,6 +64,26 @@ class PageController extends Controller
         return view('page.category',compact('list_posts'));
     }
 
+    public function getCartoon(){
+        $list_posts = Posts::where([['categories','=',10], ['status','=',6]])->paginate(10);
+        return view('page.category',compact('list_posts'));
+    }
+
+    public function getDoremon(){
+        $list_posts = Posts::where([['categories','=',11], ['status','=',6]])->paginate(10);
+        return view('page.category',compact('list_posts'));
+    }
+
+    public function getTomAndJerry(){
+        $list_posts = Posts::where([['categories','=',12], ['status','=',6]])->paginate(10);
+        return view('page.category',compact('list_posts'));
+    }
+
+    public function getVerse(){
+        $list_posts = Posts::where([['categories','=',9], ['status','=',6]])->paginate(10);
+        return view('page.category',compact('list_posts'));
+    }
+
     public function getVietnameseProverbs(){
         $list_posts = Posts::where([['categories','=',6], ['status','=',6]])->paginate(10);
         return view('page.category',compact('list_posts'));
@@ -79,7 +100,7 @@ class PageController extends Controller
     }
 
     public function getFeedback(){
-        $list_feedback = Feedback::where('status','=',1)->paginate(3);
+        $list_feedback = Feedback::where('status','=',1)->get();
         return view('page.feedback',compact('list_feedback'));
     }
 
@@ -105,57 +126,28 @@ class PageController extends Controller
         return redirect()->back()->with('thanhcong','Cảm ơn bạn đã góp ý cho chúng tôi');
     }
 
-    // user
-    public function getInfo(){
-        return view('user.info');
-    }
-
-    public function getMessages(){
-        return view('user.messages');
-    }
-
-    public function addFeedback(Request $request)
-    {
-        $input = $request->all();
-        Mail::send('mailfb', array('name'=>$input["name"],'email'=>$input["email"], 'content'=>$input['comment']), function($message){
-	        $message->to('toailq92@gmail.com', 'Visitor')->subject('Visitor Feedback!');
-	    });
-        Session::flash('flash_message', 'Send message successfully!');
-
-        return view('user.messages');
-    }
-
-    public function getMyPosts(){
-        // $list_posts = Posts::where([['id','=',Auth::user()->id], ['status','=',6]])->get();
-        $list_posts = DB::table('posts')
-            ->select('posts.*', 'categories.name_categories')
-            ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
-            ->where('id_account','=',Auth::user()->id)
-            ->where('posts.status', '6')
-            ->get();
-        return view('user.my_posts',compact('list_posts'));
-    }
-
-    public function getDeleteMyPost(Request $req){
-        $posts = Posts::where('id',$req->id)->first();
-        if ( Auth::user()->id == $posts->id_account ){
-            $res = Posts::where('id' ,$req->id)->update(['status' => 9]);
-        }
-        return redirect()->back();
-    }
-
-    public function getNotifice(){
-        return view('user.notifice');
-    }
-
     public function getViewPosts(Request $req){
         $posts = Posts::where('id',$req->id)->first();
+        $ranking = new Ranking();
+        $ranking->id_post = isset($posts->id) ? $posts->id : 0;
+        $ranking->id_author = isset($posts->id_account) ? $posts->id_account : 0;
+        $ranking->id_categories = isset($posts->categories) ? $posts->categories : 0;
+        $ranking->save();
         return view('page.detail',compact('posts'));
     }
 
-    
-
-    
-
-    
+    public function getViewAuthor(Request $req){
+        $user = User::where('id', $req->id)->first();
+        $intro = Intro::where([['id_author', $req->id],['group', 1]])->first();
+        $list_posts = DB::table('posts')
+        ->select('posts.*', 'categories.name_categories')
+        ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
+        ->where('id_account','=',$req->id)
+        ->where('posts.status', '6')
+        ->get();
+        if (!isset($intro)) {
+            $intro = (object) array('content' => 'Tác giả vẫn chưa giới thiệu về bản thân!');
+        }
+        return view('page.author',compact('user', 'intro', 'list_posts'));
+    }
 }

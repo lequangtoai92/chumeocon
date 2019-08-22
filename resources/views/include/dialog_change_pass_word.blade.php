@@ -1,5 +1,5 @@
 <dialog class="dialog-cat-child" id="dialog_change_pw">
-    <form action="{{route('update_pass_word')}}" method="post" class="beta-form-checkout">
+    <form action="{{route('update_pass_word')}}" enctype="multipart/form-data" method="post">
         <p>Thay đổi mật khẩu:</p>
         <div class="form-group">
             <label for="user_name">Mật khẩu cũ</label><label class="user-name-import"></label>
@@ -15,7 +15,7 @@
             <input type="text" class="form-control" placeholder="Nhập lại mật khẩu mới" name="re_new_pass">
         </div>
         <menu>
-            <button class="btn">Đóng</button>
+            <span class="btn">Đóng</span>
             <button type="submit" class="btn btn-success">Cập nhật</button>
         </menu>
     </form>

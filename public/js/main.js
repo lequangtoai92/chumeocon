@@ -70,19 +70,6 @@ $(document).ready(function(){
     $('[data-toggle="datepicker-birthday"]').datepicker();
 });
 
-function showDialog(){
-    var updateButton1 = document.getElementById('openInfo');
-    var favDialog1 = document.getElementById('dialog_intro');
-    updateButton1.addEventListener('click', function() {
-        favDialog1.showModal();
-  });
-
-    var updateButton = document.getElementById('openChangePW');
-    var favDialog = document.getElementById('dialog_change_pw');
-    updateButton.addEventListener('click', function() {
-    favDialog.showModal();
-  });
-}
 
 function tinymce_init(){
     tinymce.init({

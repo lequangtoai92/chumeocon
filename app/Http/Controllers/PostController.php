@@ -32,7 +32,7 @@ class PostController extends Controller
         $version = '72.000';
         $posts = new Posts();
         $posts->id_personality = $req->personality; // duc tinh
-        $posts->id = Auth::user()->id;//id tac gia
+        $posts->id_account = Auth::user()->id;//id tac gia
         $posts->title = $req->name_posts;// tieu de
         $posts->content = $req->main_content;// noi dung
         $posts->summary = $req->summary; // tom tat
@@ -132,7 +132,6 @@ class PostController extends Controller
         $posts->exists = true;
         $posts->id = $req->id_post;
         $posts->id_personality = $req->personality; // duc tinh
-        $posts->id_account = Auth::user()->id;//id tac gia
         $posts->title = $req->name_posts;// tieu de
         $posts->content = $req->main_content;// noi dung
         $posts->summary = $req->summary; // tom tat
@@ -148,6 +147,48 @@ class PostController extends Controller
         $posts->version =isset($version) ? $version: '72.000'; //Tác giả
         $posts->status = $req->status; // trang thai
         $posts->save();
+        return redirect()->back()->with('thanhcong','Tạo bài thành công');
+    }
+
+    public function getPostsCartoon(){
+        // var_dump(Auth::user()->id);
+        $list_status = Status::where('status','=',1)->get();
+        $list_personality = Personality::where('status','=',1)->get();
+        $list_categories = Categories::where('status','=',1)->get();
+        return view('user.posts',compact('list_personality', 'list_categories', 'list_status'));
+    }
+
+    public function postPostsCartoon(Request $req){
+        $folder_image = $this->creatFolder();
+        if ($req->hasFile('image_upload')) {
+            $file = $req->image_upload;
+            $src = $folder_image . round(microtime(true) * 1000) . '.' . $file->getClientOriginalExtension();
+            $file->move($folder_image, $src);
+        }
+        $link = '../'.$src;
+        $driver = 'windown';
+        $browser = 'chorme';
+        $version = '72.000';
+        $posts = new Posts();
+        $posts->id_personality = $req->personality; // duc tinh
+        $posts->id_account = Auth::user()->id;//id tac gia
+        $posts->title = $req->name_posts;// tieu de
+        $posts->content = $req->main_content;// noi dung
+        $posts->summary = $req->summary; // tom tat
+        $posts->categories = $req->categories; // nhom danh muc
+        $posts->image = isset($src) ? $link: '../img/no_image.png'; // hinh anh
+        $posts->age = isset($req->ages) ? $req->ages : 5; // tuoi
+        $posts->source =isset($req->source) ? $req->source: 'Sưu tầm'; //nguon
+        $posts->author =isset($req->author) ? $req->author: 'Ẩn danh'; //Tác giả
+        $posts->driver =isset($driver) ? $driver: 'windown'; //Tác giả
+        $posts->browser =isset($browser) ? $browser: 'chorme'; //Tác giả
+        $posts->version =isset($version) ? $version: '72.000'; //Tác giả
+        $posts->num_like = 0; // trang thai
+        $posts->num_dislike = 0; // trang thai
+        $posts->num_view = 0; // trang thai
+        $posts->status = 6; // trang thai
+        $posts->save();
+        // var_dump($posts);exit;
         return redirect()->back()->with('thanhcong','Tạo bài thành công');
     }
 

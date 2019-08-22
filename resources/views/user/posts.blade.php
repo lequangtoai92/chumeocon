@@ -47,7 +47,9 @@
                         <article class="media news-items">
                             <select name="categories">
                                 @foreach($list_categories as $item)
+                                @if ($item->id < 10)
                                 <option value="{{$item->id}}">{{$item->name_categories}}</option>
+                                @endif
                                 @endforeach
                             </select>
                         </article>

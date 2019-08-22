@@ -37,10 +37,11 @@ class LoginController extends Controller
         $account->email = $req->email;
         $account->password = Hash::make($req->password);
         // $account->birthday = isset($req->birdth) ? $req->birdth : '';
+        $account->avatar = '../img/no_image.png'; // hinh anh
         $account->sex = isset($req->gender) ? $req->gender : 0;
         $account->address = isset($req->address) ? $req->address : '';
         $account->phone = isset($req->phone) ? $req->phone : null;
-        $account->address =isset($req->nickname) ? $req->nickname: '';
+        $account->nick_name =isset($req->nickname) ? $req->nickname: '';
         $account->authorities = 5;
         $account->status = 6;
 
@@ -135,30 +136,5 @@ class LoginController extends Controller
         return redirect()->back();
     }
 
-    public function updatePassWord(Request $req){
-        // var_dump($req);exit;
-        // $this->validate($req,
-        //     [
-        //         'old_pass'=>'required|min:6|max:20',
-        //         'new_pass'=>'required|unique:users,password',
-        //         're_new_pass'=>'required|same:new_pass'
-        //     ],
-        //     [
-        //         'username.required'=>'Vui lòng nhập tên đăng nhập',
-        //         'username.unique'=>'username đã có người sử dụng',
-        //         'password.required'=>'Vui lòng nhập mật khẩu',
-        //         're_password.same'=>'Mật khẩu không giống nhau',
-        //         'password.min'=>'Mật khẩu ít nhất 6 kí tự'
-        //     ]);
-                // var_dump($req->password);
-                // var_dump(Hash::make($req->password));exit;
-        DB::table('users')
-            ->where('id', 1)
-            ->update(['password' => Hash::make($req->new_pass)]);
-        // $account = new User();
-        // $account->password = Hash::make($req->password);
-
-        // $account->save();
-        // return redirect()->back()->with('thanhcong','Tạo tài khoản thành công');
-    }
+    
 }

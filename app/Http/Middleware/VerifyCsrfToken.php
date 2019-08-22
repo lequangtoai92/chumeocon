@@ -24,8 +24,10 @@ class VerifyCsrfToken extends Middleware
         '/posts',
         '/messages',
         '/notifice',
-        '/info',
-        '/change-my-posts'
+        '/tai-khoan',
+        '/change-my-posts',
+        '/tai-khoan/update-password',
+        '//tai-khoan/update-intro'
         //
     ];
 }

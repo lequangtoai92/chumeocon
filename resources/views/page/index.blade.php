@@ -38,7 +38,7 @@
                         <p class="hidden-sm hidden-xs dotted-line-2 summary">{{$item->summary}}</p>
                         <div class="meta">
                             <time>{{$item->num_view}} views</time>
-                            <a class="category" href="category.html">{{$item->author}}</a>
+                            <a class="category" href="../tac-gia/{{$item->id_account}}">{{$item->author}}</a>
                         </div>
                     </div>
                 </article>

@@ -24,20 +24,23 @@
                         <ul class="sub-menu-user">
                             @if(Auth::check())
                             <li>
-                                <a href="../info">Tài khoản</a>
+                                <a href="../tai-khoan">Tài khoản</a>
                             </li>
                             <li>
                                 <a href="../posts">Viết bài</a>
                             </li>
+                            <!-- <li>
+                                <a href="../dang-phim-hoat-hinh">Đăng phim hoạt hình</a>
+                            </li> -->
                             <li>
                                 <a href="../my-posts">Bài viết</a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="../messages">Tin nhắn</a>
                             </li>
                             <li>
                                 <a href="../notifice">Thông báo</a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a href="../dang-xuat" class="btn-logout"><i class="icon icon-sign-out"
                                         aria-hidden="true"></i>
@@ -76,21 +79,19 @@
                                         <a class="dropdown-item" href="../than-thoai-hi-lap">Thần thoại Hi Lạp</a>
                                     </div>
                                 </li>
-
-                                <!-- <li class="nav-item">
-                                    <a class="dropdown-item" href="mototube.html">Cổ tích Nhật Bản</a>
-                                </li>
-																<li class="nav-item">
-                                    <a class="dropdown-item" href="mototube.html">Truyện cổ Grimm</a>
-                                </li>
-																<li class="nav-item">
-                                    <a class="dropdown-item" href="mototube.html">Thần thoại Hi Lạp</a>
-                                </li> -->
                                 <li class="nav-item">
                                     <a class="dropdown-item" href="../ca-dao-tuc-ngu">Ca dao - Tục ngữ</a>
                                 </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="phim-hoat-hinh" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Phim hoạt hình</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="do-re-mon">Đô rê mon</a>
+                                        <a class="dropdown-item" href="tom-and-jerry">Tom and Jerry</a>
+                                    </div>
+                                </li>
                                 <li class="nav-item">
-                                    <a class="dropdown-item" href="../loi-hay-y-dep">Lời hay ý đẹp</a>
+                                    <a class="dropdown-item" href="tho">Thơ</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="dropdown-item" href="../truyen-cuoi">Truyện cười</a>
@@ -157,12 +158,17 @@
                                 </ul>
                             </div>
                         </li>
-                        <!-- <li><a href="../mototube.html">Cổ tích Việt Nam</a></li>
-                        <li><a href="../mototube.html">Cổ tích Nhật Bản</a></li>
-                        <li><a href="../mototube.html">Truyện cổ Grimm</a></li>
-                        <li><a href="../mototube.html">Thần thoại Hi Lạp</a></li> -->
+                        <li class="dropdown">
+                            <a class="nav-link" href="../phim-hoat-hinh">Phim hoạt hình</a>
+                            <div class="dropdown-menu">
+                                <ul>
+                                    <li><a class="chevron right" href="../do-re-mon">Đô rê mon</a></li>
+                                    <li><a class="chevron right" href="../tom-and-jerry">Tom and Jerry</a></li>
+                                </ul>
+                            </div>
+                        </li>
                         <li><a href="../ca-dao-tuc-ngu">Cao dao tục ngữ</a></li>
-                        <li><a href="../loi-hay-y-dep">Lời hay ý đẹp</a></li>
+                        <li><a href="../tho">Thơ</a></li>
                         <li><a href="../truyen-cuoi">Truyện cười</a></li>
                         <li><a href="../gop-y">Góp ý</a></li>
                     </ul>

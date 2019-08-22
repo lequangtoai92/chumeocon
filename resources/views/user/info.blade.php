@@ -6,99 +6,105 @@
         <div class="media-body">
             <div id="info_account" class="tabcontent" style="display: block;">
                 <div class="row">
-                    <div class="body-info body-left">
-                        <div class="form-group">
-                            <label for="user_name">Họ và tên</label><label class="user-name-import">(*)</label>
-                            <input type="text" class="form-control" v-model="items.TK151" id="user_name"
-                                placeholder="Họ và tên" name="user_name">
-                        </div>
-                        <div class="form-group">
-                            <label for="user_id">Tên đăng nhập:</label>
-                            <input type="text" class="form-control" placeholder="Tên đăng nhập" name="user_id" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label><label class="email-import">(*)</label>
-                            <input type="email" class="form-control" v-model="items.TK156" id="email"
-                                placeholder="Email" name="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="birthday">Ngày sinh</label><label class="birthday-import">(*)</label>
-                            <input type="birthday" class="form-control" v-model="items.TK152" id="birthday"
-                                placeholder="Ngày sinh" name="birthday">
-                        </div>
+                    <form action="{{route('update_info')}}" enctype="multipart/form-data" method="post">
+                        <div class="body-info body-left">
+                            <div class="show-image">
+                                <img id="image_select" src="{{$user->avatar}}" alt="your image" />
+                                <ul class="list-button-image">
+                                    <input type="file" id="upload_image" name="image_upload" class="inputfile"
+                                        onchange="readURL(this);">
+                                    <label for="upload_image">Choose a file</label>
+                                </ul>
+                            </div>
+                            <div class="group-scores">
+                                <div class="form-group">
+                                    <label>Ngày tham gia: </label>
+                                    <span> {{$user->time_creat}}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Đánh giá: </label>
+                                    <span>5/10</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Điểm thưởng: </label>
+                                    <span>2000/50000</span>
+                                </div>
+                            </div>
+                            <ul class="list-button">
+                                <button class="btn btn-success" id="updateDetails">Cập nhật</button>
+                                <label class="btn btn-primary" id="openChangePW" href="">Đổi mật khẩu</label>
+                            </ul>
 
-                    </div>
-                    <div class=" body-info body-right">
-                        <div class="form-group">
-                            <label for="sex">Giới tính</label><label class="sex-import">(*)</label>
-                            <select class="form-control select-option" v-model="items.TK153">
-                                <option class="select-option" disabled value="items.TK153"></option>
-                                <option class="select-option" value="1">Nam</option>
-                                <option class="select-option" value="2">Nữ</option>
-                                <option class="select-option" value="3">Khác</option>
-                            </select>
                         </div>
-                        <div class="form-group">
-                            <label for="address">Địa chỉ:</label>
-                            <input type="text" class="form-control" v-model="items.TK154" id="address"
-                                placeholder="Địa chỉ" name="address">
-                        </div>
+                        <div class=" body-info body-right">
+                            <div class="form-group">
+                                <label for="user_name">Họ và tên</label><label class="user-name-import">(*)</label>
+                                <input type="text" class="form-control" value="{{$user->full_name}}"
+                                    placeholder="Họ và tên" name="full_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="user_id">Tên đăng nhập:</label>
+                                <input type="text" class="form-control" value="{{$user->user_name}}"
+                                    placeholder="Tên đăng nhập" name="user_name" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label><label class="email-import">(*)</label>
+                                <input type="email" class="form-control" value="{{$user->email}}" placeholder="Email"
+                                    name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="birthday">Ngày sinh</label><label class="birthday-import">(*)</label>
+                                <input type="birthday" class="form-control" value="{{$user->birthday}}"
+                                    placeholder="Ngày sinh" name="birthday" data-toggle="datepicker-birthday">
+                            </div>
+                            <div class="form-group">
+                                <label for="sex">Giới tính</label><label class="sex-import">(*)</label>
+                                <select class="form-control select-option" name="gender">
+                                    <!-- <option class="select-option" disabled></option> -->
+                                    @if ($user->sex == 1)
+                                    <option class="select-option" value="1" selected="selected">Nam</option>
+                                    <option class="select-option" value="2">Nữ</option>
+                                    <option class="select-option" value="3">Khác</option>
+                                    @elseif ($user->sex == 2)
+                                    <option class="select-option" value="1">Nam</option>
+                                    <option class="select-option" value="2" selected="selected">Nữ</option>
+                                    <option class="select-option" value="3">Khác</option>
+                                    @else
+                                    <option class="select-option" value="1">Nam</option>
+                                    <option class="select-option" value="2">Nữ</option>
+                                    <option class="select-option" value="3" selected="selected">Khác</option>
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Địa chỉ:</label>
+                                <input type="text" class="form-control" value="{{$user->address}}" placeholder="Địa chỉ"
+                                    name="address">
+                            </div>
 
-                        <div class="form-group">
-                            <label for="telephone">Số điện thoại:</label>
-                            <input type="text" class="form-control" v-model="items.TK155" id="telephone"
-                                placeholder="Số điện thoại" name="telephone">
+                            <div class="form-group">
+                                <label for="telephone">Số điện thoại:</label>
+                                <input type="text" class="form-control" value="{{$user->phone}}"
+                                    placeholder="Số điện thoại" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="nickname">Biệt danh</label><label class="nickname-import"></label>
+                                <input type="text" class="form-control" value="{{$user->nick_name}}"
+                                    placeholder="nick name" name="nickname">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="nickname">Biệt danh</label><label class="nickname-import">(*)</label>
-                            <input type="text" class="form-control" v-model="items.TK157" id="nickname"
-                                placeholder="nick name" name="nickname">
-                        </div>
-                    </div>
+                    </form>
                     <div class="footer-info">
-                        <ul class="list-button">
-                            <button class="btn btn-success" id="updateDetails">Cập nhật</button>
-                            <button class="btn btn-info" id="openInfo" href="">Giới thiệu</button>
-                            <button class="btn btn-primary" id="openChangePW" href="">Đổi mật khẩu</button>
-                        </ul>
                         <div class="group-scores">
                             <div class="heading">
-                                <h2>Điểm</h2>
+                                <h2>Giới thiệu</h2>
                             </div>
                             <div class="list-news">
-                                <article class="media news-items">
-                                    <div class="media-body news-items-body">
-                                        <h3>Cấp bậc</h3>
-                                        <div class="meta">
-                                            <time>Tiếp sĩ</time>
-                                        </div>
-                                    </div>
-																</article>
-																<article class="media news-items">
-                                    <div class="media-body news-items-body">
-                                        <h3>Tổng điểm</h3>
-                                        <div class="meta">
-                                            <time>5000</time>
-                                        </div>
-                                    </div>
-																</article>
-																<article class="media news-items">
-                                    <div class="media-body news-items-body">
-                                        <h3>Đã sử dụng</h3>
-                                        <div class="meta">
-                                            <time>3000</time>
-                                        </div>
-                                    </div>
-																</article>
-																<article class="media news-items">
-                                    <div class="media-body news-items-body">
-                                        <h3>Còn lại</h3>
-                                        <div class="meta">
-                                            <time>2000</time>
-                                        </div>
-                                    </div>
-                                </article>
+                                <?php echo $intro->content ?>
                             </div>
+                            <ul class="list-button">
+                                <button class="btn btn-primary" id="openInfo" href="">Chỉnh sửa</button>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -185,17 +191,6 @@
                     </article>
                 </div>
             </div>
-            <div class="follow-us">
-                <div class="heading">
-                    <h2>Follow Us</h2>
-                </div>
-                <ul class="follow-us-ct">
-                    <li>
-                        <a class="btn-facebook" href="#"><i class="icon icon-social-facebook-side"></i> facebook</a>
-                    </li>
-                    <li> <a class="btn-twitter" href="#"><i class="icon icon-social-twitter-side"></i> twitter</a></li>
-                </ul>
-            </div>
         </div>
     </div>
 </section>
@@ -203,14 +198,30 @@
 @include('include.dialog_intro')
 @include('include.dialog_change_pass_word')
 
-<!-- <script>
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#image_select')
+                .attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 (function() {
-  var updateButton = document.getElementById('updateDetails');
-  var favDialog = document.getElementById('favDialog');
-  updateButton.addEventListener('click', function() {
-    favDialog.showModal();
+  var openInfoBtn = document.getElementById('openInfo');
+  var dialog_intro = document.getElementById('dialog_intro');
+  openInfoBtn.addEventListener('click', function() {
+    dialog_intro.showModal();
+  });
+  var openChangePWBtn = document.getElementById('openChangePW');
+  var dialog_change_pw = document.getElementById('dialog_change_pw');
+  openChangePWBtn.addEventListener('click', function() {
+    dialog_change_pw.showModal();
   });
 })();
-</script> -->
-
+</script>
 @endsection

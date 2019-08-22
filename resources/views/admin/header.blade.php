@@ -24,7 +24,7 @@
                         <ul class="sub-menu-user">
                             @if(Auth::check())
                             <li>
-                                <a href="info">Tài khoản</a>
+                                <a href="tai-khoan">Tài khoản</a>
                             </li>
                             <li>
                                 <a href="posts">Viết bài</a>
@@ -76,21 +76,19 @@
                                         <a class="dropdown-item" href="than-thoai-hi-lap">Thần thoại Hi Lạp</a>
                                     </div>
                                 </li>
-
-                                <!-- <li class="nav-item">
-                                    <a class="dropdown-item" href="mototube.html">Cổ tích Nhật Bản</a>
-                                </li>
-																<li class="nav-item">
-                                    <a class="dropdown-item" href="mototube.html">Truyện cổ Grimm</a>
-                                </li>
-																<li class="nav-item">
-                                    <a class="dropdown-item" href="mototube.html">Thần thoại Hi Lạp</a>
-                                </li> -->
                                 <li class="nav-item">
                                     <a class="dropdown-item" href="ca-dao-tuc-ngu">Ca dao - Tục ngữ</a>
                                 </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="phim-hoat-hinh" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Phim hoạt hình</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="do-re-mon">Đô rê mon</a>
+                                        <a class="dropdown-item" href="tom-and-jerry">Tom and Jerry</a>
+                                    </div>
+                                </li>
                                 <li class="nav-item">
-                                    <a class="dropdown-item" href="loi-hay-y-dep">Lời hay ý đẹp</a>
+                                    <a class="dropdown-item" href="tho">Thơ</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="dropdown-item" href="truyen-cuoi">Truyện cười</a>
