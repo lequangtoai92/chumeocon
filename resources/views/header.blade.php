@@ -29,9 +29,9 @@
                             <li>
                                 <a href="../posts">Viết bài</a>
                             </li>
-                            <!-- <li>
+                            <li>
                                 <a href="../dang-phim-hoat-hinh">Đăng phim hoạt hình</a>
-                            </li> -->
+                            </li>
                             <li>
                                 <a href="../my-posts">Bài viết</a>
                             </li>

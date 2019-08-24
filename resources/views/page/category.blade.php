@@ -41,86 +41,45 @@
             </div>
             <div class="wrapper-ranking">
                 <div class="heading">
-                    <h2>Viewed Ranking</h2>
+                    <h2>Xem nhiều trong tuần</h2>
                 </div>
                 <div class="list-news">
+                    @foreach($list_ranking_week as $key=>$item)
                     <article class="media news-items">
-                        <a href="detail.html"><img width="105" height="80" class="lazy" src="img/bg-img.jpg"
-                                data-src="img/img_test/news/img-news11.jpg" alt="name image">
-                            <p class="ranking-num">1</p>
+                    <a href="../bai-viet/{{$item->id}}"><img class="lazy" src="img/bg-img.jpg"
+                        data-src="{{$item->image}}" alt="Name images">
+                            <p class="ranking-num">{{$key + 1}}</p>
                         </a>
                         <div class="media-body news-items-body">
-                            <h3 class="title dotted-line-3"><a href="detail.html">2019-2020 KATANA Revives on Neoclassic
-                                    Boom?</a></h3>
+                            <h3 class="title dotted-line-3"><a href="../bai-viet/{{$item->id}}">{{$item->title}}</a></h3>
                             <div class="meta">
-                                <time>81,083 views</time>
+                                <time>{{$item->num_view}} views</time>
                             </div>
                         </div>
                     </article>
-                    <article class="media news-items">
-                        <a href="detail.html"><img width="105" height="80" class="lazy" src="img/bg-img.jpg"
-                                data-src="img/img_test/news/img-news11.jpg" alt="name image">
-                            <p class="ranking-num">2</p>
-                        </a>
-                        <div class="media-body news-items-body">
-                            <h3 class="title dotted-line-3"><a href="detail.html">2019-2020 KATANA Revives on Neoclassic
-                                    Boom?</a></h3>
-                            <div class="meta">
-                                <time>81,083 views</time>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="media news-items">
-                        <a href="detail.html"><img width="105" height="80" class="lazy" src="img/bg-img.jpg"
-                                data-src="img/img_test/news/img-news10.jpg" alt="name image">
-                            <p class="ranking-num">3</p>
-                        </a>
-                        <div class="media-body news-items-body">
-                            <h3 class="title dotted-line-3"><a href="detail.html">2019-2020 KATANA Revives on Neoclassic
-                                    Boom?</a></h3>
-                            <div class="meta">
-                                <time>81,083 views</time>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="media news-items">
-                        <a href="detail.html"><img width="105" height="80" class="lazy" src="img/bg-img.jpg"
-                                data-src="img/img_test/news/img-news09.jpg" alt="name image">
-                            <p class="ranking-num">4</p>
-                        </a>
-                        <div class="media-body news-items-body">
-                            <h3 class="title dotted-line-3"><a href="detail.html">2019-2020 KATANA Revives on Neoclassic
-                                    Boom?</a></h3>
-                            <div class="meta">
-                                <time>81,083 views</time>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="media news-items">
-                        <a href="detail.html"><img width="105" height="80" class="lazy" src="img/bg-img.jpg"
-                                data-src="img/img_test/news/img-news08.jpg" alt="name image">
-                            <p class="ranking-num">5</p>
-                        </a>
-                        <div class="media-body news-items-body">
-                            <h3 class="title dotted-line-3"><a href="detail.html">2019-2020 KATANA Revives on Neoclassic
-                                    Boom?</a></h3>
-                            <div class="meta">
-                                <time>81,083 views</time>
-                            </div>
-                        </div>
-                    </article>
+                    @endforeach
                 </div>
             </div>
-            <div class="follow-us">
+            <div class="wrapper-ranking">
                 <div class="heading">
-                    <h2>Follow Us</h2>
+                    <h2>Xem nhiều trong tháng</h2>
                 </div>
-                <ul class="follow-us-ct">
-                    <li>
-                        <a class="btn-facebook" href="#"><i class="icon icon-social-facebook-side"></i> facebook</a>
-                    </li>
-                    <li> <a class="btn-twitter" href="#"><i class="icon icon-social-twitter-side"></i> twitter</a></li>
-                </ul>
+                <div class="list-news">
+                    @foreach($list_ranking_month as $key=>$item)
+                    <article class="media news-items">
+                    <a href="../bai-viet/{{$item->id}}"><img class="lazy" src="img/bg-img.jpg"
+                        data-src="{{$item->image}}" alt="Name images">
+                            <p class="ranking-num">{{$key + 1}}</p>
+                        </a>
+                        <div class="media-body news-items-body">
+                            <h3 class="title dotted-line-3"><a href="../bai-viet/{{$item->id}}">{{$item->title}}</a></h3>
+                            <div class="meta">
+                                <time>{{$item->num_view}} views</time>
+                            </div>
+                        </div>
+                    </article>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

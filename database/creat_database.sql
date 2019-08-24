@@ -237,3 +237,16 @@ VALUES
 <p style="text-align: left;"><span style="font-size: 12pt;">&nbsp; Mình thì kh&ocirc;ng có gì hơn, chỉ c&ocirc;́ gắng vi&ecirc;́t th&acirc;̣t nhi&ecirc;̀u chuy&ecirc;̣n đ&ecirc;̉ cho b&ocirc;́ mẹ các bé có th&ecirc;̉ k&ecirc;̉ cho con mình nghe hằng đ&ecirc;m, đ&ecirc;̉ mang con đ&ecirc;́n với những gi&acirc;́c mơ và tri thức m&ocirc;̣t cách v&ocirc; cùng đơn giản.</span></p>
 <p style="text-align: left;"><span style="font-size: 12pt;">&nbsp; Cảm ơn các bạn đã đọc bài giới thi&ecirc;̣u của mình, hãy đ&ocirc;̀ng hành cùng mình nhé.</span></p>
 <p style="text-align: left;"><span style="font-size: 12pt;">&nbsp; Mãi y&ecirc;u ^^.</span></p>', 5, 1, 1);
+
+CREATE TABLE IF NOT EXISTS `rate`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `id_post` INT(11),
+    `id_author` INT(11),
+    `group` INT(11),
+    `rate` INT(11),
+    `total_rate` INT(11),
+    `view` INT(11),
+    `like` INT(11),
+    `dis_like` INT(11),
+    `report` INT(11),
+PRIMARY KEY(`id`))

@@ -134,10 +134,10 @@ Route:: get('posts', [
     'uses' => 'PostController@getPosts'
 ]);
 
-// Route:: get('dang-phim-hoat-hinh', [
-//     'as' => 'posts',
-//     'uses' => 'PostController@getPostsCarton'
-// ]);
+Route:: get('dang-phim-hoat-hinh', [
+    'as' => 'posts',
+    'uses' => 'PostController@getPostsCarton'
+]);
 
 Route::post('posts',[
 	'as'=>'posts',
