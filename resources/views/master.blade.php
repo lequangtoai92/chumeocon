@@ -41,5 +41,6 @@
 </script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script src="../js/main.js"></script>
+<script src="../js/play_api.js"></script>
 
 </html>

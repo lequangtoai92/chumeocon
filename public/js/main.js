@@ -86,3 +86,39 @@ function tinymce_init(){
       });
 }
 
+
+var check = true;
+$(document).on("click", ".list-mototube .mototube-items a", function() {
+    if (check == true) {
+        var iframe = $(this).find("#value_iframe").val();
+        $('.list-mototube .mototube-items a').find("iframe").remove();
+        $(this).append(iframe);
+        $('.list-mototube .mototube-items a').find("iframe").attr('id','youtube_play');
+        loadYouTubePlayer('youtube_play');
+    } else {
+        check = true;
+    }
+});
+
+
+var player;
+loadYouTubePlayer = function (playerID) {
+    alert('1');
+	the_player = new YT.Player(playerID, {
+		events: {
+			'onReady': playYouTubeVideo,
+			'onError': onPlayerError
+		}
+    });
+};
+function playYouTubeVideo(event) {
+    alert('2');
+	event.target.playVideo();
+}
+
+function onPlayerError(event) {
+    alert('3');
+	console.log('onPlayerError');
+}
+
+
