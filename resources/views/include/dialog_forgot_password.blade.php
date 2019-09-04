@@ -1,4 +1,7 @@
+
+
 <dialog class="dialog-cat-child" id="dialog_change_pw">
+    
     <form method="dialog">
         <p>Thay đổi mật khẩu:</p>
         <div class="form-group">

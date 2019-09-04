@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label for="user_name">Họ và tên</label><label class="user-name-import">(*)</label>
                                 <input type="text" class="form-control" value="{{$user->full_name}}"
-                                    placeholder="Họ và tên" name="full_name">
+                                    placeholder="Họ và tên" name="full_name" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label for="user_id">Tên đăng nhập:</label>
@@ -54,8 +54,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="birthday">Ngày sinh</label><label class="birthday-import">(*)</label>
-                                <input type="birthday" class="form-control" value="{{$user->birthday}}"
-                                    placeholder="Ngày sinh" name="birthday" data-toggle="datepicker-birthday">
+                                <input type="select" class="form-control" value="{{substr($user->birthday, 0, 10)}}"
+                                    placeholder="Ngày sinh" name="birthday" data-toggle="datepicker-birthday"
+                                    autocomplete="off" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))">
                             </div>
                             <div class="form-group">
                                 <label for="sex">Giới tính</label><label class="sex-import">(*)</label>
@@ -194,6 +195,12 @@
         </div>
     </div>
 </section>
+<?php
+function changeBirthday($string){
+    return substr($string,0,10);
+}
+
+?>
 
 @include('include.dialog_intro')
 @include('include.dialog_change_pass_word')
@@ -212,16 +219,29 @@ function readURL(input) {
     }
 }
 (function() {
-  var openInfoBtn = document.getElementById('openInfo');
-  var dialog_intro = document.getElementById('dialog_intro');
-  openInfoBtn.addEventListener('click', function() {
-    dialog_intro.showModal();
-  });
-  var openChangePWBtn = document.getElementById('openChangePW');
-  var dialog_change_pw = document.getElementById('dialog_change_pw');
-  openChangePWBtn.addEventListener('click', function() {
-    dialog_change_pw.showModal();
-  });
+    var openInfoBtn = document.getElementById('openInfo');
+    var dialog_intro = document.getElementById('dialog_intro');
+    openInfoBtn.addEventListener('click', function() {
+        dialog_intro.showModal();
+    });
+    var openChangePWBtn = document.getElementById('openChangePW');
+    var dialog_change_pw = document.getElementById('dialog_change_pw');
+    openChangePWBtn.addEventListener('click', function() {
+        dialog_change_pw.showModal();
+    });
+
+    var openClosePWBtn = document.getElementById('close_dialog');
+    //   openClosePWBtn.addEventListener('click', function() {
+    $(".close-dialog").click(function() {
+        dialog_change_pw.close();
+        dialog_intro.close();
+    });
+
+    $(".ui-widget-overlay").on("click", function() { 
+        dialog_change_pw.close();
+        dialog_intro.close();
+    });
+    
 })();
 </script>
 @endsection

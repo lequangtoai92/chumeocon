@@ -7,7 +7,7 @@
         <div class="container media container_page">
             <div class="media-body">
                 <div class="name-title">
-                    <input type="text" name="name_posts"  value="{{$posts->title}}" placeholder="Tên tác phẩm(*)">
+                    <input type="text" name="name_posts"  value="{{$posts->title}}" placeholder="Tên tác phẩm(*)" autocomplete="off">
                 </div>
                 <div class="content-main">
                     <textarea id="content_main" rows="20" name="main_content" class="form-control"
@@ -48,7 +48,7 @@
                         </article>
                         <article class="media news-items">
                             <input type="text" name="author" value="{{$posts->author}}"
-                                placeholder="Tác giả">
+                                placeholder="Tác giả" autocomplete="off">
                         </article>
                         <article class="media news-items">
                             <select name="categories" value="{{$posts->categories}}">
@@ -74,7 +74,7 @@
                             </select>
                         </article>
                         <article class="media news-items">
-                            <input type="number" value="{{$posts->age}}" name="ages" min="0" max="15" placeholder="Lứa tuổi">
+                            <input type="number" value="{{$posts->age}}" name="ages" min="0" max="15" placeholder="Lứa tuổi" autocomplete="off">
                         </article>
                         <article class="media news-items">
                             <input type="text" value="{{$posts->source}}" name="source" placeholder="Nguồn">

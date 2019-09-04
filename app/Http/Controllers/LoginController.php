@@ -29,7 +29,8 @@ class LoginController extends Controller
                 'username.unique'=>'username đã có người sử dụng',
                 'password.required'=>'Vui lòng nhập mật khẩu',
                 're_password.same'=>'Mật khẩu không giống nhau',
-                'password.min'=>'Mật khẩu ít nhất 6 kí tự'
+                'password.min'=>'Mật khẩu ít nhất 6 kí tự',
+                'password.max'=>'Mật khẩu không quá 20 ký tự'
             ]);
         $account = new User();
         $account->full_name = $req->fullname;
@@ -98,19 +99,17 @@ class LoginController extends Controller
     }
 
     public function postLogin(Request $req){
-        // $this->middleware('auth');
-        // $this->validate($req,
-        //     [
-        //         'username'=>'required',
-        //         'password'=>'required|min:6|max:20'
-        //     ],
-        //     [
-        //         'username.required'=>'Vui lòng nhập email',
-        //         'password.required'=>'Vui lòng nhập mật khẩu',
-        //         'password.min'=>'Mật khẩu ít nhất 6 kí tự',
-        //         'password.max'=>'Mật khẩu không quá 20 kí tự'
-        //     ]
-        // );
+        $this->validate($req,
+            [
+                'username'=>'required',
+                'password'=>'required|min:6'
+            ],
+            [
+                'username.required'=>'Vui lòng nhập email',
+                'password.required'=>'Vui lòng nhập mật khẩu',
+                'password.min'=>'Mật khẩu ít nhất 6 kí tự'
+            ]
+        );
         $credentials = array('user_name'=>$req->username,'password'=>$req->password);
         $account = User::where([
                 ['user_name','=',$req->username],
@@ -119,14 +118,14 @@ class LoginController extends Controller
         if($account){
             if(Auth::attempt($credentials, true)){
                 // return view('header1');
-                return redirect()->back();
+                // return redirect()->back();
             }
             else{
-                return redirect()->back()->with(['flag'=>'danger','message'=>'Đăng nhập không thành công']);
+                // return redirect()->back()->with(['flag'=>'danger','message'=>'Đăng nhập không thành công']);
             }
         }
         else{
-           return redirect()->back()->with(['flag'=>'danger','message'=>'Tài khoản chưa kích hoạt']); 
+        //    return redirect()->back()->with(['flag'=>'danger','message'=>'Tài khoản chưa kích hoạt']); 
         }
         
     }

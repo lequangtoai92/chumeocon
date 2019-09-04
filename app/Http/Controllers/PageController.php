@@ -190,8 +190,8 @@ class PageController extends Controller
     }
 
     public function getViewAuthor(Request $req){
-        $list_ranking_week = $this->getRankingWeek();
-        $list_ranking_month = $this->getRankingMonth();
+        $list_ranking_week = $this->getRankingWeek(0);
+        $list_ranking_month = $this->getRankingMonth(0);
         $user = User::where('id', $req->id)->first();
         $intro = Intro::where([['id_author', $req->id],['group', 1]])->first();
         $list_posts = DB::table('posts')

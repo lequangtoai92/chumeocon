@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/template.css">
     <link rel="stylesheet" href="../css/top.css">
+    <script src="../js/jquery.js"></script>
+
+  
+
     
     <!-- <link rel="stylesheet" href="css/category.css"> -->
     <!-- <link rel="stylesheet" href="css/mototube.css"> -->
@@ -23,6 +27,8 @@
     <!-- <link rel="stylesheet" href="css/admin/feedback.css"> -->
 </head>
 <body class="">
+<div id="fb-root"></div>
+<!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v4.0&appId=2238283566497298&autoLogAppEvents=1"></script> -->
     @include('header')
 
 
@@ -30,7 +36,7 @@
 
 
     @include('footer')
-</body>
+
 <script src="../js/jquery.js"></script>
 <script src="../js/datepicker.js"></script>
 <script type="text/javascript" src="../dist/tinymce/js/tinymce/tinymce.min.js" ></script>
@@ -42,5 +48,6 @@
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script src="../js/main.js"></script>
 <script src="../js/play_api.js"></script>
-
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v4.0&appId=2238283566497298&autoLogAppEvents=1"></script>
+</body>
 </html>

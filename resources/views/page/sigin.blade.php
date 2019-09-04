@@ -20,12 +20,12 @@
                     <div class="col-left">
                         <div class="form-block">
                             <label for="your_last_name">Họ và tên(*)</label>
-                            <input type="text" name="fullname" required>
+                            <input type="text" name="fullname" required autocomplete="off">
                         </div>
 
                         <div class="form-block">
                             <label for="username">Tên đăng nhập(*)</label>
-                            <input type="text" name="username" required>
+                            <input type="text" name="username" required autocomplete="off"> 
                         </div>
 
                         <div class="form-block">
@@ -35,22 +35,24 @@
 
                         <div class="form-block">
                             <label for="password">Mật khẩu(*)</label>
-                            <input type="password" name="password" required>
+                            <input type="password" class="input-password" name="password" required autocomplete="off">
                         </div>
                         <div class="form-block">
                             <label for="password">Nhập lại mật khẩu(*)</label>
-                            <input type="password" name="re_password" required>
+                            <input type="password" class="input-re_password" name="re_password" required autocomplete="off">
+                            <p >Mật khẩu không giống</p>
                         </div>
                     </div>
                     <div class="col-right">
                         <div class="form-block">
                             <label for="birdth">Ngày sinh</label>
-                            <input data-toggle="datepicker-birthday" name="birdth">
+                            <input data-toggle="datepicker-birthday" name="birdth" autocomplete="off" placeholder="YYYY-MM-DD" required
+                            pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))">
                         </div>
 
                         <div class="form-block">
                             <label for="gender">Giới tính</label>
-                            <input type="text" name="gender">
+                            <input type="text" name="gender" autocomplete="off">
                         </div>
 
                         <div class="form-block">
@@ -66,111 +68,36 @@
 
                         <div class="form-block">
                             <label for="phone">Biệt danh</label>
-                            <input type="text" name="nickname">
+                            <input type="text" name="nickname" autocomplete="off">
                         </div>
                     </div>
 
 
                     <div class="form-block col-button">
-                        <button type="submit" class="btn btn-primary">Đăng ký</button>
+                        <button type="submit" class="button-btn btn btn-primary">Đăng ký</button>
+                        <span class="span-btn btn btn-primary">Đăng ký1</span>
                     </div>
 
                 </div>
             </form>
         </div>
-        <div class="hidden-sm hidden-xs sidebar">
-            <div class="wrapper-youtube">
-                <div class="heading">
-                    <h2>MotoTube</h2>
-                </div>
-                <!-- <iframe width="300" height="250" src="https://www.youtube.com/embed/LopMoV5ahqg" frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe> -->
-            </div>
-            <div class="wrapper-ranking">
-                <div class="heading">
-                    <h2>Viewed Ranking</h2>
-                </div>
-                <div class="list-news">
-                    <article class="media news-items">
-                        <a href="detail.html"><img width="105" height="80" class="lazy" src="img/bg-img.jpg"
-                                data-src="img/img_test/news/img-news11.jpg" alt="name image">
-                            <p class="ranking-num">1</p>
-                        </a>
-                        <div class="media-body news-items-body">
-                            <h3 class="title dotted-line-3"><a href="detail.html">2019-2020 KATANA Revives on Neoclassic
-                                    Boom?</a></h3>
-                            <div class="meta">
-                                <time>81,083 views</time>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="media news-items">
-                        <a href="detail.html"><img width="105" height="80" class="lazy" src="img/bg-img.jpg"
-                                data-src="img/img_test/news/img-news11.jpg" alt="name image">
-                            <p class="ranking-num">2</p>
-                        </a>
-                        <div class="media-body news-items-body">
-                            <h3 class="title dotted-line-3"><a href="detail.html">2019-2020 KATANA Revives on Neoclassic
-                                    Boom?</a></h3>
-                            <div class="meta">
-                                <time>81,083 views</time>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="media news-items">
-                        <a href="detail.html"><img width="105" height="80" class="lazy" src="img/bg-img.jpg"
-                                data-src="img/img_test/news/img-news10.jpg" alt="name image">
-                            <p class="ranking-num">3</p>
-                        </a>
-                        <div class="media-body news-items-body">
-                            <h3 class="title dotted-line-3"><a href="detail.html">2019-2020 KATANA Revives on Neoclassic
-                                    Boom?</a></h3>
-                            <div class="meta">
-                                <time>81,083 views</time>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="media news-items">
-                        <a href="detail.html"><img width="105" height="80" class="lazy" src="img/bg-img.jpg"
-                                data-src="img/img_test/news/img-news09.jpg" alt="name image">
-                            <p class="ranking-num">4</p>
-                        </a>
-                        <div class="media-body news-items-body">
-                            <h3 class="title dotted-line-3"><a href="detail.html">2019-2020 KATANA Revives on Neoclassic
-                                    Boom?</a></h3>
-                            <div class="meta">
-                                <time>81,083 views</time>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="media news-items">
-                        <a href="detail.html"><img width="105" height="80" class="lazy" src="img/bg-img.jpg"
-                                data-src="img/img_test/news/img-news08.jpg" alt="name image">
-                            <p class="ranking-num">5</p>
-                        </a>
-                        <div class="media-body news-items-body">
-                            <h3 class="title dotted-line-3"><a href="detail.html">2019-2020 KATANA Revives on Neoclassic
-                                    Boom?</a></h3>
-                            <div class="meta">
-                                <time>81,083 views</time>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-            <div class="follow-us">
-                <div class="heading">
-                    <h2>Follow Us</h2>
-                </div>
-                <ul class="follow-us-ct">
-                    <li>
-                        <a class="btn-facebook" href="#"><i class="icon icon-social-facebook-side"></i> facebook</a>
-                    </li>
-                    <li> <a class="btn-twitter" href="#"><i class="icon icon-social-twitter-side"></i> twitter</a></li>
-                </ul>
-            </div>
-        </div>
+        
     </div>
 </section>
+@include('include.modal_notification')
+<script>
+$('.form-block .button-btn').hide();
+$( ".input-re_password" ).keypress(function(event) {
+    if($( ".input-re_password" ).val()+ event.key == $( ".input-password" ).val()){
+        $('.form-block .button-btn').show();
+        $('.form-block .span-btn').hide();
+    } else {
+        $('.form-block .button-btn').hide();
+        $('.form-block .span-btn').show();
+    }
+});
+$('.span-btn').on("click", function () {
+    $('#modal_notification').modal('show');
+})
+</script>
 @endsection

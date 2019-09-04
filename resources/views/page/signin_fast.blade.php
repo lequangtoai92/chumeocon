@@ -24,11 +24,11 @@
                         </div>
                         <div class="form-block">
                             <label for="password">Mật khẩu</label>
-                            <input type="password" name="password" placeholder="Mật khẩu" required>
+                            <input type="password" name="password" placeholder="Mật khẩu" required autocomplete="off">
                         </div>
                         <div class="form-block">
                             <label for="password">Nhập lại mật khẩu(*)</label>
-                            <input type="password" name="re_password" placeholder="Nhập lại mật khẩu" required>
+                            <input type="password" name="re_password" placeholder="Nhập lại mật khẩu" required autocomplete="off">
                         </div>
                         <div class="form-block col-button">
                             <button type="submit" class="btn btn-primary">Đăng nhập</button>

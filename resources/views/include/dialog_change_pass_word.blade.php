@@ -15,7 +15,7 @@
             <input type="text" class="form-control" placeholder="Nhập lại mật khẩu mới" name="re_new_pass">
         </div>
         <menu>
-            <span class="btn">Đóng</span>
+            <span class="btn close-dialog" class="btn">Đóng</span>
             <button type="submit" class="btn btn-success">Cập nhật</button>
         </menu>
     </form>

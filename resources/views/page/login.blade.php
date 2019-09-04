@@ -6,6 +6,13 @@
         <div class="media-body">
         <form action="{{route('login')}}" method="post" class="beta-form-checkout">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
+                @if(count($errors)>0)
+						<div class="alert alert-danger">
+							@foreach($errors->all() as $err)
+							{{$err}}
+							@endforeach
+						</div>
+					@endif
                 @if(Session::has('flag'))
 						<div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}</div>
 					@endif

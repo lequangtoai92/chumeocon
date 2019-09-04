@@ -5,7 +5,7 @@
     <div class="container media container_page">
         <div class="media-body">
             <div class="list-news">
-            @foreach($list_posts as $key=>$item)
+                @foreach($list_posts as $key=>$item)
                 @if ($key == 4)
                 <div class="ads">
                     <a href="#">
@@ -15,17 +15,17 @@
                 @endif
                 <article class="news-items">
                     <a href="../bai-viet/{{$item->id}}">
-                        <img class="lazy" src="img/bg-img.jpg" data-src="{{$item->image}}"
-                            alt="name image">
+                        <img class="lazy" src="img/bg-img.jpg" data-src="{{$item->image}}" alt="name image">
                     </a>
                     <div class="news-items-body">
-                        <p class="tag-category industry"><a class="dotted-line-1" href="{{$item->categories}}">{{$item->name_categories}}</a></p>
+                        <p class="tag-category industry"><a class="dotted-line-1"
+                                href="{{$item->categories}}">{{$item->name_categories}}</a></p>
                         <h3 class="title"><a href="../bai-viet/{{$item->id}}">{{$item->title}}</a></h3>
                         <p class="hidden-sm hidden-xs dotted-line-2 summary">{{$item->summary}}</p>
                         <div class="meta">
                             <time>{{$item->num_view}} views</time>
                             <ul class="list-button">
-                                <a class="btn btn-danger" onclick="myFunction({{$item->id}})" >Xóa</a>
+                                <a class="btn btn-danger" onclick="function_delete_posts({{$item->id}}, '{{$item->title}}')">Xóa</a>
                                 <a class="btn btn-primary" href="../change-my-posts/{{$item->id}}">Chỉnh sửa</a>
                             </ul>
                         </div>
@@ -50,12 +50,13 @@
                 <div class="list-news">
                     @foreach($list_ranking_week as $key=>$item)
                     <article class="media news-items">
-                    <a href="../bai-viet/{{$item->id}}"><img class="lazy" src="img/bg-img.jpg"
-                        data-src="{{$item->image}}" alt="Name images">
+                        <a href="../bai-viet/{{$item->id}}"><img class="lazy" src="img/bg-img.jpg"
+                                data-src="{{$item->image}}" alt="Name images">
                             <p class="ranking-num">{{$key + 1}}</p>
                         </a>
                         <div class="media-body news-items-body">
-                            <h3 class="title dotted-line-3"><a href="../bai-viet/{{$item->id}}">{{$item->title}}</a></h3>
+                            <h3 class="title dotted-line-3"><a href="../bai-viet/{{$item->id}}">{{$item->title}}</a>
+                            </h3>
                             <div class="meta">
                                 <time>{{$item->num_view}} views</time>
                             </div>
@@ -71,12 +72,13 @@
                 <div class="list-news">
                     @foreach($list_ranking_month as $key=>$item)
                     <article class="media news-items">
-                    <a href="../bai-viet/{{$item->id}}"><img class="lazy" src="img/bg-img.jpg"
-                        data-src="{{$item->image}}" alt="Name images">
+                        <a href="../bai-viet/{{$item->id}}"><img class="lazy" src="img/bg-img.jpg"
+                                data-src="{{$item->image}}" alt="Name images">
                             <p class="ranking-num">{{$key + 1}}</p>
                         </a>
                         <div class="media-body news-items-body">
-                            <h3 class="title dotted-line-3"><a href="../bai-viet/{{$item->id}}">{{$item->title}}</a></h3>
+                            <h3 class="title dotted-line-3"><a href="../bai-viet/{{$item->id}}">{{$item->title}}</a>
+                            </h3>
                             <div class="meta">
                                 <time>{{$item->num_view}} views</time>
                             </div>
@@ -87,6 +89,7 @@
             </div>
         </div>
     </div>
+    @include('include.modal_delete_posts')
 </section>
 <script src="../js/user.js"></script>
 <!--Footer-->
