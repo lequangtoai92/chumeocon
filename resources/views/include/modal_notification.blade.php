@@ -83,7 +83,7 @@
                 <h2 class="modal-title">Thông tin chưa chính xác</h2>
             </div>
             <div class="modal-body">
-                <span>Mật khẩu chưa giống nhau</span>
+                <span>Mật khẩu chưa giống nhau hoặc nhỏ hơn 6 ký tự hoặc lớn hơn 20 ký tự</span>
                 <span class="name-posts"></span>
             </div>
         </div>

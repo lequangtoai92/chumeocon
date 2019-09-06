@@ -36,9 +36,10 @@
                         <h2>CÀI ĐẶT</h2>
                     </div>
                     <div class="list-news">
+                        <a href="https://www.w3schools.com">Cách lấy ID video youtube</a>
                         <article class="media news-items">
                             <textarea id="content_main" rows="4" name="summary" class="form-control"
-                                placeholder="Link youtube: https://www.youtube.com/watch?v=AGBjI0x9VbM"></textarea>
+                                placeholder="ID video: RPnIq_59dJc"></textarea>
                         </article>
                         <article class="media news-items">
                             <input type="text" name="author" value="{{Auth::user()->full_name}}"

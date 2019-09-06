@@ -81,7 +81,7 @@ class UserController extends Controller
         $account->id = Auth::user()->id;
         $account->full_name = $req->full_name;
         $account->email = $req->email;
-        $account->birthday = isset($req->birthday) ? $req->birthday : '';
+        $account->birthday = isset($req->birthday)&&$this->checkDate($req->birthday) ? $req->birthday : '2000-01-01';
         $account->sex = isset($req->gender) ? $req->gender : 0;
         $account->address = isset($req->address) ? $req->address : '';
         $account->phone = isset($req->phone) ? $req->phone : null;
@@ -147,5 +147,13 @@ class UserController extends Controller
         }
         $list_posts = Posts::whereIn('id', $array)->get();
         return ($list_posts);
+    }
+
+    public function checkDate($date){
+        if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

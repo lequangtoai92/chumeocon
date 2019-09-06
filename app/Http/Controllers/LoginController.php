@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Validator;
 use Auth;
+use Hash;
+use Redirect;
 use App\User;
 use Illuminate\Support\MessageBag;
 
@@ -37,7 +39,7 @@ class LoginController extends Controller
         $account->user_name = $req->username;
         $account->email = $req->email;
         $account->password = Hash::make($req->password);
-        // $account->birthday = isset($req->birdth) ? $req->birdth : '';
+        $account->birthday = isset($req->birdth)&&$this->checkDate($req->birdth) ? $req->birdth : '2000-01-01';
         $account->avatar = '../img/no_image.png'; // hinh anh
         $account->sex = isset($req->gender) ? $req->gender : 0;
         $account->address = isset($req->address) ? $req->address : '';
@@ -47,7 +49,7 @@ class LoginController extends Controller
         $account->status = 6;
 
         $account->save();
-        return redirect()->back()->with('thanhcong','Tạo tài khoản thành công');
+        return redirect()->back()->with('success','Tạo tài khoản thành công');
     }
 
     public function getSigninFast(){
@@ -79,21 +81,16 @@ class LoginController extends Controller
         $account->address =isset($req->nickname) ? $req->nickname: '';
         $account->authorities = 5;
         $account->status = 6;
+        $account->birthday = isset($req->birdth)&&$this->checkDate($req->birdth) ? $req->birdth : '2000-01-01';
+        $account->avatar = '../img/no_image.png'; // hinh anh
 
         $account->save();
-        return redirect()->back()->with('thanhcong','Tạo tài khoản thành công');
+        return redirect()->back()->with('success','Tạo tài khoản thành công');
     }
 
     public function getLogin(){
         if (Auth::check()) {
-            // var_dump('1');
-            // var_dump(Auth::user());
-            // Đã đăng nhập.
-        }
-        else{
-            // var_dump('2');
-            // var_dump(Auth::user());
-          //chưa đăng nhập.
+            return redirect()->back();
         }
         return view('page.login');
     }
@@ -117,8 +114,8 @@ class LoginController extends Controller
             ])->first();
         if($account){
             if(Auth::attempt($credentials, true)){
-                // return view('header1');
-                // return redirect()->back();
+                return redirect()->back();
+                // return Redirect::back()::back();
             }
             else{
                 // return redirect()->back()->with(['flag'=>'danger','message'=>'Đăng nhập không thành công']);
@@ -131,8 +128,15 @@ class LoginController extends Controller
     }
     public function postLogout(){
         Auth::logout();
-        // return view('page.category');
         return redirect()->back();
+    }
+
+    public function checkDate($date){
+        if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$date)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     

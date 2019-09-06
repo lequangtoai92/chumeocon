@@ -1008,6 +1008,11 @@ footer .container .social-footer>li a:hover {
   margin-top: 5px;
 }
 
+.btn{
+  
+    cursor: pointer;
+}
+
 .follow-us{display: none !important;}
 
 /*# sourceMappingURL=template.css.map */

@@ -7,16 +7,16 @@
             <form action="{{route('signin')}}" method="post" class="beta-form-checkout">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <div class="row">
-                @if(count($errors)>0)
-						<div class="alert alert-danger">
-							@foreach($errors->all() as $err)
-							{{$err}}
-							@endforeach
-						</div>
-					@endif
-					@if(Session::has('thanhcong'))
-						<div class="alert alert-success">{{Session::get('thanhcong')}}</div>
-					@endif
+                    @if(count($errors)>0)
+                    <div class="alert alert-danger">
+                        @foreach($errors->all() as $err)
+                        {{$err}}
+                        @endforeach
+                    </div>
+                    @endif
+                    @if(Session::has('success'))
+                        @include('include.modal_sigin_success')
+                    @endif
                     <div class="col-left">
                         <div class="form-block">
                             <label for="your_last_name">Họ và tên(*)</label>
@@ -25,7 +25,7 @@
 
                         <div class="form-block">
                             <label for="username">Tên đăng nhập(*)</label>
-                            <input type="text" name="username" required autocomplete="off"> 
+                            <input type="text" name="username" required>
                         </div>
 
                         <div class="form-block">
@@ -35,24 +35,32 @@
 
                         <div class="form-block">
                             <label for="password">Mật khẩu(*)</label>
-                            <input type="password" class="input-password" name="password" required autocomplete="off">
+                            <input type="password" class="input-password"
+                                placeholder="Mật khẩu phải lớn hơn 6 và nhỏ hơn 20 ký tự" name="password"
+                                required autocomplete="off">
                         </div>
                         <div class="form-block">
                             <label for="password">Nhập lại mật khẩu(*)</label>
-                            <input type="password" class="input-re_password" name="re_password" required autocomplete="off">
-                            <p >Mật khẩu không giống</p>
+                            <input type="password" class="input-re_password"
+                                placeholder="Mật khẩu phải lớn hơn 6 và nhỏ hơn 20 ký tự" name="re_password"
+                                required autocomplete="off">
                         </div>
                     </div>
                     <div class="col-right">
                         <div class="form-block">
                             <label for="birdth">Ngày sinh</label>
-                            <input data-toggle="datepicker-birthday" name="birdth" autocomplete="off" placeholder="YYYY-MM-DD" required
-                            pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))">
+                            <input data-toggle="datepicker-birthday" name="birdth" autocomplete="off"
+                                placeholder="YYYY-MM-DD" required
+                                pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))">
                         </div>
 
                         <div class="form-block">
                             <label for="gender">Giới tính</label>
-                            <input type="text" name="gender" autocomplete="off">
+                            <select class="form-control select-option" name="gender">
+                                <option class="select-option" value="1" selected="selected">Nam</option>
+                                <option class="select-option" value="2">Nữ</option>
+                                <option class="select-option" value="3">Khác</option>
+                            </select>
                         </div>
 
                         <div class="form-block">
@@ -63,7 +71,7 @@
 
                         <div class="form-block">
                             <label for="phone">Số điện thoại</label>
-                            <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+                            <input type="tel" name="phone">
                         </div>
 
                         <div class="form-block">
@@ -75,20 +83,21 @@
 
                     <div class="form-block col-button">
                         <button type="submit" class="button-btn btn btn-primary">Đăng ký</button>
-                        <span class="span-btn btn btn-primary">Đăng ký1</span>
+                        <span class="span-btn btn btn-primary">Đăng ký</span>
                     </div>
 
                 </div>
             </form>
         </div>
-        
+
     </div>
 </section>
 @include('include.modal_notification')
 <script>
 $('.form-block .button-btn').hide();
-$( ".input-re_password" ).keypress(function(event) {
-    if($( ".input-re_password" ).val()+ event.key == $( ".input-password" ).val()){
+$(".input-re_password").keypress(function(event) {
+    if ($(".input-re_password").val() + event.key == $(".input-password").val() && 6 < $(".input-password")
+        .val().length < 20) {
         $('.form-block .button-btn').show();
         $('.form-block .span-btn').hide();
     } else {
@@ -96,8 +105,9 @@ $( ".input-re_password" ).keypress(function(event) {
         $('.form-block .span-btn').show();
     }
 });
-$('.span-btn').on("click", function () {
+$('.span-btn').on("click", function() {
     $('#modal_notification').modal('show');
 })
+// $('#modal_sigin_success').modal('show');
 </script>
 @endsection
