@@ -3,9 +3,11 @@
                 <div class="heading">
                     <h2>MotoTube</h2>
                 </div>
-                <iframe width="300" height="250" src="https://www.youtube.com/embed/LopMoV5ahqg" frameborder="0"
+                @foreach($list_yotube_top as $key=>$item)
+                <iframe width="300" height="250" src="https://www.youtube.com/embed/{{$item->summary}}?&autoplay=1" frameborder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
+                @endforeach
             </div>
             <div class="wrapper-ranking">
                 <div class="heading">

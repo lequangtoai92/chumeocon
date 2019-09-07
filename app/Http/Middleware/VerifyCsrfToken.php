@@ -27,7 +27,8 @@ class VerifyCsrfToken extends Middleware
         '/tai-khoan',
         '/change-my-posts',
         '/tai-khoan/update-password',
-        '//tai-khoan/update-intro'
+        '//tai-khoan/update-intro',
+        '//dang-phim-hoat-hinh',
         //
     ];
 }

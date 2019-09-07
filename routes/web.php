@@ -134,14 +134,19 @@ Route:: get('posts', [
     'uses' => 'PostController@getPosts'
 ]);
 
+Route::post('posts',[
+	'as'=>'posts',
+	'uses'=>'PostController@postPosts'
+]);
+
 Route:: get('dang-phim-hoat-hinh', [
     'as' => 'posts',
     'uses' => 'PostController@getPostsCarton'
 ]);
 
-Route::post('posts',[
-	'as'=>'posts',
-	'uses'=>'PostController@postPosts'
+Route:: post('dang-phim-hoat-hinh', [
+    'as' => 'posts',
+    'uses' => 'PostController@postPostsCartoon'
 ]);
 
 Route:: get('my-posts', [

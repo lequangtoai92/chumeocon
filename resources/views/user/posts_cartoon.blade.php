@@ -36,7 +36,7 @@
                         <h2>CÀI ĐẶT</h2>
                     </div>
                     <div class="list-news">
-                        <a href="https://www.w3schools.com">Cách lấy ID video youtube</a>
+                        <a onclick="function_getid_yotube()">Cách lấy ID video youtube</a>
                         <article class="media news-items">
                             <textarea id="content_main" rows="4" name="summary" class="form-control"
                                 placeholder="ID video: RPnIq_59dJc"></textarea>
@@ -57,24 +57,11 @@
                         </article>
                     </div>
                 </div>
-                <div class="wrapper-image">
-                    <div class="heading">
-                        <h2>Hình ảnh</h2>
-                    </div>
-                    <div class="show-image">
-                        <img id="image_select" src="img/no_image.png" alt="your image" />
-                        <ul class="list-button-image">
-                            <input type="file" id="upload_image" name="image_upload" class="inputfile"
-                                onchange="readURL(this);">
-                            <label for="upload_image">Choose a file</label>
-                        </ul>
-                    </div>
-                </div>
-                <!-- </form> -->
             </div>
         </div>
     </form>
 </section>
+@include('include.modal_getid_youtube')
 @endsection
 <script>
 function readURL(input) {

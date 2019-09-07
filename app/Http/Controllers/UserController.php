@@ -67,8 +67,6 @@ class UserController extends Controller
         return view('user.notifice');
     }
 
-    
-
     public function updateInfo(Request $req){
         $folder_image = $this->creatFolder();
         if ($req->hasFile('image_upload')) {

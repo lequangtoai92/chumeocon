@@ -10,6 +10,8 @@ function function_delete_posts(id, title) {
     $('#modal_delete_posts').modal('show');
 }
 
+
+
 $("#modal_btn_yes").on("click", function () {
     $.ajax({ url: 'http://chumeocon.com/delete-my-posts/' + num_posts });
     this_posts.addClass('hide');

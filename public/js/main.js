@@ -103,7 +103,6 @@ $(document).on("click", ".list-mototube .mototube-items a", function() {
 
 var player;
 loadYouTubePlayer = function (playerID) {
-    alert('1');
 	the_player = new YT.Player(playerID, {
 		events: {
 			'onReady': playYouTubeVideo,
@@ -112,13 +111,15 @@ loadYouTubePlayer = function (playerID) {
     });
 };
 function playYouTubeVideo(event) {
-    alert('2');
 	event.target.playVideo();
 }
 
 function onPlayerError(event) {
-    alert('3');
 	console.log('onPlayerError');
+}
+
+function function_getid_yotube(){
+    $('#modal_getid_yotube').modal('show');
 }
 
 
