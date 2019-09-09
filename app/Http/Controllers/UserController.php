@@ -10,6 +10,8 @@ use App\User;
 use App\Intro;
 use Auth;
 use DB;
+use Session;
+use Mail;
 use Hash;
 
 
@@ -29,17 +31,6 @@ class UserController extends Controller
     }
 
     public function getMessages(){
-        return view('user.messages');
-    }
-
-    public function addFeedback(Request $request)
-    {
-        $input = $request->all();
-        Mail::send('mailfb', array('name'=>$input["name"],'email'=>$input["email"], 'content'=>$input['comment']), function($message){
-	        $message->to('toailq92@gmail.com', 'Visitor')->subject('Visitor Feedback!');
-	    });
-        Session::flash('flash_message', 'Send message successfully!');
-
         return view('user.messages');
     }
 

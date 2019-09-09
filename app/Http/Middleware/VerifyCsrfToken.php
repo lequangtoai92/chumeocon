@@ -20,6 +20,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/dang-nhap',
+        '/dang-nhap/quen-mat-khau',
         '/gop-y',
         '/posts',
         '/messages',

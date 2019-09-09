@@ -115,28 +115,13 @@
                 <div class="search">
                     <button type="submit" class="hidden-md hidden-lg btn-search-mobile"><i
                             class="icon icon-search"></i></button>
-                    <form class="search-form">
+                    <form class="search-form" action="/search" method="get">
                         <div class="hidden-md hidden-lg header-search">
                             <a class="chevron left btn-back " href="#">Back</a>
                             <h3>Search</h3>
                         </div>
-                        <div class="txt-search-top"><input type="text" placeholder="Enter Keyword"><i
+                        <div class="txt-search-top"><input type="text" name="q" placeholder="Search.."><i
                                 class="icon icon-search"></i></div>
-                        <div class="hidden-md hidden-lg suggestion">
-                            <label>Recent search list</label>
-                            <div class="recent-list">
-                                <a href="detail.html">Parts & Gear</a>
-                                <a href="detail.html">Columns</a>
-                                <a href="detail.html">Motorcycle Review</a>
-                                <a href="detail.html">Asia</a>
-                                <a href="detail.html">Worldwide</a>
-                                <a href="detail.html">Triumth</a>
-                                <a href="detail.html">Custom Motorcycle</a>
-                                <a href="detail.html">Honda cb250</a>
-                                <a href="detail.html">Parts</a>
-                                <a href="detail.html">News</a>
-                            </div>
-                        </div>
                     </form>
                 </div>
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>

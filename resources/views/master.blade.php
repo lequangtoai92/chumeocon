@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/template.css">
     <link rel="stylesheet" href="../css/top.css">
+    
     <script src="../js/jquery.js"></script>
 
   
@@ -39,7 +40,8 @@
 
 <script src="../js/jquery.js"></script>
 <script src="../js/datepicker.js"></script>
-<script type="text/javascript" src="../dist/tinymce/js/tinymce/tinymce.min.js" ></script>
+<script type="text/javascript" src="../dist/tinymce_1/js/tinymce/tinymce.min.js" ></script>
+<!-- <script type="text/javascript" src='https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script> -->
 <script src="../vendor/unveil-master/jquery.unveil.min.js"></script>
 <script src="../vendor/bootstrap-4.3.1/js/bootstrap.min.js"></script>
 <script src="../vendor/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>

@@ -27,7 +27,7 @@
                             <input type="password" name="password" placeholder="Mật khẩu" required>
                         </div>
                         <div class="form-block col-button">
-                            <a>Quên mật khẩu?</a>
+                            <a id="open_forgot_password">Quên mật khẩu?</a>
                         </div>
                         <div class="form-block col-button">
                             <button type="submit" class="btn btn-primary">Đăng nhập</button>
@@ -117,19 +117,21 @@
                     </article>
                 </div>
             </div>
-            <div class="follow-us">
-                <div class="heading">
-                    <h2>Follow Us</h2>
-                </div>
-                <ul class="follow-us-ct">
-                    <li>
-                        <a class="btn-facebook" href="#"><i class="icon icon-social-facebook-side"></i> facebook</a>
-                    </li>
-                    <li> <a class="btn-twitter" href="#"><i class="icon icon-social-twitter-side"></i> twitter</a></li>
-                </ul>
-            </div>
         </div>
     </div>
 </section>
 @include('include.dialog_forgot_password')
+<script>
+(function() {
+    var open_dialog = document.getElementById('open_forgot_password');
+    var dialog_forgot_password = document.getElementById('dialog_forgot_password');
+    open_dialog.addEventListener('click', function() {
+        dialog_forgot_password.showModal();
+    });
+    $(".close-dialog").click(function() {
+        dialog_forgot_password.close();
+    });
+    
+})();
+</script>
 @endsection

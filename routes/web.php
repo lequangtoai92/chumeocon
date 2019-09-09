@@ -208,6 +208,10 @@ Route:: get('admin/feedback', [
 
 // end admin
 
+
+
+
+
 Route::get('dang-ky',[
 	'as'=>'signin',
 	'uses'=>'LoginController@getSignin'
@@ -241,4 +245,11 @@ Route::get('dang-xuat',[
 	'as'=>'logout',
 	'uses'=>'LoginController@postLogout'
 ]);
+
+Route:: post('dang-nhap/quen-mat-khau', [
+    'as' => 'forgot_pass_word',
+    'uses' => 'PageController@forgotPassword'
+]);
+
+Route::get('/search',['uses' => 'SearchController@getSearch','as' => 'search']);
 

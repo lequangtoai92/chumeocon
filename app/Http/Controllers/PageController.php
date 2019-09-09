@@ -268,6 +268,37 @@ class PageController extends Controller
             return $list_top;
     }
 
+    public function forgotPassword(Request $request){
+        $this->validate($request,
+            [
+                'username'=>'required|unique:users,user_name',
+            ],
+            [
+                'username.unique'=>'username đã có người sử dụng',
+            ]);
+        $input = $request->all();
+        var_dump($input);exit;
+        Mail::send('mailfb', array('name'=>$input["name"],'email'=>$input["email"], 'content'=>$input['comment']), function ($message) use ($request){
+	        $message->to($request->email, '??????')->subject('Mật khẩu mới cho TRUYENCHUMEOCON');
+        });
+        return redirect()->back()->with(['flag'=>'danger','message'=>'Tài khoản chưa kích hoạt']);
+        // Session::flash('flash_message', 'Send message successfully!');
+
+        // return view('user.messages');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     function getBrowser(){
         $u_agent = $_SERVER['HTTP_USER_AGENT'];
         $bname = 'Unknown';

@@ -9,7 +9,7 @@
                     <input type="text" name="name_posts" placeholder="Tên tác phẩm(*)">
                 </div>
                 <div class="content-main">
-                    <textarea id="content_main" rows="20" name="main_content" class="form-control"
+                    <textarea id="content_main_tinymce" rows="20" name="main_content" class="form-control"
                         placeholder="Nội dung(*)"></textarea>
                 </div>
             </div>

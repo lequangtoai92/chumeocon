@@ -1,24 +1,19 @@
 
 
-<dialog class="dialog-cat-child" id="dialog_change_pw">
-    
-    <form method="dialog">
-        <p>Thay đổi mật khẩu:</p>
+<dialog class="dialog-cat-child" id="dialog_forgot_password">
+    <form action="{{route('forgot_pass_word')}}" enctype="multipart/form-data" method="post">
+        <p>Chúng tôi sẽ  gửi mật khẩu mới về mail của bạn</p>
         <div class="form-group">
-            <label for="user_name">Mật khẩu cũ</label><label class="user-name-import"></label>
-            <input type="text" class="form-control" id="user_name" placeholder="Mật khẩu cũ"
+            <label for="user_name">Tên đăng nhập</label><label class="user-name-import"></label>
+            <input type="text" class="form-control" placeholder="Tên đăng nhập"
                 name="user_name">
         </div>
         <div class="form-group">
-            <label for="user_id">Mật khẩu mới</label>
-            <input type="text" class="form-control" placeholder="Mật khẩu mới" name="user_id" readonly>
-        </div>
-        <div class="form-group">
-            <label for="email">Nhập lại mật khẩu</label><label class="email-import"></label>
-            <input type="text" class="form-control" id="email" placeholder="Nhập lại mật khẩu mới" name="email">
+            <label for="user_id">Email</label>
+            <input type="email" class="form-control" placeholder="Email" name="email">
         </div>
         <menu>
-            <button class="btn">Đóng</button>
+            <span class="btn close-dialog">Đóng</span>
             <button class="btn btn-success">Cập nhật</button>
         </menu>
     </form>

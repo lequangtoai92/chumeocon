@@ -115,14 +115,14 @@ class LoginController extends Controller
         if($account){
             if(Auth::attempt($credentials, true)){
                 return redirect()->back();
-                // return Redirect::back()::back();
+                return Redirect::back()::back();
             }
             else{
-                // return redirect()->back()->with(['flag'=>'danger','message'=>'Đăng nhập không thành công']);
+                return redirect()->back()->with(['flag'=>'danger','message'=>'Đăng nhập không thành công']);
             }
         }
         else{
-        //    return redirect()->back()->with(['flag'=>'danger','message'=>'Tài khoản chưa kích hoạt']); 
+           return redirect()->back()->with(['flag'=>'danger','message'=>'Tài khoản chưa kích hoạt']); 
         }
         
     }
