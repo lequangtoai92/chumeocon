@@ -3,11 +3,12 @@
 }
 
 .page-admin-feedback .container_page .sidebar {
-    margin-left: 0px;
-    width: 180px;
+    width: 70px;
     height: 100vh;
     background-color: gray;
-    overflow-x: hidden;
+    position: fixed;
+    margin: 0px;
+    top: 0px;
 }
 
 .page-admin-feedback .form-control.select-option-top {
@@ -18,7 +19,8 @@
 }
 
 .page-admin-feedback #table_feedback {
-    width: 100%;
+    width: calc(100% - 70px);
+    float: right;
 }
 
 #table_feedback {

@@ -9,6 +9,8 @@ use Auth;
 use Hash;
 use Redirect;
 use App\User;
+use DB;
+use App\Posts;
 use Illuminate\Support\MessageBag;
 
 class LoginController extends Controller
@@ -89,10 +91,12 @@ class LoginController extends Controller
     }
 
     public function getLogin(){
+        $list_ranking_week = $this->getRankingWeek(0);
+        $list_ranking_month = $this->getRankingMonth(0);
         if (Auth::check()) {
             return redirect()->back();
         }
-        return view('page.login');
+        return view('page.login', compact('list_ranking_week', 'list_ranking_month'));
     }
 
     public function postLogin(Request $req){
@@ -114,8 +118,8 @@ class LoginController extends Controller
             ])->first();
         if($account){
             if(Auth::attempt($credentials, true)){
-                return redirect()->back();
-                return Redirect::back()::back();
+                return redirect('index');
+                // return Redirect::back()::back();
             }
             else{
                 return redirect()->back()->with(['flag'=>'danger','message'=>'Đăng nhập không thành công']);
@@ -137,6 +141,41 @@ class LoginController extends Controller
         } else {
             return false;
         }
+    }
+
+    public function getRankingWeek($category){
+        if ($category == 0) {
+            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 5');
+        } else {
+            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 5');
+        }
+        $array=array();
+        for ($i = 0; $i < count($ranking); $i++){
+            array_push($array,$ranking[$i]->id_post);
+        }
+        $list_posts = Posts::whereIn('id', $array)->get();
+
+        for ($i = 0; $i < count($list_posts); $i++){
+            $list_posts[$i]->ranking_view = $ranking[$i]->view_post;
+        }
+        return ($list_posts);
+    }
+
+    public function getRankingMonth($category){
+        if ($category == 0) {
+            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 5');
+        } else {
+            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 5');
+        }
+        $array=array();
+        for ($i = 0; $i < count($ranking); $i++){
+            array_push($array,$ranking[$i]->id_post);
+        }
+        $list_posts = Posts::whereIn('id', $array)->get();
+        for ($i = 0; $i < count($list_posts); $i++){
+            $list_posts[$i]->ranking_view = $ranking[$i]->view_post;
+        }
+        return ($list_posts);
     }
 
     

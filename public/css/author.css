@@ -67,3 +67,43 @@
 .page-info .footer-info .list-button{margin-top: 10px; text-align: right}
 
 .page-info #info_account form{display: contents;}
+
+@media (max-width: 767px) {
+    .page-info .row .body-info.body-left {
+        width: 100%;
+        padding: 10px;
+        margin-left: 5px;
+    }
+    .page-info .body-info.body-right {
+        width: 100%;
+        padding: 10px;
+        padding-left: 20px;
+    }
+
+    /* .page-info .body-info.body-left .row {
+        display: -ms-flexbox;
+        display: flex;
+        margin-right: -15px;
+        margin-left: -10px;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    } */
+
+    .page-info .footer-info .heading{
+        padding-left: 15px;
+    }
+    .page-info .footer-info {
+        width: 100%;
+        padding-right: 0px;
+    }
+
+    .page-info .footer-info .row {
+        display: -ms-flexbox;
+        display: flex;
+        margin-right: 0px;
+        margin-left: 0px;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+      }
+
+}

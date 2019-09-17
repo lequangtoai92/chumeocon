@@ -33,6 +33,7 @@
                 </article>
                 @endforeach
             </div>
+            <div class="row">{{$list_posts->links()}}</div>
         </div>
         <div class="hidden-sm hidden-xs sidebar">
             <div class="wrapper-youtube">

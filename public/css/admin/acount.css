@@ -3,11 +3,12 @@
 }
 
 .page-admin-acount .container_page .sidebar {
-    margin-left: 0px;
-    width: 180px;
+    width: 70px;
     height: 100vh;
     background-color: gray;
-    overflow-x: hidden;
+    position: fixed;
+    margin: 0px;
+    top: 0px;
 }
 
 .page-admin-acount .form-control.select-option-top {
@@ -18,7 +19,8 @@
 }
 
 .page-admin-acount #table_account {
-    width: 100%;
+    width: calc(100% - 70px);
+    float: right;
 }
 
 #table_account {
@@ -47,15 +49,50 @@
     color: white;
 }
 
-#table_account .th-1 {width: 13%}
-#table_account .th-2 {width: 12%}
-#table_account .th-3 {width: 10%}
-#table_account .th-4 {width: 7%}
-#table_account .th-5 {width: 15%}
-#table_account .th-6 {width: 10%}
-#table_account .th-7 {width: 8%}
-#table_account .th-8 {width: 10%}
-#table_account .th-9 {width: 11%}
-#table_account .th-10 {width: 5%}
+#table_account .th-1 {
+    width: 13%
+}
 
-#table_account select{ padding: 0px 5px 0px 5px;}
+#table_account .th-2 {
+    width: 12%
+}
+
+#table_account .th-3 {
+    width: 10%
+}
+
+#table_account .th-4 {
+    width: 7%
+}
+
+#table_account .th-5 {
+    width: 15%
+}
+
+#table_account .th-6 {
+    width: 10%
+}
+
+#table_account .th-7 {
+    width: 8%
+}
+
+#table_account .th-8 {
+    width: 10%
+}
+
+#table_account .th-9 {
+    width: 11%
+}
+
+#table_account .th-10 {
+    width: 5%
+}
+
+#table_account select {
+    padding: 0px 5px 0px 5px;
+}
+
+.media-body .row{
+    margin-left: 50px;
+}

@@ -34,7 +34,7 @@ class PageController extends Controller
             ->select('posts.*', 'categories.name_categories')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('posts.status', '6')
-            ->skip(3)->take(10)->get();
+            ->skip(3)->paginate(15);
         return view('page.index', compact('list_top', 'list_posts', 'list_ranking_week', 'list_ranking_month', 'list_yotube_top'));
     }
 
@@ -46,91 +46,99 @@ class PageController extends Controller
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('categories.id', '1')
             ->where('posts.status', '6')
-            ->get();
+            ->paginate(15);
+        return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
+    }
+
+    public function getFairyTales (){
+        $list_ranking_week = $this->getRankingWeek(2);
+        $list_ranking_month = $this->getRankingMonth(2);
+        $list_posts = Posts::whereIn('categories', ['2', '3', '4', '5'])
+                            ->where('status', 6)->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getVietnameseFairyTales (){
         $list_ranking_week = $this->getRankingWeek(2);
         $list_ranking_month = $this->getRankingMonth(2);
-        $list_posts = Posts::where([['categories','=',2], ['status','=',6]])->get();
+        $list_posts = Posts::where([['categories','=',2], ['status','=',6]])->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getJapanFairyTales(){
         $list_ranking_week = $this->getRankingWeek(3);
         $list_ranking_month = $this->getRankingMonth(3);
-        $list_posts = Posts::where([['categories','=',3], ['status','=',6]])->paginate(10);
+        $list_posts = Posts::where([['categories','=',3], ['status','=',6]])->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getGrimmsFairyTales(){
         $list_ranking_week = $this->getRankingWeek(4);
         $list_ranking_month = $this->getRankingMonth(4);
-        $list_posts = Posts::where([['categories','=',4], ['status','=',6]])->paginate(10);
+        $list_posts = Posts::where([['categories','=',4], ['status','=',6]])->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getGreekMythology(){
         $list_ranking_week = $this->getRankingWeek(5);
         $list_ranking_month = $this->getRankingMonth(5);
-        $list_posts = Posts::where([['categories','=',5], ['status','=',6]])->paginate(10);
+        $list_posts = Posts::where([['categories','=',5], ['status','=',6]])->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getCartoon(){
         $list_ranking_week = $this->getRankingWeek(10);
         $list_ranking_month = $this->getRankingMonth(10);
-        $list_posts = Posts::where([['categories','=',10], ['status','=',6]])->paginate(10);
+        $list_posts = Posts::where([['categories','=',10], ['status','=',6]])->paginate(20);
         return view('page.cartoon',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getDoremon(){
         $list_ranking_week = $this->getRankingWeek(11);
         $list_ranking_month = $this->getRankingMonth(11);
-        $list_posts = Posts::where([['categories','=',11], ['status','=',6]])->paginate(10);
+        $list_posts = Posts::where([['categories','=',11], ['status','=',6]])->paginate(20);
         return view('page.cartoon',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getTomAndJerry(){
         $list_ranking_week = $this->getRankingWeek(12);
         $list_ranking_month = $this->getRankingMonth(12);
-        $list_posts = Posts::where([['categories','=',12], ['status','=',6]])->paginate(10);
+        $list_posts = Posts::where([['categories','=',12], ['status','=',6]])->paginate(20);
         return view('page.cartoon',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getVerse(){
         $list_ranking_week = $this->getRankingWeek(9);
         $list_ranking_month = $this->getRankingMonth(9);
-        $list_posts = Posts::where([['categories','=',9], ['status','=',6]])->paginate(10);
+        $list_posts = Posts::where([['categories','=',9], ['status','=',6]])->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getVietnameseProverbs(){
         $list_ranking_week = $this->getRankingWeek(6);
         $list_ranking_month = $this->getRankingMonth(6);
-        $list_posts = Posts::where([['categories','=',6], ['status','=',6]])->paginate(10);
+        $list_posts = Posts::where([['categories','=',6], ['status','=',6]])->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getGoodWord(){
         $list_ranking_week = $this->getRankingWeek(7);
         $list_ranking_month = $this->getRankingMonth(7);
-        $list_posts = Posts::where([['categories','=',7], ['status','=',6]])->paginate(10);
+        $list_posts = Posts::where([['categories','=',7], ['status','=',6]])->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getFunnyStory(){
         $list_ranking_week = $this->getRankingWeek(8);
         $list_ranking_month = $this->getRankingMonth(8);
-        $list_posts = Posts::where([['categories','=',8], ['status','=',6]])->paginate(10);
+        $list_posts = Posts::where([['categories','=',8], ['status','=',6]])->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getFeedback(){
         $list_ranking_week = $this->getRankingWeek(0);
         $list_ranking_month = $this->getRankingMonth(0);
-        $list_feedback = Feedback::where('status','=',1)->orderBy('id', 'DESC')->get();
+        $list_feedback = Feedback::where('status','=',6)->orderBy('id', 'DESC')->paginate(30);
         return view('page.feedback',compact('list_feedback', 'list_ranking_week', 'list_ranking_month'));
     }
 
@@ -203,7 +211,7 @@ class PageController extends Controller
         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
         ->where('id_account','=',$req->id)
         ->where('posts.status', '6')
-        ->get();
+        ->paginate(15);
         if (!isset($intro)) {
             $intro = (object) array('content' => 'Tác giả vẫn chưa giới thiệu về bản thân!');
         }
@@ -285,6 +293,10 @@ class PageController extends Controller
         // Session::flash('flash_message', 'Send message successfully!');
 
         // return view('user.messages');
+    }
+
+    function get404(){
+        return view('page.404');
     }
 
 

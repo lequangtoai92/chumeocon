@@ -13,7 +13,7 @@ function function_delete_posts(id, title) {
 
 
 $("#modal_btn_yes").on("click", function () {
-    $.ajax({ url: 'http://chumeocon.com/delete-my-posts/' + num_posts });
+    $.ajax({ url: '/delete-my-posts/' + num_posts });
     this_posts.addClass('hide');
     $('#modal_delete_posts').modal('hide');
 });

@@ -27,10 +27,10 @@
                     </div>
                 </article>
                 @endforeach
-                
             </div>
+            <div class="row">{{$list_posts->links()}}</div>
         </div>
-        @include('include.col-right')
+        @include('include.col_right_no_youtube')
     </div>
 </section>
 @endsection

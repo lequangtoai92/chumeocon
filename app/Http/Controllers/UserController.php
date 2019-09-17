@@ -22,12 +22,14 @@ class UserController extends Controller
     }
     
     public function getInfo(){
+        $list_ranking_week = $this->getRankingWeek();
+        $list_ranking_month = $this->getRankingMonth();
         $user = User::where('id', Auth::user()->id)->first();
         $intro = Intro::where([['id_author', Auth::user()->id],['group', 1]])->first();
         if (!isset($intro)) {
             $intro = (object) array('content' => 'Bạn chưa có bài giới thiệu về bản thân!');
         }
-        return view('user.info',compact('user', 'intro'));
+        return view('user.info',compact('user', 'intro', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getMessages(){
@@ -42,7 +44,7 @@ class UserController extends Controller
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('id_account','=',Auth::user()->id)
             ->where('posts.status', '6')
-            ->get();
+            ->paginate(15);
         return view('user.my_posts',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
@@ -68,8 +70,8 @@ class UserController extends Controller
         $account = new User();
         $account->exists = true;
         $account->id = Auth::user()->id;
-        $account->full_name = $req->full_name;
-        $account->email = $req->email;
+        $account->full_name = isset($req->full_name) ? $req->full_name : '';
+        $account->email = isset($req->email) ? $req->email : '';
         $account->birthday = isset($req->birthday)&&$this->checkDate($req->birthday) ? $req->birthday : '2000-01-01';
         $account->sex = isset($req->gender) ? $req->gender : 0;
         $account->address = isset($req->address) ? $req->address : '';
@@ -92,19 +94,18 @@ class UserController extends Controller
     }
 
     public function updatePassWord(Request $req){
-        // $this->validate($req,
-        //     [
-        //         'old_pass'=>'required|min:6|max:20',
-        //         'new_pass'=>'required|unique:users,password',
-        //         're_new_pass'=>'required|same:new_pass'
-        //     ],
-        //     [
-        //         'username.required'=>'Vui lòng nhập tên đăng nhập',
-        //         'username.unique'=>'username đã có người sử dụng',
-        //         'password.required'=>'Vui lòng nhập mật khẩu',
-        //         're_password.same'=>'Mật khẩu không giống nhau',
-        //         'password.min'=>'Mật khẩu ít nhất 6 kí tự'
-        //     ]);
+        $this->validate($req,
+            [
+                'old_pass'=>'required|min:6|max:20',
+                'new_pass'=>'required|min:6|max:20',
+                're_new_pass'=>'required|same:new_pass'
+            ],
+            [
+                'old_pass.required'=>'Vui lòng nhập tên đăng nhập',
+                'new_pass.required'=>'Vui lòng nhập mật khẩu',
+                're_password.same'=>'Mật khẩu không giống nhau',
+                'new_pass.min'=>'Mật khẩu ít nhất 6 kí tự'
+            ]);
         DB::table('users')
             ->where('id', Auth::user()->id)
             ->update(['password' => Hash::make($req->new_pass)]);

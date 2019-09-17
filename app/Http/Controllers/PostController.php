@@ -29,11 +29,23 @@ class PostController extends Controller
     }
 
     public function postPosts(Request $req){
+        $this->validate($req,
+            [
+                'name_posts'=>'required',
+                'main_content'=>'required'
+            ],
+            [
+                'name_posts.required'=>'Chưa nhập tên bài viết',
+                'main_content.required'=>'Chưa nhập nội dung'
+            ]
+        );
         $folder_image = $this->creatFolder();
         if ($req->hasFile('image_upload')) {
             $file = $req->image_upload;
             $src = $folder_image . round(microtime(true) * 1000) . '.' . $file->getClientOriginalExtension();
             $file->move($folder_image, $src);
+        }else if (isset($req->src_image_libary)) {
+            $src = $req->src_image_libary;
         }
         $link = isset($src) ? '../'.$src: '';
         $ua = $this->getBrowser();
@@ -59,44 +71,10 @@ class PostController extends Controller
         $posts->num_view = 0; // trang thai
         $posts->status = 6; // trang thai
         $posts->save();
-        // var_dump($posts);exit;
         return redirect()->back()->with('thanhcong','Tạo bài thành công');
     }
 
-    public function postPostsCarton(Request $req){
-        $folder_image = $this->creatFolder();
-        if ($req->hasFile('image_upload')) {
-            $file = $req->image_upload;
-            $src = $folder_image . round(microtime(true) * 1000) . '.' . $file->getClientOriginalExtension();
-            $file->move($folder_image, $src);
-        }
-        $link = isset($src) ? '../'.$src: '';
-        $ua = $this->getBrowser();
-        $driver = $ua['platform'];
-        $browser = $ua['name'];
-        $version = $ua['version'];
-        $posts = new Posts();
-        $posts->id_personality = 1; // duc tinh
-        $posts->id_account = Auth::user()->id;//id tac gia
-        $posts->title = $req->name_posts;// tieu de
-        $posts->content = $req->main_content;// noi dung
-        $posts->summary = $req->summary; // tom tat
-        $posts->categories = $req->categories; // nhom danh muc
-        $posts->image = isset($src) ? $link: '../img/no_image.png'; // hinh anh
-        $posts->age = isset($req->ages) ? $req->ages : 5; // tuoi
-        $posts->source =isset($req->source) ? $req->source: 'Sưu tầm'; //nguon
-        $posts->author =isset($req->author) ? $req->author: 'Ẩn danh'; //Tác giả
-        $posts->driver =isset($driver) ? $driver: 'windown'; //Tác giả
-        $posts->browser =isset($browser) ? $browser: 'chorme'; //Tác giả
-        $posts->version =isset($version) ? $version: '72.000'; //Tác giả
-        $posts->num_like = 0; // trang thai
-        $posts->num_dislike = 0; // trang thai
-        $posts->num_view = 0; // trang thai
-        $posts->status = 6; // trang thai
-        $posts->save();
-        // var_dump($posts);exit;
-        return redirect()->back()->with('thanhcong','Tạo bài thành công');
-    }
+    
 
     function creatFolder(){
         $month=date("Y-m");
@@ -148,6 +126,16 @@ class PostController extends Controller
     }
 
     public function postChangeMyPosts(Request $req){
+        $this->validate($req,
+            [
+                'name_posts'=>'required',
+                'main_content'=>'required'
+            ],
+            [
+                'name_posts.required'=>'Chưa nhập tên bài viết',
+                'main_content.required'=>'Chưa nhập nội dung'
+            ]
+        );
         $folder_image = $this->creatFolder();
         if ($req->hasFile('image_upload')) {
             $file = $req->image_upload;
@@ -205,6 +193,16 @@ class PostController extends Controller
     }
 
     public function postPostsCartoon(Request $req){
+        $this->validate($req,
+            [
+                'name_posts'=>'required',
+                'summary'=>'required'
+            ],
+            [
+                'name_posts.required'=>'Chưa nhập tên bài viết',
+                'summary.required'=>'Chưa nhập id youtube'
+            ]
+        );
         $folder_image = $this->creatFolder();
         if ($req->hasFile('image_upload')) {
             $file = $req->image_upload;
@@ -235,7 +233,6 @@ class PostController extends Controller
         $posts->num_view = 0; // trang thai
         $posts->status = 6; // trang thai
         $posts->save();
-        // var_dump($posts);exit;
         return redirect()->back()->with('thanhcong','Tạo bài thành công');
     }
 

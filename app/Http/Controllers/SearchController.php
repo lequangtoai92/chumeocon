@@ -27,7 +27,7 @@ class SearchController extends Controller
                         ->where('title', 'LIKE', "%{$keyword}%")
                         ->orWhere('summary', 'LIKE', "%{$keyword}%")
                         ->orWhere('content', 'LIKE', "%{$keyword}%")
-                        ->get();
+                        ->paginate(15);
 
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month', 'list_yotube_top'));
     }

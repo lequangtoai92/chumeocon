@@ -1008,11 +1008,72 @@ footer .container .social-footer>li a:hover {
   margin-top: 5px;
 }
 
-.btn{
-  
-    cursor: pointer;
+.btn {
+  cursor: pointer;
 }
 
-.follow-us{display: none !important;}
+.follow-us {
+  display: none !important;
+}
 
 /*# sourceMappingURL=template.css.map */
+
+/* paging page */
+
+.pagination {
+  display: inline-flex;
+  text-align: center;
+  margin: 5px;
+  padding-left: 15px;
+}
+
+.pagination .page-item {
+  /* width: 20px;
+  height: 25px;
+  margin: 5px;
+  color: #fff;
+  background-color: #bbb;
+  border-radius: 4px; */
+}
+
+.pagination .page-item.active {
+  /* background: #e61e25; */
+}
+
+.pagination .page-item .page-link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 11px;
+  padding: 10px 12px;
+  line-height: 100%;
+  margin: 0 4px 4px 0;
+  background: #bbb;
+  display: block;
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.pagination .page-item.active .page-link {
+  background: #e61e25;
+}
+
+/* end paging page */
+
+@media (max-width: 767px) {
+  .page-post .container_page {
+    display: block;
+  }
+  .container_page>.sidebar {
+    width: 100% !important;
+    margin-left: 0px !important;
+    padding: 2px;
+  }
+  .modal-dialog .modal-content{
+    width: 100% !important;
+  }
+  .dialog-cat-child{
+    width: 90% !important;
+  }
+}

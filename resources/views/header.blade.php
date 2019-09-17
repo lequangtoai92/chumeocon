@@ -44,7 +44,7 @@
                             <li>
                                 <a href="../dang-xuat" class="btn-logout"><i class="icon icon-sign-out"
                                         aria-hidden="true"></i>
-                                    Log out</a>
+                                    Đăng xuất</a>
                             </li>
                             @else
                             <li class="login-ct">
@@ -66,11 +66,23 @@
                             con</a>
                         <nav class="navbar hidden-md hidden-lg menu-media">
                             <ul class="navbar-nav">
+                            @if(Auth::check())
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="../#" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Cá nhân</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="../tai-khoan">Tài khoản</a>
+                                        <a class="dropdown-item" href="../posts">Viết bài</a>
+                                        <a class="dropdown-item" href="../dang-phim-hoat-hinh">Đăng phim hoạt hình</a>
+                                        <a class="dropdown-item" href="../my-posts">Bài viết</a>
+                                    </div>
+                                </li>
+                                @endif
                                 <li class="nav-item">
                                     <a class="dropdown-item" href="../truyen-moi">Truyện mới</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="../#" role="button" data-toggle="dropdown"
+                                    <a class="nav-link dropdown-toggle" href="../co-tich" role="button" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">Cổ tích</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="../co-tich-viet-nam">Cổ tích Việt Nam</a>
@@ -133,7 +145,7 @@
                     <ul>
                         <li><a href="../truyen-moi">Truyện mới</a></li>
                         <li class="dropdown">
-                            <a class="nav-link" href="../">Cổ tích</a>
+                            <a class="nav-link" href="../co-tich">Cổ tích</a>
                             <div class="dropdown-menu">
                                 <ul>
                                     <li><a class="chevron right" href="../co-tich-viet-nam">Cổ tích Việt Nam</a></li>

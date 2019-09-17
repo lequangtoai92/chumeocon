@@ -26,6 +26,10 @@ Route:: get('truyen-moi', [
     'uses' => 'PageController@getNewStory'
 ]);
 
+Route:: get('co-tich', [
+    'as' => 'trang-chu',
+    'uses' => 'PageController@getFairyTales'
+]);
 
 Route:: get('co-tich-viet-nam', [
     'as' => 'trang-chu',
@@ -140,12 +144,12 @@ Route::post('posts',[
 ]);
 
 Route:: get('dang-phim-hoat-hinh', [
-    'as' => 'posts',
+    'as' => 'posts-cartoon',
     'uses' => 'PostController@getPostsCarton'
 ]);
 
 Route:: post('dang-phim-hoat-hinh', [
-    'as' => 'posts',
+    'as' => 'posts-cartoon',
     'uses' => 'PostController@postPostsCartoon'
 ]);
 
@@ -188,9 +192,18 @@ Route:: post('notifice', [
     'uses' => 'Filecontroller@doUpload'
 ]);
 // end user
+Route:: get('404', [
+    'as' => 'thong-tin',
+    'uses' => 'PageController@getAdminAccount'
+]);
 
 
 // admin
+Route:: get('admin', [
+    'as' => 'thong-tin',
+    'uses' => 'AdminController@getAdmin'
+]);
+
 Route:: get('admin/account', [
     'as' => 'thong-tin',
     'uses' => 'AdminController@getAdminAccount'
@@ -202,8 +215,24 @@ Route:: get('admin/post', [
 ]);
 
 Route:: get('admin/feedback', [
-    'as' => 'thong-tin',
+    'as' => 'admin-feed-back',
     'uses' => 'AdminController@getAdminFeeback'
+]);
+
+Route:: get('admin/post-image', [
+    'as' => 'admin-feed-back',
+    'uses' => 'AdminController@getPostImage'
+]);
+
+
+Route::get('admin/getFeedback/{id}',[
+	'as'=>'delete-posts',
+	'uses'=>'AdminController@getAdminFeebackById'
+]);
+
+Route::post('admin/accessFeedback',[
+	'as'=>'delete-posts',
+	'uses'=>'AdminController@accessAdminFeebackById'
 ]);
 
 // end admin

@@ -4,6 +4,7 @@
 <section class="wrapper page-post">
     <form action="{{route('posts')}}" enctype="multipart/form-data" method="post">
         <div class="container media container_page">
+            <input type="hidden" class="input-src-image-libary" name="src_image_libary">
             <div class="media-body">
                 <div class="name-title">
                     <input type="text" name="name_posts" placeholder="Tên tác phẩm(*)">
@@ -75,21 +76,24 @@
                     <div class="show-image">
                         <img id="image_select" src="img/no_image.png" alt="your image" />
                         <ul class="list-button-image">
-                            <input type="file" id="upload_image" name="image_upload" class="inputfile"
+                            <!-- <input type="file" id="upload_image" name="image_upload" class="inputfile"
                                 onchange="readURL(this);">
-                            <label for="upload_image">Choose a file</label>
+                            <label for="upload_image">Choose a file</label> -->
+                            <span id="open_dialog_image" class="btn">Choose a file</span>
                         </ul>
                     </div>
                 </div>
                 <!-- </form> -->
             </div>
         </div>
+@include('include.dialog_select_image')
     </form>
 </section>
-@endsection
 <script>
 function readURL(input) {
+    dialog_select_image.close();
     if (input.files && input.files[0]) {
+        $(".input-src-image-libary").val('');
         var reader = new FileReader();
 
         reader.onload = function(e) {
@@ -100,5 +104,25 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-</script>
 
+function selectImage(image){
+    $(".input-src-image-libary").val(image.src.replace('http://chumeocon.com',''));
+    $('#image_select').attr('src', image.src.replace('http://chumeocon.com',''));
+    $('#upload_image').val(''); 
+    dialog_select_image.close();
+}
+
+(function() {
+    var openSelectImage = document.getElementById('open_dialog_image');
+    var dialog_select_image = document.getElementById('dialog_select_image');
+    openSelectImage.addEventListener('click', function() {
+        dialog_select_image.showModal();
+    });
+
+    $(".close-dialog").click(function() {
+        dialog_select_image.close();
+    });
+    
+})();
+</script>
+@endsection

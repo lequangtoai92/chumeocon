@@ -52,9 +52,9 @@
                     @endforeach
                 </div>
             </div>
-            <!-- <div class="fb-comments" data-href="http://chumeocon.com/bai-viet/{{$posts->id}}" data-width="100vh" data-numposts="5"></div> -->
+            <div class="fb-comments" data-href="http://chumeocon.com/bai-viet/{{$posts->id}}" data-width="100vh" data-numposts="5"></div>
         </div>
-        @include('include.col-right')
+        @include('include.col_right_no_youtube')
     </div>
 </section>
 

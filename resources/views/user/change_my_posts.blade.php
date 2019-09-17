@@ -10,7 +10,7 @@
                     <input type="text" name="name_posts"  value="{{$posts->title}}" placeholder="Tên tác phẩm(*)" autocomplete="off">
                 </div>
                 <div class="content-main">
-                    <textarea id="content_main" rows="20" name="main_content" class="form-control"
+                    <textarea id="content_main_tinymce" rows="20" name="main_content" class="form-control"
                         placeholder="Nội dung(*)">{{$posts->content}}</textarea>
                 </div>
             </div>

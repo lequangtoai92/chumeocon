@@ -2,14 +2,14 @@
 @section('content')
 <link rel="stylesheet" href="css/posts.css">
 <section class="wrapper page-post">
-    <form action="{{route('posts')}}" enctype="multipart/form-data" method="post">
+    <form action="{{route('posts-cartoon')}}" enctype="multipart/form-data" method="post">
         <div class="container media container_page">
             <div class="media-body">
                 <div class="name-title">
                     <input type="text" name="name_posts" placeholder="Tên tác phẩm(*)">
                 </div>
                 <div class="content-main">
-                    <textarea id="content_main" rows="20" name="main_content" class="form-control"
+                    <textarea id="content_main_tinymce" rows="20" name="main_content" class="form-control"
                         placeholder="Nội dung(*)"></textarea>
                 </div>
             </div>
