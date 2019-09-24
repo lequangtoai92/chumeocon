@@ -1,6 +1,6 @@
 @extends('master_admin')
 @section('content')
-<link rel="stylesheet" href="../css/admin/posts.css">
+<link rel="stylesheet" href="{!! assetRemote('css/admin/posts.css') !!}">
 <section class="wrapper page-admin-posts">
     <div class="media container_page">
     @include('admin.menu_left')
@@ -34,15 +34,15 @@
                         <td class="td-8">
                             <select class="form-control select-option" id="select_posts_status_{{$item->id}}">
                                 <option class="select-option" disabled value="">Duyệt</option>
-                                <option class="select-option" value="1">Chấp nhận</option>
-                                <option class="select-option" value="2">Xóa</option>
+                                <option class="select-option" value="5">Chấp nhận</option>
+                                <option class="select-option" value="8">Xóa</option>
                             </select>
                         </td>
                         <td class="td-9">
                             <input class="form-control">
                         </td>
                         <td class="td-10">
-                            <button class="btn btn-primary">Duyệt</button>
+                            <button class="btn btn-primary" onclick="access_posts({{$item->id}})">Duyệt</button>
                         </td>
                         <td class="td-12 hide">
                             {{$item}}
@@ -61,14 +61,14 @@
 <script>
 $("#select_posts_status").change(function() {
     $.ajax({
-        url: '/admin/getFeedback/' + $("#select_posts_status").val()
+        url: '/admin/getPostsStatus/' + $("#select_posts_status").val()
     });
 });
 
 function access_posts(id) {
     $.ajax({
         type: "POST",
-        url: '/admin/accessFeedback',
+        url: '/admin/accessPostsStatus',
         data: {
             "_token": "{{ csrf_token() }}",
             id: id,
@@ -80,23 +80,23 @@ function access_posts(id) {
     });
 }
 
-$(".td-2").click(function() {
+$(".td-1").click(function() {
     var data = JSON.parse($(this).parent().find(".td-12").html());
     console.log(data);
-    $("#dialog_show_feedback .id").text(data.id);
-    $("#dialog_show_feedback .id_account").text(data.id_account);
-    $("#dialog_show_feedback .name_author").text(data.name_author);
-    $("#dialog_show_feedback .content").text(data.content);
-    $("#dialog_show_feedback .browser").text(data.browser);
-    $("#dialog_show_feedback .driver").text(data.driver);
-    $("#dialog_show_feedback .version").text(data.version);
-    $("#dialog_show_feedback .time_creat").text(data.time_creat);
-    $("#dialog_show_feedback .status").text(data.status);
-    document.getElementById('dialog_show_feedback').showModal();
+    $("#dialog_show_posts .id").text(data.id);
+    $("#dialog_show_posts .id_account").text(data.id_account);
+    $("#dialog_show_posts .name_author").text(data.name_author);
+    $("#dialog_show_posts .content").text(data.content);
+    $("#dialog_show_posts .browser").text(data.browser);
+    $("#dialog_show_posts .driver").text(data.driver);
+    $("#dialog_show_posts .version").text(data.version);
+    $("#dialog_show_posts .time_creat").text(data.time_creat);
+    $("#dialog_show_posts .status").text(data.status);
+    document.getElementById('dialog_show_posts').showModal();
 });
 
 $(".close-dialog").click(function() {
-    document.getElementById('dialog_show_feedback').close();
+    document.getElementById('dialog_show_posts').close();
 });
 
 </script>

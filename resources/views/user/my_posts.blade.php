@@ -9,18 +9,18 @@
                 @if ($key == 4)
                 <div class="ads">
                     <a href="#">
-                        <img src="img/img_test/ad/img-ad01.png" alt="name image">
+                        <!-- <img src="img/img_test/ad/img-ad01.png" alt="name image"> -->
                     </a>
                 </div>
                 @endif
                 <article class="news-items">
-                    <a href="../bai-viet/{{$item->id}}">
+                    <a href="../bai-viet/{{$item->slug}}">
                         <img class="lazy" src="img/bg-img.jpg" data-src="{{$item->image}}" alt="name image">
                     </a>
                     <div class="news-items-body">
                         <p class="tag-category industry"><a class="dotted-line-1"
                                 href="{{$item->categories}}">{{$item->name_categories}}</a></p>
-                        <h3 class="title"><a href="../bai-viet/{{$item->id}}">{{$item->title}}</a></h3>
+                        <h3 class="title"><a href="../bai-viet/{{$item->slug}}">{{$item->title}}</a></h3>
                         <p class="hidden-sm hidden-xs dotted-line-2 summary">{{$item->summary}}</p>
                         <div class="meta">
                             <time>{{$item->num_view}} views</time>
@@ -51,12 +51,12 @@
                 <div class="list-news">
                     @foreach($list_ranking_week as $key=>$item)
                     <article class="media news-items">
-                        <a href="../bai-viet/{{$item->id}}"><img class="lazy" src="img/bg-img.jpg"
+                        <a href="../bai-viet/{{$item->slug}}"><img class="lazy" src="img/bg-img.jpg"
                                 data-src="{{$item->image}}" alt="Name images">
                             <p class="ranking-num">{{$key + 1}}</p>
                         </a>
                         <div class="media-body news-items-body">
-                            <h3 class="title dotted-line-3"><a href="../bai-viet/{{$item->id}}">{{$item->title}}</a>
+                            <h3 class="title dotted-line-3"><a href="../bai-viet/{{$item->slug}}">{{$item->title}}</a>
                             </h3>
                             <div class="meta">
                                 <time>{{$item->num_view}} views</time>
@@ -73,12 +73,12 @@
                 <div class="list-news">
                     @foreach($list_ranking_month as $key=>$item)
                     <article class="media news-items">
-                        <a href="../bai-viet/{{$item->id}}"><img class="lazy" src="img/bg-img.jpg"
+                        <a href="../bai-viet/{{$item->slug}}"><img class="lazy" src="img/bg-img.jpg"
                                 data-src="{{$item->image}}" alt="Name images">
                             <p class="ranking-num">{{$key + 1}}</p>
                         </a>
                         <div class="media-body news-items-body">
-                            <h3 class="title dotted-line-3"><a href="../bai-viet/{{$item->id}}">{{$item->title}}</a>
+                            <h3 class="title dotted-line-3"><a href="../bai-viet/{{$item->slug}}">{{$item->title}}</a>
                             </h3>
                             <div class="meta">
                                 <time>{{$item->num_view}} views</time>

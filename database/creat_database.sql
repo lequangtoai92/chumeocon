@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `personality`(
     `name_personality` VARCHAR(255) NOT NULL, -- ten tinh cach
     `rank_personality` INT(2), -- xep hang
     `status` INT(2), -- trang thai
-PRIMARY KEY(`id_personality`))
+PRIMARY KEY(`id`))
 
 -- BÌNH LUẬN
 
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `posts`(
     `driver` VARCHAR(255), -- thiet bi
     `browser` VARCHAR(255), -- trinh duyet
     `version` VARCHAR(255), -- phien ban
-    `ranking` INT(20, -- danh gia
+    `ranking` INT(20), -- danh gia
     `status` INT(2), -- trang thai
     PRIMARY KEY(`id`))
 
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `feedback`(
     `browser` VARCHAR(255),-- trinh duyet
     `version` VARCHAR(255), -- phien ban
     `status` INT(2), -- trang thai
-PRIMARY KEY(`id_feedback`))
+PRIMARY KEY(`id`))
 
 -- TIN NHẮN
 
@@ -192,9 +192,9 @@ VALUES
 (7, 'Lời hay ý đẹp', 'loi-hay-y-dep', 1, 1),
 (8, 'Truyện cười', 'truyen-cuoi', 1, 1),
 (9, 'Thơ', 'tho', 1, 1),
-(10, 'Phim hoạt hình', 'phim-hoat-hinh', 1, 1),
-(11, 'Đô rê mon', 'do-re-mon', 1, 1),
-(12, 'Tom and Jerry', 'tom-and-jerry', 1, 1);
+(10, 'Phim hoạt hình', 'phim-hoat-hinh', 9, 1),
+(11, 'Đô rê mon', 'do-re-mon', 9, 1),
+(12, 'Tom and Jerry', 'tom-and-jerry', 9, 1);
 
 
 INSERT INTO personality

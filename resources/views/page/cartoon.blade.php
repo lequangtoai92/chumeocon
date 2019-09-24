@@ -8,7 +8,6 @@
                 @foreach($list_posts as $key=>$item)
                 <article class="mototube-items">
                 <iframe class="thumb-mototube" src="https://www.youtube.com/embed/{{$item->summary}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <!-- <iframe class="thumb-mototube" src="https://www.youtube.com/embed/{{$item->summary}}?&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
                     <div class="mototube-items-body">
                         <h3 class="title dotted-line-2">{{$item->title}}</h3>
                         <div class="meta">

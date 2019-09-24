@@ -16,7 +16,7 @@
                                     <label for="upload_image">Choose a file</label>
                                 </ul>
                             </div>
-                            <div class="group-scores">
+                            <!-- <div class="group-scores">
                                 <div class="form-group">
                                     <label>Ngày tham gia: </label>
                                     <span> {{$user->time_creat}}</span>
@@ -29,7 +29,7 @@
                                     <label>Điểm thưởng: </label>
                                     <span>2000/50000</span>
                                 </div>
-                            </div>
+                            </div> -->
                             <ul class="list-button">
                                 <button class="btn btn-success" id="updateDetails">Cập nhật</button>
                                 <label class="btn btn-primary" id="openChangePW" href="">Đổi mật khẩu</label>

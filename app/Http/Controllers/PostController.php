@@ -42,12 +42,12 @@ class PostController extends Controller
         $folder_image = $this->creatFolder();
         if ($req->hasFile('image_upload')) {
             $file = $req->image_upload;
-            $src = $folder_image . round(microtime(true) * 1000) . '.' . $file->getClientOriginalExtension();
+            $src = $folder_image . 'posts_' . Auth::user()->id . '_' . round(microtime(true) * 1000) . '.' . $file->getClientOriginalExtension();
             $file->move($folder_image, $src);
         }else if (isset($req->src_image_libary)) {
             $src = $req->src_image_libary;
         }
-        $link = isset($src) ? '../'.$src: '';
+        $link = isset($src) ? $src: '';
         $ua = $this->getBrowser();
         $driver = $ua['platform'];
         $browser = $ua['name'];
@@ -56,10 +56,11 @@ class PostController extends Controller
         $posts->id_personality = $req->personality; // duc tinh
         $posts->id_account = Auth::user()->id;//id tac gia
         $posts->title = $req->name_posts;// tieu de
+        $posts->slug = isset($req->name_posts) ? str_slug($req->name_posts).'-' .round(microtime(true) * 1000): '';// slug
         $posts->content = $req->main_content;// noi dung
         $posts->summary = $req->summary; // tom tat
         $posts->categories = $req->categories; // nhom danh muc
-        $posts->image = isset($src) ? $link: '../img/no_image.png'; // hinh anh
+        $posts->image = isset($src) ? $link: 'img/no_image.png'; // hinh anh
         $posts->age = isset($req->ages) ? $req->ages : 5; // tuoi
         $posts->source =isset($req->source) ? $req->source: 'Sưu tầm'; //nguon
         $posts->author =isset($req->author) ? $req->author: 'Ẩn danh'; //Tác giả
@@ -69,12 +70,14 @@ class PostController extends Controller
         $posts->num_like = 0; // trang thai
         $posts->num_dislike = 0; // trang thai
         $posts->num_view = 0; // trang thai
-        $posts->status = 6; // trang thai
+        if (Auth::user()->authorities < 4) {
+            $posts->status = 5; // trang thai
+        } else {
+            $posts->status = 6; // trang thai
+        }
         $posts->save();
-        return redirect()->back()->with('thanhcong','Tạo bài thành công');
+        return redirect()->back()->with('success','');
     }
-
-    
 
     function creatFolder(){
         $month=date("Y-m");
@@ -85,37 +88,9 @@ class PostController extends Controller
         return $structure;
     }
 
-    public function doUpload(Request $request){
-        if ($request->hasFile('filesTest')) {
-            $file = $request->filesTest;
-
-            //Lấy Tên files
-            echo 'Tên Files: ' . $file->getClientOriginalName();
-            echo '<br/>';
-
-            //Lấy Đuôi File
-            echo 'Đuôi file: ' . $file->getClientOriginalExtension();
-            echo '<br/>';
-
-            //Lấy đường dẫn tạm thời của file
-            echo 'Đường dẫn tạm: ' . $file->getRealPath();
-            echo '<br/>';
-
-            //Lấy kích cỡ của file đơn vị tính theo bytes
-            echo 'Kích cỡ file: ' . $file->getSize();
-            echo '<br/>';
-
-            //Lấy kiểu file
-            echo 'Kiểu files: ' . $file->getMimeType();
-
-            $file->move('upload', $file->getClientOriginalName());
-            return $file->getRealPath();
-        }
-    }
-
     public function getChangeMyPost(Request $req){
         $posts = Posts::where('id',$req->id)->first();
-        if ( $this->checkAuthor($posts->id_account) && $posts->status == 6){
+        if ( $this->checkAuthor($posts->id_account)){
             $list_status = Status::where('status','=',1)->get();
             $list_personality = Personality::where('status','=',1)->get();
             $list_categories = Categories::where('status','=',1)->get();
@@ -139,7 +114,7 @@ class PostController extends Controller
         $folder_image = $this->creatFolder();
         if ($req->hasFile('image_upload')) {
             $file = $req->image_upload;
-            $src = $folder_image . round(microtime(true) * 1000) . '.' . $file->getClientOriginalExtension();
+            $src = $folder_image . 'postsupadte_' . $req->id_post . '_' . round(microtime(true) * 1000) . '.' . $file->getClientOriginalExtension();
             $file->move($folder_image, $src);
         }
         $ua = $this->getBrowser();
@@ -171,7 +146,7 @@ class PostController extends Controller
         $posts->summary = $req->summary; // tom tat
         $posts->categories = $req->categories; // nhom danh muc
         if (isset($src)) {
-            $posts->image = '../'.$src;// hinh anh
+            $posts->image = $src;// hinh anh
         }
         $posts->age = isset($req->ages) ? $req->ages : 5; // tuoi
         $posts->source =isset($req->source) ? $req->source: 'Sưu tầm'; //nguon
@@ -179,9 +154,14 @@ class PostController extends Controller
         $posts->driver =isset($driver) ? $driver: 'windown'; //Tác giả
         $posts->browser =isset($browser) ? $browser: 'chorme'; //Tác giả
         $posts->version =isset($version) ? $version: '72.000'; //Tác giả
-        $posts->status = $req->status; // trang thai
+        var_dump(Auth::user()->authorities);
+        if (Auth::user()->authorities < 4) {
+            $posts->status = 5; // trang thai
+        } else {
+            $posts->status = 6; // trang thai
+        }
         $posts->save();
-        return redirect()->back()->with('thanhcong','Tạo bài thành công');
+        return redirect()->back();
     }
 
     public function getPostsCartoon(){
@@ -209,19 +189,20 @@ class PostController extends Controller
             $src = $folder_image . round(microtime(true) * 1000) . '.' . $file->getClientOriginalExtension();
             $file->move($folder_image, $src);
         }
-        $link = isset($src) ? '../'.$src: '';
+        $link = isset($src) ? $src: '';
         $ua = $this->getBrowser();
         $driver = $ua['platform'];
         $browser = $ua['name'];
         $version = $ua['version'];
         $posts = new Posts();
-        $posts->id_personality = $req->personality; // duc tinh
+        $posts->id_personality = 1; // duc tinh
         $posts->id_account = Auth::user()->id;//id tac gia
         $posts->title = $req->name_posts;// tieu de
+        $posts->slug = isset($req->name_posts) ? str_slug($req->name_posts).'-' .round(microtime(true) * 1000): '';// slug
         $posts->content = $req->main_content;// noi dung
         $posts->summary = $req->summary; // tom tat
         $posts->categories = $req->categories; // nhom danh muc
-        $posts->image = isset($src) ? $link: '../img/no_image.png'; // hinh anh
+        $posts->image = isset($src) ? $link: 'img/no_image.png'; // hinh anh
         $posts->age = isset($req->ages) ? $req->ages : 5; // tuoi
         $posts->source =isset($req->source) ? $req->source: 'Sưu tầm'; //nguon
         $posts->author =isset($req->author) ? $req->author: 'Ẩn danh'; //Tác giả
@@ -231,9 +212,13 @@ class PostController extends Controller
         $posts->num_like = 0; // trang thai
         $posts->num_dislike = 0; // trang thai
         $posts->num_view = 0; // trang thai
-        $posts->status = 6; // trang thai
+        if (Auth::user()->authorities < 4) {
+            $posts->status = 5; // trang thai
+        } else {
+            $posts->status = 6; // trang thai
+        }
         $posts->save();
-        return redirect()->back()->with('thanhcong','Tạo bài thành công');
+        return redirect()->back()->with('success','');
     }
 
     public function checkAuthor($id){
@@ -242,6 +227,12 @@ class PostController extends Controller
         } else {
             return false;
         }
+    }
+
+    public function creatSlug($title){
+        $slug = str_slug($title);
+        
+        var_dump($slug.'_' . round(microtime(true) * 1000));exit;
     }
 
     function getBrowser(){

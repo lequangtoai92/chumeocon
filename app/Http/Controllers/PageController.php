@@ -28,12 +28,15 @@ class PageController extends Controller
         $list_top = DB::table('posts')
             ->select('posts.*', 'categories.name_categories')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
-            ->where('posts.status', '6')
+            ->where('posts.status', '5')
+            ->orderBy('id', 'DESC')
             ->skip(0)->take(3)->get();
         $list_posts = DB::table('posts')
             ->select('posts.*', 'categories.name_categories')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
-            ->where('posts.status', '6')
+            ->where('posts.status', '5')
+            ->where('posts.categories', '<' , 10)
+            ->orderBy('id', 'DESC')
             ->skip(3)->paginate(15);
         return view('page.index', compact('list_top', 'list_posts', 'list_ranking_week', 'list_ranking_month', 'list_yotube_top'));
     }
@@ -45,7 +48,8 @@ class PageController extends Controller
             ->select('posts.*', 'categories.name_categories')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('categories.id', '1')
-            ->where('posts.status', '6')
+            ->where('posts.status', '5')
+            ->orderBy('id', 'DESC')
             ->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
@@ -54,84 +58,84 @@ class PageController extends Controller
         $list_ranking_week = $this->getRankingWeek(2);
         $list_ranking_month = $this->getRankingMonth(2);
         $list_posts = Posts::whereIn('categories', ['2', '3', '4', '5'])
-                            ->where('status', 6)->paginate(15);
+                            ->where('status', 5)->orderBy('id', 'DESC')->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getVietnameseFairyTales (){
         $list_ranking_week = $this->getRankingWeek(2);
         $list_ranking_month = $this->getRankingMonth(2);
-        $list_posts = Posts::where([['categories','=',2], ['status','=',6]])->paginate(15);
+        $list_posts = Posts::where([['categories','=',2], ['status','=',5]])->orderBy('id', 'DESC')->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getJapanFairyTales(){
         $list_ranking_week = $this->getRankingWeek(3);
         $list_ranking_month = $this->getRankingMonth(3);
-        $list_posts = Posts::where([['categories','=',3], ['status','=',6]])->paginate(15);
+        $list_posts = Posts::where([['categories','=',3], ['status','=',5]])->orderBy('id', 'DESC')->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getGrimmsFairyTales(){
         $list_ranking_week = $this->getRankingWeek(4);
         $list_ranking_month = $this->getRankingMonth(4);
-        $list_posts = Posts::where([['categories','=',4], ['status','=',6]])->paginate(15);
+        $list_posts = Posts::where([['categories','=',4], ['status','=',5]])->orderBy('id', 'DESC')->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getGreekMythology(){
         $list_ranking_week = $this->getRankingWeek(5);
         $list_ranking_month = $this->getRankingMonth(5);
-        $list_posts = Posts::where([['categories','=',5], ['status','=',6]])->paginate(15);
+        $list_posts = Posts::where([['categories','=',5], ['status','=',5]])->orderBy('id', 'DESC')->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getCartoon(){
         $list_ranking_week = $this->getRankingWeek(10);
         $list_ranking_month = $this->getRankingMonth(10);
-        $list_posts = Posts::where([['categories','=',10], ['status','=',6]])->paginate(20);
+        $list_posts = Posts::whereIn('categories', ['10', '11', '12'])->where('status','=',5)->orderBy('id', 'DESC')->paginate(20);
         return view('page.cartoon',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getDoremon(){
         $list_ranking_week = $this->getRankingWeek(11);
         $list_ranking_month = $this->getRankingMonth(11);
-        $list_posts = Posts::where([['categories','=',11], ['status','=',6]])->paginate(20);
+        $list_posts = Posts::where([['categories','=',11], ['status','=',5]])->orderBy('id', 'DESC')->paginate(20);
         return view('page.cartoon',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getTomAndJerry(){
         $list_ranking_week = $this->getRankingWeek(12);
         $list_ranking_month = $this->getRankingMonth(12);
-        $list_posts = Posts::where([['categories','=',12], ['status','=',6]])->paginate(20);
+        $list_posts = Posts::where([['categories','=',12], ['status','=',5]])->orderBy('id', 'DESC')->paginate(20);
         return view('page.cartoon',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getVerse(){
         $list_ranking_week = $this->getRankingWeek(9);
         $list_ranking_month = $this->getRankingMonth(9);
-        $list_posts = Posts::where([['categories','=',9], ['status','=',6]])->paginate(15);
+        $list_posts = Posts::where([['categories','=',9], ['status','=',5]])->orderBy('id', 'DESC')->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getVietnameseProverbs(){
         $list_ranking_week = $this->getRankingWeek(6);
         $list_ranking_month = $this->getRankingMonth(6);
-        $list_posts = Posts::where([['categories','=',6], ['status','=',6]])->paginate(15);
+        $list_posts = Posts::where([['categories','=',6], ['status','=',5]])->orderBy('id', 'DESC')->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getGoodWord(){
         $list_ranking_week = $this->getRankingWeek(7);
         $list_ranking_month = $this->getRankingMonth(7);
-        $list_posts = Posts::where([['categories','=',7], ['status','=',6]])->paginate(15);
+        $list_posts = Posts::where([['categories','=',7], ['status','=',5]])->orderBy('id', 'DESC')->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
     public function getFunnyStory(){
         $list_ranking_week = $this->getRankingWeek(8);
         $list_ranking_month = $this->getRankingMonth(8);
-        $list_posts = Posts::where([['categories','=',8], ['status','=',6]])->paginate(15);
+        $list_posts = Posts::where([['categories','=',8], ['status','=',5]])->orderBy('id', 'DESC')->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
@@ -156,20 +160,20 @@ class PageController extends Controller
         $browser = $ua['name'];
         $version = $ua['version'];
         $browser = null;
-        $feedback->id = isset($req->browser) ? $req->browser : null;
+        $feedback->id_account = isset(Auth::user()->id) ? Auth::user()->id : 0;
         $feedback->content = isset($req->contentfeedback) ? $req->contentfeedback : '';
-        $feedback->name_author = isset($req->browser) ? $req->browser : '';
+        $feedback->name_author = isset(Auth::user()->full_name) ? Auth::user()->full_name : 'Khách';
         $feedback->driver =isset($driver) ? $driver: 'windown';
         $feedback->browser =isset($browser) ? $browser: 'chorme';
         $feedback->version =isset($version) ? $version: '72.000';
-        $feedback->status = 1;
+        $feedback->status = 7;
 
         $feedback->save();
         return redirect()->back()->with('thanhcong','Cảm ơn bạn đã góp ý cho chúng tôi');
     }
 
     public function getViewPosts(Request $req){
-        $posts = Posts::where('id',$req->id)->first();
+        $posts = Posts::where('slug',$req->slug)->first();
         $list_ranking_week = $this->getRankingWeek($posts->categories);
         $list_ranking_month = $this->getRankingMonth($posts->categories);
         $ranking = new Ranking();
@@ -210,7 +214,7 @@ class PageController extends Controller
         ->select('posts.*', 'categories.name_categories')
         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
         ->where('id_account','=',$req->id)
-        ->where('posts.status', '6')
+        ->where('posts.status', '5')
         ->paginate(15);
         if (!isset($intro)) {
             $intro = (object) array('content' => 'Tác giả vẫn chưa giới thiệu về bản thân!');
@@ -222,7 +226,7 @@ class PageController extends Controller
         $list_posts = DB::table('posts')
             ->select('posts.*', 'categories.name_categories')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
-            ->where('posts.status', '6')
+            ->where('posts.status', '5')
             ->where('categories.group', '9')
             ->skip(0)->take(1)->get();
         return ($list_posts);
@@ -248,9 +252,9 @@ class PageController extends Controller
 
     public function getRankingMonth($category){
         if ($category == 0) {
-            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 5');
+            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 30 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 5');
         } else {
-            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 5');
+            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 30 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 5');
         }
         $array=array();
         for ($i = 0; $i < count($ranking); $i++){

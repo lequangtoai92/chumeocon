@@ -3,6 +3,17 @@
 <link rel="stylesheet" href="css/posts.css">
 <section class="wrapper page-post">
     <form action="{{route('posts')}}" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="_token" value="{{csrf_token()}}">
+        @if(count($errors)>0)
+        <div class="alert alert-danger">
+            @foreach($errors->all() as $err)
+            {{$err}}
+            @endforeach
+        </div>
+        @endif
+        @if(Session::has('success'))
+        @include('include.modal_posts_success')
+        @endif
         <div class="container media container_page">
             <input type="hidden" class="input-src-image-libary" name="src_image_libary">
             <div class="media-body">
@@ -24,7 +35,7 @@
                             <article class="media list-select">
                                 <select name="status">
                                     @foreach($list_status as $item)
-                                        <option name="status" value="{{$item->id}}">{{$item->name_status}}</option>
+                                    <option name="status" value="{{$item->id}}">{{$item->name_status}}</option>
                                     @endforeach
                                 </select>
                             </article>
@@ -48,16 +59,15 @@
                         <article class="media news-items">
                             <select name="categories">
                                 @foreach($list_categories as $item)
-                                @if ($item->id < 10)
-                                <option value="{{$item->id}}">{{$item->name_categories}}</option>
-                                @endif
-                                @endforeach
+                                @if ($item->id < 10) <option value="{{$item->id}}">{{$item->name_categories}}</option>
+                                    @endif
+                                    @endforeach
                             </select>
                         </article>
                         <article class="media news-items">
                             <select name="personality">
                                 @foreach($list_personality as $item)
-                                <option value="{{$item->id_personality}}">{{$item->name_personality}}</option>
+                                <option value="{{$item->id}}">{{$item->name_personality}}</option>
                                 @endforeach
                             </select>
                         </article>
@@ -86,7 +96,7 @@
                 <!-- </form> -->
             </div>
         </div>
-@include('include.dialog_select_image')
+        @include('include.dialog_select_image')
     </form>
 </section>
 <script>
@@ -105,10 +115,10 @@ function readURL(input) {
     }
 }
 
-function selectImage(image){
-    $(".input-src-image-libary").val(image.src.replace('http://chumeocon.com',''));
-    $('#image_select').attr('src', image.src.replace('http://chumeocon.com',''));
-    $('#upload_image').val(''); 
+function selectImage(image) {
+    $(".input-src-image-libary").val(image.src.replace('http://truyenchumeocon.com/public/', ''));
+    $('#image_select').attr('src', image.src.replace('http://truyenchumeocon.com/public/', ''));
+    $('#upload_image').val('');
     dialog_select_image.close();
 }
 
@@ -122,7 +132,7 @@ function selectImage(image){
     $(".close-dialog").click(function() {
         dialog_select_image.close();
     });
-    
+
 })();
 </script>
 @endsection

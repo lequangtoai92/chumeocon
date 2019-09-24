@@ -1,6 +1,6 @@
 @extends('master_admin')
 @section('content')
-<link rel="stylesheet" href="../css/admin/feedback.css">
+<link rel="stylesheet" href="{!! assetRemote('css/admin/feedback.css') !!}">
 <section class="wrapper page-admin-feedback">
     <div class="media container_page">
         @include('admin.menu_left')

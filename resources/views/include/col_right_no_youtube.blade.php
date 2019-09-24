@@ -6,12 +6,12 @@
         <div class="list-news">
             @foreach($list_ranking_week as $key=>$item)
             <article class="media news-items">
-                <a href="../bai-viet/{{$item->id}}"><img class="lazy" src="img/bg-img.jpg" data-src="{{$item->image}}"
+                <a href="{!! assetRemote('bai-viet/'.$item->id) !!}"><img class="lazy" src="{!! assetRemote('img/bg-img.jpg') !!}" data-src="{!! assetRemote($item->image) !!}"
                         alt="Name images">
                     <p class="ranking-num">{{$key + 1}}</p>
                 </a>
                 <div class="media-body news-items-body">
-                    <h3 class="title dotted-line-3"><a href="../bai-viet/{{$item->id}}">{{$item->title}}</a></h3>
+                    <h3 class="title dotted-line-3"><a href="{!! assetRemote('bai-viet/'.$item->id) !!}">{{$item->title}}</a></h3>
                     <div class="meta">
                         <time>{{$item->num_view}} views</time>
                     </div>
@@ -27,12 +27,12 @@
         <div class="list-news">
             @foreach($list_ranking_month as $key=>$item)
             <article class="media news-items">
-                <a href="../bai-viet/{{$item->id}}"><img class="lazy" src="img/bg-img.jpg" data-src="{{$item->image}}"
+                <a href="{!! assetRemote('bai-viet/'.$item->id) !!}"><img class="lazy" src="{!! assetRemote('img/bg-img.jpg') !!}" data-src="{!! assetRemote($item->image) !!}"
                         alt="Name images">
                     <p class="ranking-num">{{$key + 1}}</p>
                 </a>
                 <div class="media-body news-items-body">
-                    <h3 class="title dotted-line-3"><a href="../bai-viet/{{$item->id}}">{{$item->title}}</a></h3>
+                    <h3 class="title dotted-line-3"><a href="{!! assetRemote('bai-viet/'.$item->id) !!}">{{$item->title}}</a></h3>
                     <div class="meta">
                         <time>{{$item->num_view}} views</time>
                     </div>

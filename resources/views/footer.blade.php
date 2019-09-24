@@ -1,7 +1,7 @@
 <footer>
     <div class="container">
         <a href="#" class="logo-footer">
-            <img width="187" height="39" class="lazy" src="img/bg-img.jpg" data-src="img/img-logo-footer.png"
+            <img width="187" height="39" class="lazy" src="{!! assetRemote('img/bg-img.jpg') !!}" data-src="{!! assetRemote('img/img-logo-footer.png') !!}"
                 alt="Logo chumeocon">
         </a>
         <p>Hãy đọc truyện cho con bạn nghe mỗi ngày</p>

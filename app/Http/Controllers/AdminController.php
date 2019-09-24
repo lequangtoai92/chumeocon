@@ -15,23 +15,32 @@ class AdminController extends Controller
     }
 
     public function getAdmin(){
+        if ($this->checkAdmin()){
+            return redirect('index');
+        }
         return redirect('admin/account/');
     }
 
     public function getAdminAccount(){
-        $this->checkAdmin();
-        $account = User::where('status','=',6)->paginate(15);
+        if ($this->checkAdmin()){
+            return redirect('index');
+        }
+        $account = User::whereIn('status', [1, 2, 5, 6])->paginate(15);
         return view('admin.account',compact('account'));
     }
 
     public function getAdminPosts(){
-        $this->checkAdmin();
+        if ($this->checkAdmin()){
+            return redirect('index');
+        }
         $list_posts = Posts::where('status','=',6)->paginate(15);
         return view('admin.posts',compact('list_posts'));
     }
 
     public function getAdminFeeback(){
-        $this->checkAdmin();
+        if ($this->checkAdmin()){
+            return redirect('index');
+        }
         $list_feedback_admin = Feedback::where('status','=',7)->paginate(15);
         return view('admin.feedback',compact('list_feedback_admin'));
     }
@@ -48,6 +57,30 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function getAdminPostsById(Request $req){
+        $this->checkAdmin();
+        $list_posts_admin = Posts::where('status','=',$req->id)->paginate(15);
+        return view('admin.posts',compact('list_posts_admin'));
+    }
+
+    public function accessAdminPostsById(Request $req){
+        $this->checkAdmin();
+        $res = Posts::where('id' ,$req->id)->update(['status' => $req->status]);
+        return redirect()->back();
+    }
+
+    public function getAdmiAccountById(Request $req){
+        $this->checkAdmin();
+        $list_user_admin = User::where('status','=',$req->id)->paginate(15);
+        return view('admin.account',compact('list_user_admin'));
+    }
+
+    public function accessAdminAccountById(Request $req){
+        $this->checkAdmin();
+        $res = User::where('id' ,$req->id)->update(['status' => $req->status]);
+        return redirect()->back();
+    }
+
     public function getPostImage(){
         return view('admin.posts_image');
     }
@@ -55,7 +88,18 @@ class AdminController extends Controller
     public function checkAdmin(){
         if (Auth::user()->authorities > 3 ) {
             // return view('page.404');
-            return redirect('index');
+            // return redirect('index');
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateInfo(Request $req){
+        if ($req->hasFile('image_upload')) {
+            $file = $req->image_upload;
+            $src = 'http://chumeocon.com/public/image/' . round(microtime(true) * 1000) . '.' . $file->getClientOriginalExtension();
+            $file->move($folder_image, $src);
         }
     }
 }

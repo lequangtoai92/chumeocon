@@ -1,13 +1,14 @@
 @extends('master_admin')
 @section('content')
-<link rel="stylesheet" href="../css/admin/acount.css">
+<link rel="stylesheet" href="{!! assetRemote('css/admin/acount.css') !!}">z
 <section class="wrapper page-admin-acount">
     <div class="media container_page">
     @include('admin.menu_left')
         <div class="media-body">
             <select class="form-control select-option-top" id="select_account_status">
                 <option class="select-option" value="0">Người dùng </option>
-                <option class="select-option" value="1">Admin</option>
+                <option class="select-option" value="2">Admin 1</option>
+                <option class="select-option" value="3">Admin 2</option>
                 <option class="select-option" value="8">Tạm khóa</option>
                 <option class="select-option" value="9">Xóa</option>
             </select>
@@ -41,13 +42,14 @@
                             <select class="form-control select-option" id="select_account_status_{{$item->id}}">
                                 <option class="select-option" disabled value="">Duyệt</option>
                                 <option class="select-option" value="0">Người dùng</option>
-                                <option class="select-option" value="1">Admin</option>
+                                <option class="select-option" value="2">Admin 1</option>
+                                <option class="select-option" value="3">Admin 2</option>
                                 <option class="select-option" value="8">Khóa</option>
                                 <option class="select-option" value="9">Xóa</option>
                             </select>
                         </td>
                         <td class="td-11">
-                            <button class="btn btn-primary">Duyệt</button>
+                            <button class="btn btn-primary" onclick="access_posts({{$item->id}})">Duyệt</button>
                         </td>
                         <td class="td-12 hide">
                             {{$item}}
@@ -65,14 +67,14 @@
 <script>
 $("#select_account_status").change(function() {
     $.ajax({
-        url: '/admin/getFeedback/' + $("#select_account_status").val()
+        url: '/admin/getAccountStatus/' + $("#select_account_status").val()
     });
 });
 
 function access_posts(id) {
     $.ajax({
         type: "POST",
-        url: '/admin/accessFeedback',
+        url: '/admin/accessAccountStatus',
         data: {
             "_token": "{{ csrf_token() }}",
             id: id,
@@ -86,7 +88,6 @@ function access_posts(id) {
 
 $(".td-2").click(function() {
     var data = JSON.parse($(this).parent().find(".td-12").html());
-    console.log(data);
     $("#dialog_show_account .id").text(data.id);
     $("#dialog_show_account .user_name").text(data.user_name);
     $("#dialog_show_account .address").text(data.address);

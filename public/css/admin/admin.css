@@ -17,4 +17,19 @@
     width: 50px;
 }
 
+.page-admin-post-image .show-image {
+    width: calc(100% - 70px);
+    float: right;
+}
+
+.container_page .sidebar {
+    width: 70px;
+    height: 100vh;
+    background-color: gray;
+    position: fixed;
+    margin: 0px;
+    top: 0px;
+}
+
+
 

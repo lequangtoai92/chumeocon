@@ -42,7 +42,7 @@ class LoginController extends Controller
         $account->email = $req->email;
         $account->password = Hash::make($req->password);
         $account->birthday = isset($req->birdth)&&$this->checkDate($req->birdth) ? $req->birdth : '2000-01-01';
-        $account->avatar = '../img/no_image.png'; // hinh anh
+        $account->avatar = 'img/no_image.png'; // hinh anh
         $account->sex = isset($req->gender) ? $req->gender : 0;
         $account->address = isset($req->address) ? $req->address : '';
         $account->phone = isset($req->phone) ? $req->phone : null;
@@ -81,10 +81,10 @@ class LoginController extends Controller
         $account->address = isset($req->address) ? $req->address : '';
         $account->phone = isset($req->phone) ? $req->phone : null;
         $account->address =isset($req->nickname) ? $req->nickname: '';
-        $account->authorities = 5;
+        $account->authorities = 6;
         $account->status = 6;
         $account->birthday = isset($req->birdth)&&$this->checkDate($req->birdth) ? $req->birdth : '2000-01-01';
-        $account->avatar = '../img/no_image.png'; // hinh anh
+        $account->avatar = 'img/no_image.png'; // hinh anh
 
         $account->save();
         return redirect()->back()->with('success','Tạo tài khoản thành công');
@@ -114,7 +114,7 @@ class LoginController extends Controller
         $credentials = array('user_name'=>$req->username,'password'=>$req->password);
         $account = User::where([
                 ['user_name','=',$req->username],
-                ['status','=','6']
+                ['status','<','8']
             ])->first();
         if($account){
             if(Auth::attempt($credentials, true)){

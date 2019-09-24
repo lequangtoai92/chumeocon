@@ -3,6 +3,17 @@
 <link rel="stylesheet" href="css/posts.css">
 <section class="wrapper page-post">
     <form action="{{route('posts-cartoon')}}" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="_token" value="{{csrf_token()}}">
+        @if(count($errors)>0)
+        <div class="alert alert-danger">
+            @foreach($errors->all() as $err)
+            {{$err}}
+            @endforeach
+        </div>
+        @endif
+        @if(Session::has('success'))
+        @include('include.modal_posts_success')
+        @endif
         <div class="container media container_page">
             <div class="media-body">
                 <div class="name-title">
@@ -23,7 +34,7 @@
                             <article class="media list-select">
                                 <select name="status">
                                     @foreach($list_status as $item)
-                                        <option name="status" value="{{$item->id}}">{{$item->name_status}}</option>
+                                    <option name="status" value="{{$item->id}}">{{$item->name_status}}</option>
                                     @endforeach
                                 </select>
                             </article>
@@ -48,7 +59,7 @@
                         <article class="media news-items">
                             <select name="categories">
                                 @foreach($list_categories as $item)
-                                    <option value="{{$item->id}}">{{$item->name_categories}}</option>
+                                <option value="{{$item->id}}">{{$item->name_categories}}</option>
                                 @endforeach
                             </select>
                         </article>
@@ -77,4 +88,3 @@ function readURL(input) {
     }
 }
 </script>
-

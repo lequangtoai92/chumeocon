@@ -1,6 +1,6 @@
 @extends('master')
 @section('content')
-<link rel="stylesheet" href="../css/author.css">
+<link rel="stylesheet" href="{!! assetRemote('css/author.css') !!}">
 <section class="wrapper page-info">
     <div class="container media container_page">
         <div class="media-body">
@@ -10,7 +10,7 @@
                         <div class="show-image">
                             <img id="image_select" src="{{$user->avatar}}" alt="your image" />
                         </div>
-                        <div class="group-scores">
+                        <!-- <div class="group-scores">
                             <div class="form-group">
                                 <label>Ngày tham gia: </label>
                                 <span> {{$user->time_creat}}</span>
@@ -23,7 +23,7 @@
                                 <label>Điểm thưởng: </label>
                                 <span>2000/50000</span>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
                     <div class=" body-info body-right">
@@ -39,18 +39,17 @@
                             <div class="list-news">
                                 @foreach($list_posts as $key=>$item)
                                 <article class="news-items">
-                                    <a href="../bai-viet/{{$item->id}}"><img class="lazy" src="img/bg-img.jpg"
-                                            data-src='{{$item->image}}' alt="name image"></a>
+                                    <a href="{!! assetRemote('bai-viet/'.$item->id) !!}"><img class="lazy" src="{!! assetRemote('img/bg-img.jpg') !!}"
+                                            data-src='{!! assetRemote($item->image) !!}' alt="name image"></a>
                                     <div class="news-items-body">
-                                        <p class="hidden-md hidden-lg tag-category industry"><a
-                                                href="category.html">Motorcycle &
-                                                Industry</a></p>
-                                        <h3 class="title"><a href="../bai-viet/{{$item->id}}">{{$item->title}}</a></h3>
+                                        <p class="tag-category industry"><a
+                                            href="{{$item->categories}}">{{$item->name_categories}}</a></p>
+                                        <h3 class="title"><a href="{!! assetRemote('bai-viet/'.$item->id) !!}">{{$item->title}}</a></h3>
                                         <p class="hidden-sm hidden-xs dotted-line-2 summary">{{$item->summary}}</p>
                                         <div class="meta">
                                             <time>{{$item->num_view}} views</time>
                                             <a class="category"
-                                                href="../tac-gia/{{$item->id_account}}">{{$item->author}}</a>
+                                                href="{!! assetRemote('tac-gia/'.$item->id_account) !!}">{{$item->author}}</a>
                                         </div>
                                     </div>
                                 </article>

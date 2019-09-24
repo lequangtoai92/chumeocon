@@ -3,22 +3,22 @@
         <div class="list-news">
             <ul>
                 <li class="news-items">
-                    <a href="../admin/account">account</a>
+                    <a href="{!! assetRemote('admin/account') !!}">account</a>
                 </li>
                 <li class="news-items">
-                    <a href="../admin/post">Post</a>
+                    <a href="{!! assetRemote('admin/post') !!}">Post</a>
                 </li>
                 <li class="news-items">
-                    <a href="../admin/feedback">Feedback</a>
+                    <a href="{!! assetRemote('admin/feedback') !!}">Feedback</a>
                 </li>
                 <li class="news-items">
-                    <a href="../admin/post-image">Đăng ảnh</a>
+                    <a href="{!! assetRemote('admin/post-image') !!}">Đăng ảnh</a>
                 </li>
                 <li class="news-items">
-                    <a href="../admin/post-image">Duyệt ảnh</a>
+                    <a href="{!! assetRemote('admin/post-image') !!}">Duyệt ảnh</a>
                 </li>
                 <li class="news-items">
-                    <a href="../admin/post-image">Duyệt ảnh</a>
+                    <a href="{!! assetRemote('admin/post-image') !!}">Duyệt ảnh</a>
                 </li>
             </ul>
         </div>

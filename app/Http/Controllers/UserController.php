@@ -43,7 +43,7 @@ class UserController extends Controller
             ->select('posts.*', 'categories.name_categories')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('id_account','=',Auth::user()->id)
-            ->where('posts.status', '6')
+            ->where('posts.status', '<', '8')
             ->paginate(15);
         return view('user.my_posts',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
@@ -64,7 +64,7 @@ class UserController extends Controller
         $folder_image = $this->creatFolder();
         if ($req->hasFile('image_upload')) {
             $file = $req->image_upload;
-            $src = $folder_image . round(microtime(true) * 1000) . '.' . $file->getClientOriginalExtension();
+            $src = $folder_image . 'avatar_' . Auth::user()->id . '_' . round(microtime(true) * 1000) . '.' . $file->getClientOriginalExtension();
             $file->move($folder_image, $src);
         }
         $account = new User();
@@ -78,8 +78,12 @@ class UserController extends Controller
         $account->phone = isset($req->phone) ? $req->phone : null;
         $account->nick_name =isset($req->nickname) ? $req->nickname: '';
         if (isset($src)) {
-            $account->avatar = '../'.$src;// hinh anh
+            $account->avatar = $src;// hinh anh
         }
+        if (Auth::user()->authorities == 5) {
+            $account->authorities = 6; // trang thai
+        }
+        
         $account->save();
         return redirect()->back();
     }
@@ -113,9 +117,19 @@ class UserController extends Controller
     }
 
     public function updateIntro(Request $req){
-        DB::table('intro')
+        $account_intro = Intro::where([['id_author', Auth::user()->id],['group', 1]])->first();
+        if (!isset($account_intro)) {
+            $intro = new Intro();
+            $intro->id_author = Auth::user()->id;
+            $intro->content = isset($req->content_intro) ? $req->content_intro : '';
+            $intro->group = 1;
+            $intro->status = 1;
+            $intro->save();
+        } else {
+            DB::table('intro')
             ->where('id_author', Auth::user()->id)
             ->update(['content' => $req->content_intro]);
+        }
         return redirect()->back();
     }
 

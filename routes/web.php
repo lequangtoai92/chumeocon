@@ -96,7 +96,7 @@ Route:: post('gop-y', [
     'uses' => 'PageController@postFeedback'
 ]);
 
-Route::get('bai-viet/{id}',[
+Route::get('bai-viet/{slug}',[
 	'as'=>'baiviet',
 	'uses'=>'PageController@getViewPosts'
 ]);
@@ -226,13 +226,33 @@ Route:: get('admin/post-image', [
 
 
 Route::get('admin/getFeedback/{id}',[
-	'as'=>'delete-posts',
+	'as'=>'get-feedback',
 	'uses'=>'AdminController@getAdminFeebackById'
 ]);
 
 Route::post('admin/accessFeedback',[
-	'as'=>'delete-posts',
+	'as'=>'access-feedback',
 	'uses'=>'AdminController@accessAdminFeebackById'
+]);
+
+Route::get('admin/getPostsStatus/{id}',[
+	'as'=>'get-posts',
+	'uses'=>'AdminController@getAdminPostsById'
+]);
+
+Route::post('admin/accessPostsStatus',[
+	'as'=>'access-posts',
+	'uses'=>'AdminController@accessAdminPostsById'
+]);
+
+Route::get('admin/getAccountStatus/{id}',[
+	'as'=>'get-account',
+	'uses'=>'AdminController@getAdmiAccountById'
+]);
+
+Route::post('admin/accessAccountStatus',[
+	'as'=>'access-account',
+	'uses'=>'AdminController@accessAdminAccountById'
 ]);
 
 // end admin
