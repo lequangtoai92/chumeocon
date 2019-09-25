@@ -6,9 +6,9 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Chú mèo con</title>
+    <title>@yield('title')</title>
     <meta name="description" itemprop="description"
-        content="Webike News is the curation media of motorcycle culture. We provide valuable information of motorcycle: the latest news and reviews of bikes and parts, race">
+        content="@yield('meta_description')">
     <link rel="stylesheet" href="{!! assetRemote('css/datepicker.min.css') !!}">
     <link rel="stylesheet" href="{!! assetRemote('css/style.css') !!}">
     <link rel="stylesheet" href="{!! assetRemote('css/template.css') !!}">
@@ -33,7 +33,15 @@
     })(window, document, 'script', 'dataLayer', 'GTM-NCTRQXF');
     </script>
     <!-- End Google Tag Manager -->
+    <meta name="author" content="@yield('meta_author')">
+    <meta property="og:title" content="@yield('meta_og_title')" />
+    <meta property="og:url" content="@yield('meta_og_url')" />
+    <meta property="og:image" content="@yield('meta_og_image')" />
+    <meta property="og:type" content="@yield('meta_og_type')" />
 
+    <meta property="og:site_name" content="Truyện chú mèo con" />
+    <meta property="og:description" content="@yield('meta_og_description')" />
+    
 </head>
 
 <body class="">

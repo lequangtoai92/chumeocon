@@ -40,10 +40,10 @@ class UserController extends Controller
         $list_ranking_week = $this->getRankingWeek();
         $list_ranking_month = $this->getRankingMonth();
         $list_posts = DB::table('posts')
-            ->select('posts.*', 'categories.name_categories')
+            ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('id_account','=',Auth::user()->id)
-            ->where('posts.status', '<', '8')
+            // ->where('posts.status', '<', '8')
             ->paginate(15);
         return view('user.my_posts',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }

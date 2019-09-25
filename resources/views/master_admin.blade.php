@@ -6,11 +6,9 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Chú mèo con</title>
+    <title>Truyện chú mèo con</title>
     <meta name="description" itemprop="description"
-        content="Webike News is the curation media of motorcycle culture. We provide valuable information of motorcycle: the latest news and reviews of bikes and parts, race">
-    <!-- <link rel="shortcut icon" href="https://www.webike.in/favicon.ico" type="image/x-icon"> -->
-    <!-- <link rel="icon" href="https://www.webike.in/favicon.ico" type="image/x-icon"> -->
+        content="Nơi lưu trữ những mẫu truyện hay, mang tính giáo dục để bố mẹ kể cho bé nghe nhằm giúp cho bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố mẹ và con cái">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/template.css">
     <link rel="stylesheet" href="../css/top.css">

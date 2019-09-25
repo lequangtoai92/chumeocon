@@ -11,23 +11,21 @@ use DB;
 class SearchController extends Controller
 {
     public function __construct() {
-    	// $this->middleware('auth');
     }
 
     public function getSearch(Request $req) {
-        //get keywords input for search
-        // $keyword=  Input::get('q');
         $keyword= $this->vn_str_filter($req->q);
-
+        $slug = str_slug($req->q);
     	$list_ranking_week = $this->getRankingWeek(0);
         $list_ranking_month = $this->getRankingMonth(0);
         $list_yotube_top = $this->getYoutubeTop(0);
         $list_posts = DB::table('posts')
                         ->select('posts.*', 'categories.name_categories')
                         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
-                        ->where('title', 'LIKE', "%{$keyword}%")
+                        ->where('slug', 'LIKE', "%{$slug}%")
                         ->orWhere('summary', 'LIKE', "%{$keyword}%")
                         ->orWhere('content', 'LIKE', "%{$keyword}%")
+                        ->where('posts.status', '5')
                         ->paginate(15);
 
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month', 'list_yotube_top'));

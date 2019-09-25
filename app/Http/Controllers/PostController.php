@@ -58,7 +58,8 @@ class PostController extends Controller
         $posts->title = $req->name_posts;// tieu de
         $posts->slug = isset($req->name_posts) ? str_slug($req->name_posts).'-' .round(microtime(true) * 1000): '';// slug
         $posts->content = $req->main_content;// noi dung
-        $posts->summary = $req->summary; // tom tat
+        $posts->summary = $this->creatSummary($req->summary, $req->main_content); // tom tat
+        $posts->description = $this->creatDescription($req->summary, $req->main_content); // tom tat
         $posts->categories = $req->categories; // nhom danh muc
         $posts->image = isset($src) ? $link: 'img/no_image.png'; // hinh anh
         $posts->age = isset($req->ages) ? $req->ages : 5; // tuoi
@@ -143,7 +144,8 @@ class PostController extends Controller
         $posts->id_personality = $req->personality; // duc tinh
         $posts->title = $req->name_posts;// tieu de
         $posts->content = $req->main_content;// noi dung
-        $posts->summary = $req->summary; // tom tat
+        $posts->summary = $this->creatSummary($req->summary, $req->main_content); // tom tat
+        $posts->description = $this->creatDescription($req->summary, $req->main_content); // tom tat
         $posts->categories = $req->categories; // nhom danh muc
         if (isset($src)) {
             $posts->image = $src;// hinh anh
@@ -200,7 +202,8 @@ class PostController extends Controller
         $posts->title = $req->name_posts;// tieu de
         $posts->slug = isset($req->name_posts) ? str_slug($req->name_posts).'-' .round(microtime(true) * 1000): '';// slug
         $posts->content = $req->main_content;// noi dung
-        $posts->summary = $req->summary; // tom tat
+        $posts->summary = $this->creatSummary($req->summary, $req->main_content); // tom tat
+        $posts->description = $this->creatDescription($req->summary, $req->main_content); // tom tat
         $posts->categories = $req->categories; // nhom danh muc
         $posts->image = isset($src) ? $link: 'img/no_image.png'; // hinh anh
         $posts->age = isset($req->ages) ? $req->ages : 5; // tuoi
@@ -229,10 +232,20 @@ class PostController extends Controller
         }
     }
 
-    public function creatSlug($title){
-        $slug = str_slug($title);
-        
-        var_dump($slug.'_' . round(microtime(true) * 1000));exit;
+    public function creatSummary($summary, $content){
+        if (isset($summary) && strlen($summary) > 350){
+            return substr($summary, 0, 350);
+        } else if (!isset($summary) || isset($summary) && strlen($summary) == 0){
+            return substr($content, 0, 350);
+        }
+    }
+
+    public function creatDescription($summary, $content){
+        if (isset($summary) && strlen($summary) > 170){
+            return substr($summary, 0, 170);
+        } else if (!isset($summary) || isset($summary) && strlen($summary) == 0){
+            return substr($content, 0, 170);
+        }
     }
 
     function getBrowser(){

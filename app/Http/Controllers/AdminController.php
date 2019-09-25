@@ -33,7 +33,7 @@ class AdminController extends Controller
         if ($this->checkAdmin()){
             return redirect('index');
         }
-        $list_posts = Posts::where('status','=',6)->paginate(15);
+        $list_posts = Posts::where('status','=',9)->paginate(15);
         return view('admin.posts',compact('list_posts'));
     }
 
