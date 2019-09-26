@@ -101,6 +101,8 @@ CREATE TABLE IF NOT EXISTS `posts`(
     `age` INT(2), -- do tuoi
     `image` VARCHAR(255), -- do tuoi
     `author` VARCHAR(255), -- tac gia
+    `slug`
+    `description`
     `time_creat` TIMESTAMP, -- ngay tao
     `tiem_update` TIMESTAMP, -- ngay update
     `num_like` INT(11), -- so luot thich
@@ -189,12 +191,16 @@ VALUES
 (4, 'Truyện cổ Grimms', 'truyen-co-grimms', 1, 1),
 (5, 'Thần thoại Hi Lạp', 'than-thoai-hi-lap', 1, 1),
 (6, 'Cao dao tục ngữ', 'ca-dao-tuc-ngu', 1, 1),
-(7, 'Lời hay ý đẹp', 'loi-hay-y-dep', 1, 1),
+(7, 'Lời hay ý đẹp', 'loi-hay-y-dep', 1, 9),
 (8, 'Truyện cười', 'truyen-cuoi', 1, 1),
 (9, 'Thơ', 'tho', 1, 1),
 (10, 'Phim hoạt hình', 'phim-hoat-hinh', 9, 1),
 (11, 'Đô rê mon', 'do-re-mon', 9, 1),
-(12, 'Tom and Jerry', 'tom-and-jerry', 9, 1);
+(12, 'Tom and Jerry', 'tom-and-jerry', 9, 1),
+(13, 'vè', 've', 1, 1),
+(14, 'Câu đố', 'cau-do', 1, 1),
+(15, 'Bài hát', 'bai-hat', 1, 1),
+(16, 'Tin tức', 'tin-tuc', 1, 1)
 
 
 INSERT INTO personality
@@ -236,16 +242,6 @@ CREATE TABLE IF NOT EXISTS `ranking`(
     `id_categories` INT(11) NOT NULL,
     `time` TIMESTAMP,
 PRIMARY KEY(`id`))
-
-INSERT INTO status
-VALUES 
-(1, '', '<p style="text-align: center;"><span style="font-size: 18pt;"><strong>MẮT BÃO</strong></span></p>
-<p style="text-align: left;"><span style="font-size: 12pt;">&nbsp; Xin chào mọi người, mình t&ecirc;n là Bin, bi&ecirc;̣t danh của mình là Mắt Bão,&nbsp;bi&ecirc;̣t danh&nbsp;th&acirc;̣t là ng&acirc;̀u đúng kh&ocirc;ng nào.</span></p>
-<p style="text-align: left;"><span style="font-size: 12pt;">&nbsp; Ở đ&acirc;y mình sẽ giới thi&ecirc;̣u th&ocirc;ng tin cơ bản của mình cho mọi người bi&ecirc;́t nhé.<br /></span></p>
-<p style="text-align: left;"><span style="font-size: 12pt;">&nbsp; Mình sinh ra và lớn l&ecirc;n ở Hu&ecirc;́, m&ocirc;̣t mảnh đ&acirc;́t mi&ecirc;̀n trung đ&acirc;̀y nắng và gió, nhưng cũng may thay mình được mang trong mình dòng máu lảng mạng của m&ocirc;̣t người con xứ Hu&ecirc;́ đ&acirc;̀y thơ mọng. Với ni&ecirc;̀m đang m&ecirc; vi&ecirc;́t lách từ nhỏ, mình r&acirc;́t vui khi được bi&ecirc;́t đ&ecirc;́n m&ocirc;̣t địa chỉ chia sẻ tài năng như th&ecirc;́ này, đ&ocirc;̀ng thời cũng là m&ocirc;̣t nơi đ&ecirc;̉ chắp cánh cho những m&acirc;̀m non mới bước vào đời.</span></p>
-<p style="text-align: left;"><span style="font-size: 12pt;">&nbsp; Mình thì kh&ocirc;ng có gì hơn, chỉ c&ocirc;́ gắng vi&ecirc;́t th&acirc;̣t nhi&ecirc;̀u chuy&ecirc;̣n đ&ecirc;̉ cho b&ocirc;́ mẹ các bé có th&ecirc;̉ k&ecirc;̉ cho con mình nghe hằng đ&ecirc;m, đ&ecirc;̉ mang con đ&ecirc;́n với những gi&acirc;́c mơ và tri thức m&ocirc;̣t cách v&ocirc; cùng đơn giản.</span></p>
-<p style="text-align: left;"><span style="font-size: 12pt;">&nbsp; Cảm ơn các bạn đã đọc bài giới thi&ecirc;̣u của mình, hãy đ&ocirc;̀ng hành cùng mình nhé.</span></p>
-<p style="text-align: left;"><span style="font-size: 12pt;">&nbsp; Mãi y&ecirc;u ^^.</span></p>', 5, 1, 1);
 
 CREATE TABLE IF NOT EXISTS `rate`(
     `id` INT(11) NOT NULL AUTO_INCREMENT,

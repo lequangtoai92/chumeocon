@@ -3,11 +3,11 @@
 @section('title', $posts->title)
 @section('meta_description', $posts->summary)
 @section('meta_author', $posts->author)
-@section('meta_og_title', $posts->title)
 @section('meta_og_type', 'website')
 @section('meta_og_url', assetRemote('bai-viet/'.$posts->slug))
 @section('meta_og_image', assetRemote($posts->image))
 @section('meta_og_description', $posts->summary)
+@section('meta_og_title', $posts->title)
 <link rel="stylesheet" href="../css/detail.css">
 <section class="wrapper">
     <div class="container media container_page">
@@ -22,7 +22,7 @@
                     </li>
                 </ul>
                 <div class="image-top">
-                <img src="{!! assetRemote($posts->image) !!}">
+                <img src="{!! assetRemote($posts->image) !!}" alt="{{$posts->title}}">
                 </div>
                 <div><?php echo $posts->content ?></div>
                 <p class="source"><a href="{!! assetRemote('tac-gia/'.$posts->id_account) !!}">{{$posts->author}} </a> ({{$posts->source}})</p>
@@ -40,7 +40,7 @@
                     @foreach($related_post as $key=>$item)
                     <article class="news-items">
                     <a href="{!! assetRemote('bai-viet/'.$item->slug) !!}"><img class="lazy" src="{!! assetRemote('img/bg-img.jpg') !!}"
-                        data-src="{!! assetRemote($item->image) !!}" alt="Name images"></a>
+                        data-src="{!! assetRemote($item->image) !!}" alt="{{$item->title}}"></a>
                         <div class="news-items-body">
                         <h3 class="title dotted-line-3"><a href="{!! assetRemote('bai-viet/'.$item->slug) !!}">{{$item->title}}</a></h3>
                         <div class="meta">

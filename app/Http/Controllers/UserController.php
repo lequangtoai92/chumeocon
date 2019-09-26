@@ -43,7 +43,7 @@ class UserController extends Controller
             ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('id_account','=',Auth::user()->id)
-            // ->where('posts.status', '<', '8')
+            ->where('posts.status', '<', '8')
             ->paginate(15);
         return view('user.my_posts',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
@@ -134,12 +134,17 @@ class UserController extends Controller
     }
 
     public function getRankingWeek(){
-        $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 5');
+        $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 10');
+        $array=array();
         $array=array();
         for ($i = 0; $i < count($ranking); $i++){
             array_push($array,$ranking[$i]->id_post);
         }
         $list_posts = Posts::whereIn('id', $array)->get();
+
+        for ($i = 0; $i < count($list_posts); $i++){
+            $list_posts[$i]->ranking_view = $ranking[$i]->view_post;
+        }
         return ($list_posts);
     }
 

@@ -49,7 +49,7 @@
                                 @foreach($list_posts as $key=>$item)
                                 <article class="news-items">
                                     <a href="{!! assetRemote('bai-viet/'.$item->slug) !!}"><img class="lazy" src="{!! assetRemote('img/bg-img.jpg') !!}"
-                                            data-src='{!! assetRemote($item->image) !!}' alt="name image"></a>
+                                            data-src='{!! assetRemote($item->image) !!}' alt="{{$item->title}}"></a>
                                     <div class="news-items-body">
                                         <p class="tag-category industry"><a
                                             href="{{$item->categories_slug}}">{{$item->name_categories}}</a></p>

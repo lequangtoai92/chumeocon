@@ -71,6 +71,21 @@ Route:: get('tho', [
     'uses' => 'PageController@getVerse'
 ]);
 
+Route:: get('ve', [
+    'as' => 'trang-chu',
+    'uses' => 'PageController@getVe'
+]);
+
+Route:: get('cau-do', [
+    'as' => 'trang-chu',
+    'uses' => 'PageController@getQuiz'
+]);
+
+Route:: get('tin-tuc', [
+    'as' => 'trang-chu',
+    'uses' => 'PageController@getNews'
+]);
+
 Route:: get('ca-dao-tuc-ngu', [
     'as' => 'trang-chu',
     'uses' => 'PageController@getVietnameseProverbs'

@@ -29,13 +29,14 @@ class PageController extends Controller
             ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('posts.status', '5')
+            ->where('categories.group', '=' , 1)
             ->orderBy('id', 'DESC')
             ->skip(0)->take(3)->get();
         $list_posts = DB::table('posts')
             ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('posts.status', '5')
-            ->where('posts.categories', '<' , 10)
+            ->where('categories.group', '=' , 1)
             ->orderBy('id', 'DESC')
             ->skip(3)->paginate(15);
         return view('page.index', compact('list_top', 'list_posts', 'list_ranking_week', 'list_ranking_month', 'list_yotube_top'));
@@ -147,6 +148,36 @@ class PageController extends Controller
         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
         ->where([['categories.id','=',9], ['posts.status','=',5]])->orderBy('id', 'DESC')->paginate(15);
+        return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
+    }
+
+    public function getVe(){
+        $list_ranking_week = $this->getRankingWeek(9);
+        $list_ranking_month = $this->getRankingMonth(9);
+        $list_posts = DB::table('posts')
+        ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
+        ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
+        ->where([['categories.id','=',13], ['posts.status','=',5]])->orderBy('id', 'DESC')->paginate(15);
+        return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
+    }
+
+    public function getQuiz(){
+        $list_ranking_week = $this->getRankingWeek(9);
+        $list_ranking_month = $this->getRankingMonth(9);
+        $list_posts = DB::table('posts')
+        ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
+        ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
+        ->where([['categories.id','=',14], ['posts.status','=',5]])->orderBy('id', 'DESC')->paginate(15);
+        return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
+    }
+
+    public function getNews(){
+        $list_ranking_week = $this->getRankingWeek(9);
+        $list_ranking_month = $this->getRankingMonth(9);
+        $list_posts = DB::table('posts')
+        ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
+        ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
+        ->where([['categories.id','=',16], ['posts.status','=',5]])->orderBy('id', 'DESC')->paginate(15);
         return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }
 
@@ -280,9 +311,9 @@ class PageController extends Controller
 
     public function getRankingWeek($category){
         if ($category == 0) {
-            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 5');
+            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 10');
         } else {
-            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 5');
+            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 10');
         }
         $array=array();
         for ($i = 0; $i < count($ranking); $i++){

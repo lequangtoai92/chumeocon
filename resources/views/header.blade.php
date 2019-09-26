@@ -121,6 +121,15 @@
                                 <a class="dropdown-item" href="tho">Thơ</a>
                             </li>
                             <li class="nav-item">
+                                <a class="dropdown-item" href="{!! assetRemote('ve') !!}">Vè</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="{!! assetRemote('cau-do') !!}">Câu đố</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="{!! assetRemote('tin-tuc') !!}">Tin tức</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="dropdown-item" href="{!! assetRemote('truyen-cuoi') !!}">Truyện cười</a>
                             </li>
                             <li class="nav-item">
@@ -154,7 +163,7 @@
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
                 <span class="btn-navmenu" onclick="openNav()">&#9776;</span>
                 <a class="logo" href="{!! assetRemote('index') !!}"><img src="{!! assetRemote('img/img-logo.png') !!}"
-                        alt="Logo webike"></a>
+                        alt="Logo truyện chú mèo con"></a>
             </div>
             <div class="media container menu_second">
                 <nav class="media-body">
@@ -188,6 +197,9 @@
                         </li>
                         <li><a href="{!! assetRemote('ca-dao-tuc-ngu') !!}">Cao dao tục ngữ</a></li>
                         <li><a href="{!! assetRemote('tho') !!}">Thơ</a></li>
+                        <li><a href="{!! assetRemote('ve') !!}">Vè</a></li>
+                        <li><a href="{!! assetRemote('cau-do') !!}">Câu đố</a></li>
+                        <li><a href="{!! assetRemote('tin-tuc') !!}">Tin tức</a></li>
                         <li><a href="{!! assetRemote('truyen-cuoi') !!}">Truyện cười</a></li>
                         <li><a href="{!! assetRemote('gop-y') !!}">Góp ý</a></li>
                     </ul>

@@ -18,14 +18,8 @@ class PostController extends Controller
     public function getPosts(){
         $list_status = Status::where('status','=',1)->get();
         $list_personality = Personality::where('status','=',1)->get();
-        $list_categories = Categories::where('status','=',1)->get();
+        $list_categories = Categories::where('status','=',1)->where('group','=',1)->get();
         return view('user.posts',compact('list_personality', 'list_categories', 'list_status'));
-    }
-
-    public function getPostsCarton(){
-        $list_status = Status::where('status','=',1)->get();
-        $list_categories = Categories::where([['status','=',1],['id', '>=', 10]])->get();
-        return view('user.posts_cartoon',compact('list_categories', 'list_status'));
     }
 
     public function postPosts(Request $req){
@@ -94,7 +88,7 @@ class PostController extends Controller
         if ( $this->checkAuthor($posts->id_account)){
             $list_status = Status::where('status','=',1)->get();
             $list_personality = Personality::where('status','=',1)->get();
-            $list_categories = Categories::where('status','=',1)->get();
+            $list_categories = Categories::where('status','=',1)->where('group','=',1)->get();
             return view('user.change_my_posts',compact('posts', 'list_personality', 'list_categories', 'list_status'));
         } else {
             return redirect()->back();
@@ -122,22 +116,6 @@ class PostController extends Controller
         $driver = $ua['platform'];
         $browser = $ua['name'];
         $version = $ua['version'];
-        // var_dump($req->personality);exit;
-        // $posts = Posts::where('id',$req->id_post)
-        // ->update([['id_personality' => $req->personality],
-        //         ['title' => $req->name_posts], 
-        //         ['content' => $req->main_content], 
-        //         ['summary' => $req->summary], 
-        //         ['categories' => $req->categories], 
-        //         ['image' => isset($src) ? $src: ], 
-        //         ['age' => isset($req->ages) ? $req->ages : 5],
-        //         ['source' => isset($req->source) ? $req->source: 'Sưu tầm'],
-        //         ['author' => isset($req->author) ? $req->author: 'Ẩn danh'],
-        //         ['driver' => isset($driver) ? $driver: 'windown'],
-        //         ['browser' => isset($browser) ? $browser: 'chorme'],
-        //         ['version' => isset($version) ? $version: '72.000'],
-        //         ['status' => isset($req->status) ? $req->status: 6]]); 
-
         $posts = new Posts();
         $posts->exists = true;
         $posts->id = $req->id_post;
@@ -156,7 +134,6 @@ class PostController extends Controller
         $posts->driver =isset($driver) ? $driver: 'windown'; //Tác giả
         $posts->browser =isset($browser) ? $browser: 'chorme'; //Tác giả
         $posts->version =isset($version) ? $version: '72.000'; //Tác giả
-        var_dump(Auth::user()->authorities);
         if (Auth::user()->authorities < 4) {
             $posts->status = 5; // trang thai
         } else {
@@ -167,11 +144,16 @@ class PostController extends Controller
     }
 
     public function getPostsCartoon(){
-        // var_dump(Auth::user()->id);
         $list_status = Status::where('status','=',1)->get();
         $list_personality = Personality::where('status','=',1)->get();
-        $list_categories = Categories::where('status','=',1)->get();
+        $list_categories = Categories::where('status','=',1)->where('group','=',9)->get();
         return view('user.posts',compact('list_personality', 'list_categories', 'list_status'));
+    }
+
+    public function getPostsCarton(){
+        $list_status = Status::where('status','=',1)->get();
+        $list_categories = Categories::where([['status','=',1],['group', '=', 9]])->get();
+        return view('user.posts_cartoon',compact('list_categories', 'list_status'));
     }
 
     public function postPostsCartoon(Request $req){
@@ -237,6 +219,8 @@ class PostController extends Controller
             return substr($summary, 0, 350);
         } else if (!isset($summary) || isset($summary) && strlen($summary) == 0){
             return substr($content, 0, 350);
+        } else {
+            return $summary;
         }
     }
 
@@ -245,6 +229,8 @@ class PostController extends Controller
             return substr($summary, 0, 170);
         } else if (!isset($summary) || isset($summary) && strlen($summary) == 0){
             return substr($content, 0, 170);
+        } else {
+            return $summary;
         }
     }
 

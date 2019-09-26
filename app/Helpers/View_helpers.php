@@ -24,3 +24,27 @@ function assetRemote($image_path)
 
     return ($useGetParameter ? $url . '?time=' : $url);
 }
+
+/**
+ * Return URL of cdn
+ *
+ * @return void
+ * @author toailq
+ *
+ *
+ * @since 20190927
+ */
+function showStatusPosts($status)
+{
+    if ($status == 5) {
+       return "Đã đăng";
+    } else if ($status == 6) {
+        return "Chờ duyệt";
+    } else if ($status == 7) {
+        return "Bài nháp";
+    } else if ($status == 8) {
+        return "Bị khóa";
+    } else if ($status == 9) {
+        return "Đã xóa";
+    }  
+}

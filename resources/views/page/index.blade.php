@@ -16,7 +16,7 @@
             @foreach($list_top as $key=>$item)
             <div class="item">
                 <a href="../bai-viet/{{$item->slug}}"><img class="lazy" src="img/bg-img.jpg" data-src="{{$item->image}}"
-                        alt="Name images"></a>
+                    alt="{{$item->title}}"></a>
                 <span>
                     <p class="tag-category industry"><a href="{{$item->categories_slug}}">{{$item->name_categories}}</a></p>
                     <h3><a href="../bai-viet/{{$item->slug}}">{{$item->title}}</a></h3>
@@ -38,7 +38,7 @@
                 @endif
                 <article class="news-items">
                     <a class="tag-image" href="../bai-viet/{{$item->slug}}"><img class="lazy" src="img/bg-img.jpg"
-                            data-src='{{$item->image}}' alt="name image">
+                            data-src='{{$item->image}}' alt="{{$item->title}}">
                             <p class="dotted-line-7 summary  hidden-md hidden-lg">{{$item->summary}}</p></a>
                     <div class="news-items-body">
                         <p class="tag-category industry"><a href="{{$item->categories_slug}}">{{$item->name_categories}}</a>
