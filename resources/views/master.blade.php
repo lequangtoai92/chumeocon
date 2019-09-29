@@ -7,8 +7,7 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
-    <meta name="description" itemprop="description"
-        content="@yield('meta_description')">
+    <meta name="description" itemprop="description" content="@yield('meta_description')">
     <link rel="stylesheet" href="{!! assetRemote('css/datepicker.min.css') !!}">
     <link rel="stylesheet" href="{!! assetRemote('css/style.css') !!}">
     <link rel="stylesheet" href="{!! assetRemote('css/template.css') !!}">
@@ -41,7 +40,14 @@
 
     <meta property="og:site_name" content="Truyện chú mèo con" />
     <meta property="og:description" content="@yield('meta_og_description')" />
-    
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4664812161671730",
+        enable_page_level_ads: true
+    });
+    </script>
 </head>
 
 <body class="">

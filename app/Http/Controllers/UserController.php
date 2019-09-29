@@ -44,6 +44,7 @@ class UserController extends Controller
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('id_account','=',Auth::user()->id)
             ->where('posts.status', '<', '8')
+            ->orderBy('id', 'DESC')
             ->paginate(15);
         return view('user.my_posts',compact('list_posts', 'list_ranking_week', 'list_ranking_month'));
     }

@@ -15,7 +15,7 @@
             <div class="detail-news">
                 <h1 class="article-title">{{$posts->title}}</h1>
                 <ul class="single-meta">
-                    <li>Update {{$posts->time_creat}}</li>
+                    <li>Ngày viết {{$posts->time_creat}}</li>
                     <li><i class="icon icon-view"></i> {{$posts->num_view}} views</li>
                     <li class="social-detail">
                         <div class="fb-like" data-href="{!! assetRemote('bai-viet/'.$posts->slug) !!}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
@@ -24,7 +24,7 @@
                 <div class="image-top">
                 <img src="{!! assetRemote($posts->image) !!}" alt="{{$posts->title}}">
                 </div>
-                <div><?php echo $posts->content ?></div>
+                <div>{!! $posts->content !!}</div>
                 <p class="source"><a href="{!! assetRemote('tac-gia/'.$posts->id_account) !!}">{{$posts->author}} </a> ({{$posts->source}})</p>
                 <ul class="single-meta">
                     <li class="social-detail bottom">
@@ -32,6 +32,12 @@
                     </li>
                 </ul>
             </div>
+            @if (isset($connotation->connotation))
+            <div class="connotation-post">
+                <h2>Ý nghĩa bài viết:</h2>
+                <p>{!! $connotation->connotation !!}</p>
+            </div>
+            @endif
             <div class="related-post">
                 <div class="heading02">
                     <h2>Bài cùng chủ đề</h2>
@@ -39,7 +45,7 @@
                 <div class="list-news grid related-post-grid">
                     @foreach($related_post as $key=>$item)
                     <article class="news-items">
-                    <a href="{!! assetRemote('bai-viet/'.$item->slug) !!}"><img class="lazy" src="{!! assetRemote('img/bg-img.jpg') !!}"
+                    <a href="{!! assetRemote('bai-viet/'.$item->slug) !!}"><img class="lazy image-related" src="{!! assetRemote('img/bg-img.jpg') !!}"
                         data-src="{!! assetRemote($item->image) !!}" alt="{{$item->title}}"></a>
                         <div class="news-items-body">
                         <h3 class="title dotted-line-3"><a href="{!! assetRemote('bai-viet/'.$item->slug) !!}">{{$item->title}}</a></h3>

@@ -256,6 +256,16 @@ CREATE TABLE IF NOT EXISTS `rate`(
     `report` INT(11),
 PRIMARY KEY(`id`))
 
+CREATE TABLE IF NOT EXISTS `connotation`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `id_post` INT(11) NOT NULL,
+    `id_author` INT(11),
+    `connotation` TEXT(0), 
+    `question` TEXT(0), 
+    `created_at` TIMESTAMP,
+    `updated_at` TIMESTAMP,
+PRIMARY KEY(`id`))
+
 user:
 1: admin cao nhất
 2: admin cao xếp thứ 2 - có quyền duyệt user

@@ -20,7 +20,7 @@ class SearchController extends Controller
         $list_ranking_month = $this->getRankingMonth(0);
         $list_yotube_top = $this->getYoutubeTop(0);
         $list_posts = DB::table('posts')
-                        ->select('posts.*', 'categories.name_categories')
+                        ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
                         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
                         ->where('slug', 'LIKE', "%{$slug}%")
                         ->orWhere('summary', 'LIKE', "%{$keyword}%")

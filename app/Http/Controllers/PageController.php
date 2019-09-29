@@ -7,6 +7,7 @@ use App\Posts;
 use App\Intro;
 use App\Ranking;
 use App\Rate;
+use App\Connotation;
 use Session;
 use Hash;
 use Auth;
@@ -261,25 +262,9 @@ class PageController extends Controller
         DB::table('posts')
         ->where('id', $posts->id)
         ->update(['num_view' => $posts->num_view + 1]);
+        $connotation = Connotation::where('id_post',$posts->id)->first();
         $related_post = $this->getRelatedPost($posts->categories, $posts->id);
-        // if (!isset($get_rate)) {
-        //     $rate = new Rate();
-        //     $rate->id_post = isset($posts->id) ? $posts->id : 0;
-        //     $rate->id_author = isset($posts->id_account) ? $posts->id_account : 0;
-        //     $rate->group = 1;
-        //     $rate->rate = 0;
-        //     $rate->total_rate = 0;
-        //     $rate->view = 1;
-        //     $rate->like = 0;
-        //     $rate->dis_like = 0;
-        //     $rate->report = 0;
-        //     $rate->save();
-        // } else {
-        //     DB::table('rate')
-        //     ->where('id_post', $posts->id)
-        //     ->update(['view' => $get_rate->view + 1]);
-        // }
-        return view('page.detail',compact('posts', 'related_post', 'list_ranking_week', 'list_ranking_month'));
+        return view('page.detail',compact('posts', 'related_post', 'list_ranking_week', 'list_ranking_month', 'connotation'));
     }
 
     public function getViewAuthor(Request $req){
@@ -353,6 +338,7 @@ class PageController extends Controller
             ->select('posts.*')
             ->where('posts.id','!=' ,$id_post)
             ->where('posts.categories', $category)
+            ->where('posts.status','=',5)
             ->paginate(4);
             return $list_top;
     }

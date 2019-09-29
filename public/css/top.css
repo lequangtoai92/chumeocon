@@ -741,10 +741,14 @@
 }
 
 .list-news .news-items .tag-image img{
-  width: 30%;
+  width: 45%;
   max-height: 145px;
 }
 .list-news .news-items .tag-image .summary{
   padding-left: 5px;
 }
+}
+
+.list-news .news-items .image-related{
+  max-height: 120px;
 }

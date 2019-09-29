@@ -33,3 +33,17 @@
 .inputfile + label:hover {
     background-color: #9e9d9d;
 }
+
+.page-post .container_page .form-connotation textarea{
+    font-size: 1rem; padding-top: 5px; height: auto; font-family: Helvetica, Arial, Verdana, "Microsoft JhengHei", "微軟正黑體", "PMingLiU", sans-serif;
+}
+.page-post .container_page .form-question .input-question input{
+    margin-bottom: 5px;
+}
+.page-post .container_page .form-question .input-question{
+    width: calc(100% - 70px);
+}
+.page-post .container_page .form-question .btn{
+width: 65px;
+margin-left: 5px;
+}

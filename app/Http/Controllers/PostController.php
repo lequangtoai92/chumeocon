@@ -7,6 +7,7 @@ use App\Posts;
 use App\Personality;
 use App\Categories;
 use App\Status;
+use App\Connotation;
 use Auth;
 
 class PostController extends Controller
@@ -52,7 +53,7 @@ class PostController extends Controller
         $posts->title = $req->name_posts;// tieu de
         $posts->slug = isset($req->name_posts) ? str_slug($req->name_posts).'-' .round(microtime(true) * 1000): '';// slug
         $posts->content = $req->main_content;// noi dung
-        $posts->summary = $this->creatSummary($req->summary, $req->main_content); // tom tat
+        $posts->summary = $this->creatSummary($req->summary, $req->main_content); // tom tatz
         $posts->description = $this->creatDescription($req->summary, $req->main_content); // tom tat
         $posts->categories = $req->categories; // nhom danh muc
         $posts->image = isset($src) ? $link: 'img/no_image.png'; // hinh anh
@@ -71,6 +72,13 @@ class PostController extends Controller
             $posts->status = 6; // trang thai
         }
         $posts->save();
+
+        $connotation = new Connotation();
+        $connotation->id_post = $posts->id;
+        $connotation->id_author = Auth::user()->id;//id tac gia
+        $connotation->connotation = isset($req->connotation_content) ? $req->connotation_content : '';//ý nghĩa
+        $connotation->question = isset($req->connotation_question) ? $req->connotation_question : '';//ý nghĩa
+        $connotation->save();
         return redirect()->back()->with('success','');
     }
 
@@ -89,7 +97,8 @@ class PostController extends Controller
             $list_status = Status::where('status','=',1)->get();
             $list_personality = Personality::where('status','=',1)->get();
             $list_categories = Categories::where('status','=',1)->where('group','=',1)->get();
-            return view('user.change_my_posts',compact('posts', 'list_personality', 'list_categories', 'list_status'));
+            $connotation = Connotation::where('id_post',$req->id)->first();
+            return view('user.change_my_posts',compact('posts', 'list_personality', 'list_categories', 'list_status', 'connotation'));
         } else {
             return redirect()->back();
         }
@@ -140,6 +149,17 @@ class PostController extends Controller
             $posts->status = 6; // trang thai
         }
         $posts->save();
+
+        $connotation_get = Connotation::where('id_post',$req->id_post)->first();
+        $connotation = new Connotation();
+        $connotation->exists = true;
+        $connotation->id = $connotation_get->id;
+        $connotation->id_post = $req->id_post;
+        $connotation->id_author = Auth::user()->id;//id tac gia
+        $connotation->connotation = isset($req->connotation_content) ? $req->connotation_content : '';//ý nghĩa
+        $connotation->question = isset($req->connotation_question) ? $req->connotation_question : '';//ý nghĩa
+        $connotation->save();
+
         return redirect()->back();
     }
 
@@ -215,20 +235,16 @@ class PostController extends Controller
     }
 
     public function creatSummary($summary, $content){
-        if (isset($summary) && strlen($summary) > 350){
-            return substr($summary, 0, 350);
-        } else if (!isset($summary) || isset($summary) && strlen($summary) == 0){
-            return substr($content, 0, 350);
+        if (!isset($summary) || isset($summary) && strlen($summary) == 0){
+            return 'Nơi lưu trữ những mẫu truyện hay, mang tính giáo dục để bố mẹ kể cho bé nghe nhằm giúp cho bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố mẹ và con cái';
         } else {
             return $summary;
         }
     }
 
     public function creatDescription($summary, $content){
-        if (isset($summary) && strlen($summary) > 170){
-            return substr($summary, 0, 170);
-        } else if (!isset($summary) || isset($summary) && strlen($summary) == 0){
-            return substr($content, 0, 170);
+        if (!isset($summary) || isset($summary) && strlen($summary) == 0){
+            return 'Nơi lưu trữ những mẫu truyện hay, mang tính giáo dục để bố mẹ kể cho bé nghe nhằm giúp cho bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố mẹ và con cái';
         } else {
             return $summary;
         }

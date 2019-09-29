@@ -314,3 +314,22 @@
 
 .image-top{text-align: center;}
 .fb-comments iframe{width: 100%;}
+.connotation-post h2{
+  font-size: 1.2rem;
+    padding-left: 8px;
+    border-left-width: 5px;
+    border-left-style: solid;
+    margin-bottom: 10px;
+    font-weight: bold;
+    border-left-color: #e61e25;
+}
+.connotation-post p{
+    margin-bottom: 5px;
+}
+.connotation-post{
+  margin: 0 0 20px;
+  border: 1px solid #ccc;
+  padding: 15px 15px 2px;
+  border-radius: 4px;
+  background: #f9f9f9;
+}

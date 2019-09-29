@@ -1,13 +1,15 @@
 @extends('master')
 @section('content')
 @section('title', 'Truyện chú mèo con')
-@section('meta_description', 'Nơi lưu trữ những mẫu truyện hay, mang tính giáo dục để bố mẹ kể cho bé nghe nhằm giúp cho bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố mẹ và con cái')
+@section('meta_description', 'Nơi lưu trữ những mẫu truyện hay, mang tính giáo dục để bố mẹ kể cho bé nghe nhằm giúp cho
+bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố mẹ và con cái')
 @section('meta_author', 'Truyện chú mèo con')
 @section('meta_og_title', 'Truyện chú mèo con')
 @section('meta_og_type', 'website')
 @section('meta_og_url', 'http://truyenchumeocon.com')
 @section('meta_og_image', 'http://truyenchumeocon.com/img/img-logo.png')
-@section('meta_og_description', 'Nơi lưu trữ những mẫu truyện hay, mang tính giáo dục để bố mẹ kể cho bé nghe nhằm giúp cho bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố mẹ và con cái')
+@section('meta_og_description', 'Nơi lưu trữ những mẫu truyện hay, mang tính giáo dục để bố mẹ kể cho bé nghe nhằm giúp
+cho bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố mẹ và con cái')
 
 <link rel="stylesheet" href="css/posts.css">
 <section class="wrapper page-post">
@@ -32,6 +34,24 @@
                 <div class="content-main">
                     <textarea id="content_main_tinymce" rows="20" name="main_content" class="form-control"
                         placeholder="Nội dung(*)"></textarea>
+                </div>
+                <div class="list-news form-connotation">
+                    <article class="media news-items">
+                        <textarea id="content_connotation" rows="6" name="connotation_content" class="form-control"
+                            placeholder="Ý nghĩa bài viết"></textarea>
+                    </article>
+                    <!-- <article style="hidden" class="media news-items form-question">
+                        <div class="input-question">
+                            <input type="text" name="question" placeholder="Câu hỏi" autocomplete="off">
+                            <input type="text" name="answer" placeholder="Câu trả lời" autocomplete="off">
+                        </div>
+                        <div>
+                            <span id="" class="btn btn-primary">Thêm</span>
+                        </div>
+                    </article>
+                    <article style="hidden" class="media news-items">
+                        <h3>Câu hỏi thảo luận</h3>
+                    </article> -->
                 </div>
             </div>
             <div class="sidebar">
@@ -58,7 +78,7 @@
                     </div>
                     <div class="list-news">
                         <article class="media news-items">
-                            <textarea id="content_main" rows="4" name="summary" class="form-control"
+                            <textarea id="content_main" rows="6" name="summary" class="form-control"
                                 placeholder="Giới thiệu bài viết"></textarea>
                         </article>
                         <article class="media news-items">
@@ -68,7 +88,7 @@
                         <article class="media news-items">
                             <select name="categories">
                                 @foreach($list_categories as $item)
-                                    <option value="{{$item->id}}">{{$item->name_categories}}</option>
+                                <option value="{{$item->id}}">{{$item->name_categories}}</option>
                                 @endforeach
                             </select>
                         </article>
@@ -94,10 +114,7 @@
                     <div class="show-image">
                         <img id="image_select" src="img/no_image.png" alt="your image" />
                         <ul class="list-button-image">
-                            <!-- <input type="file" id="upload_image" name="image_upload" class="inputfile"
-                                onchange="readURL(this);">
-                            <label for="upload_image">Choose a file</label> -->
-                            <span id="open_dialog_image" class="btn">Choose a file</span>
+                            <span id="open_dialog_image" class="btn">Chọn hình ảnh</span>
                         </ul>
                     </div>
                 </div>

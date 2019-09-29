@@ -30,7 +30,7 @@
                         <p class="tag-category industry"><a class="dotted-line-1"
                                 href="{{$item->categories_slug}}">{{$item->name_categories}}</a></p>
                         <h3 class="title"><a href="../bai-viet/{{$item->slug}}">{{$item->title}}</a></h3>
-                        <p class="hidden-sm hidden-xs dotted-line-2 summary">{{$item->summary}}</p>
+                        <p class="hidden-sm hidden-xs dotted-line-2 summary">{{($item->summary)}}</p>
                         <div class="meta">
                             <time>{{$item->num_view}} views</time>
                             <ul class="list-button">

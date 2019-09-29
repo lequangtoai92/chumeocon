@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="body-info body-left">
                         <div class="show-image">
-                            <img id="image_select" src="{{$user->avatar}}" alt="your image" />
+                            <img id="image_select" src="{{assetRemote($user->avatar)}}" alt="your image" />
                         </div>
                         <!-- <div class="group-scores">
                             <div class="form-group">

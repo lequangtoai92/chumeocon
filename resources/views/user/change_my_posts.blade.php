@@ -22,6 +22,24 @@
                     <textarea id="content_main_tinymce" rows="20" name="main_content" class="form-control"
                         placeholder="Nội dung(*)">{{$posts->content}}</textarea>
                 </div>
+                <div class="list-news form-connotation">
+                    <article class="media news-items">
+                        <textarea id="content_connotation" rows="6" name="connotation_content" class="form-control"
+                            placeholder="Ý nghĩa bài viết">{{$connotation->connotation}}</textarea>
+                    </article>
+                    <!-- <article style="hidden" class="media news-items form-question">
+                        <div class="input-question">
+                            <input type="text" name="question" placeholder="Câu hỏi" autocomplete="off">
+                            <input type="text" name="answer" placeholder="Câu trả lời" autocomplete="off">
+                        </div>
+                        <div>
+                            <span id="" class="btn btn-primary">Thêm</span>
+                        </div>
+                    </article>
+                    <article style="hidden" class="media news-items">
+                        <h3>Câu hỏi thảo luận</h3>
+                    </article> -->
+                </div>
             </div>
             <div class="sidebar">
                 <div class="wrapper-post">
@@ -53,7 +71,7 @@
                     <div class="list-news">
                         <article class="media news-items">
                             <textarea rows="4" name="summary" class="form-control"
-                                placeholder="Giới thiệu bài viết">{{$posts->summary}}</textarea>
+                                placeholder="Giới thiệu bài viết">{!! (($posts->summary)) !!}</textarea>
                         </article>
                         <article class="media news-items">
                             <input type="text" name="author" value="{{$posts->author}}"
@@ -95,7 +113,7 @@
                         <h2>Hình ảnh</h2>
                     </div>
                     <div class="show-image">
-                        <img id="image_select" src="{{$posts->image}}" alt="your image" />
+                        <img id="image_select" src="{{assetRemote($posts->image)}}" alt="your image" />
                         <ul class="list-button-image">
                             <input type="file" id="upload_image" name="image_upload" class="inputfile"
                                 onchange="readURL(this);">
