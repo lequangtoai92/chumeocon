@@ -40,18 +40,21 @@ cho bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố
                         <textarea id="content_connotation" rows="6" name="connotation_content" class="form-control"
                             placeholder="Ý nghĩa bài viết"></textarea>
                     </article>
-                    <!-- <article style="hidden" class="media news-items form-question">
+                    <article class="media news-items form-question">
                         <div class="input-question">
-                            <input type="text" name="question" placeholder="Câu hỏi" autocomplete="off">
-                            <input type="text" name="answer" placeholder="Câu trả lời" autocomplete="off">
+                            <input type="text" id="question" placeholder="Câu hỏi" autocomplete="off">
+                            <input type="text" id="answer" placeholder="Câu trả lời" autocomplete="off">
                         </div>
                         <div>
-                            <span id="" class="btn btn-primary">Thêm</span>
+                            <span class="btn btn-primary add-question">Thêm</span>
                         </div>
                     </article>
-                    <article style="hidden" class="media news-items">
-                        <h3>Câu hỏi thảo luận</h3>
-                    </article> -->
+                    <div>
+                        <h2>Câu hỏi thảo luận</h2>
+                    </div>
+                    <article class="content-question">
+                        <input type="hidden" id="content_question" name="question_content">
+                    </article>
                 </div>
             </div>
             <div class="sidebar">
@@ -125,6 +128,19 @@ cho bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố
     </form>
 </section>
 <script>
+
+var arr = [];
+
+$(".add-question").click(function(){
+var cauhoi = {cauhoi:$("#question").val(), traloi:$("#answer").val()};
+arr.push(cauhoi);
+
+$(".content-question").append("<h4>Câu hỏi: "  + $("#question").val() + "</h4><br>");
+$(".content-question").append("<p>Trả lời: " + $("#answer").val() + "</p>");
+$(".content-question").append("<hr>");
+});
+
+
 function readURL(input) {
     dialog_select_image.close();
     if (input.files && input.files[0]) {

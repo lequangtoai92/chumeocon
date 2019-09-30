@@ -240,6 +240,7 @@ CREATE TABLE IF NOT EXISTS `ranking`(
     `id_post` INT(11) NOT NULL,
     `id_author` INT(11),
     `id_categories` INT(11) NOT NULL,
+    `status` INT(11),
     `time` TIMESTAMP,
 PRIMARY KEY(`id`))
 

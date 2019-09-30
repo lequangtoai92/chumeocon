@@ -98,6 +98,14 @@ class PostController extends Controller
             $list_personality = Personality::where('status','=',1)->get();
             $list_categories = Categories::where('status','=',1)->where('group','=',1)->get();
             $connotation = Connotation::where('id_post',$req->id)->first();
+            if (!isset($connotation)) {
+                $connotation = new Connotation();
+                $connotation->id_post = $posts->id;
+                $connotation->id_author = Auth::user()->id;//id tac gia
+                $connotation->connotation = isset($req->connotation_content) ? $req->connotation_content : '';//ý nghĩa
+                $connotation->question = isset($req->connotation_question) ? $req->connotation_question : '';//ý nghĩa
+                $connotation->save();
+            }
             return view('user.change_my_posts',compact('posts', 'list_personality', 'list_categories', 'list_status', 'connotation'));
         } else {
             return redirect()->back();

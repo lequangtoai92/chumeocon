@@ -14,5 +14,7 @@
     </div>
 </footer>
 </div>
+</div>
+</div>
 <div id="gotop"><span class="chevron top"></span></div>
 <div id="fb-root"></div>

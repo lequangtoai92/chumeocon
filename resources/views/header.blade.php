@@ -76,8 +76,8 @@
                                 <a class="nav-link dropdown-toggle" href="../#" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">Cá nhân</a>
                                 <div class="dropdown-menu">
-                                        @if (Auth::user()->authorities < 3 ) 
-                                        <a class="dropdown-item" href="{!! assetRemote('tai-khoan') !!}">Admin</a>
+                                    @if (Auth::user()->authorities < 3 ) <a class="dropdown-item"
+                                        href="{!! assetRemote('tai-khoan') !!}">Admin</a>
                                         @endif
                                         <a class="dropdown-item" href="{!! assetRemote('tai-khoan') !!}">Tài khoản</a>
                                         <a class="dropdown-item" href="{!! assetRemote('posts') !!}">Viết bài</a>
@@ -126,9 +126,9 @@
                             <li class="nav-item">
                                 <a class="dropdown-item" href="{!! assetRemote('cau-do') !!}">Câu đố</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="dropdown-item" href="{!! assetRemote('tin-tuc') !!}">Tin tức</a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="dropdown-item" href="{!! assetRemote('truyen-cuoi') !!}">Truyện cười</a>
                             </li>
@@ -144,6 +144,8 @@
     </div>
 </div>
 </div>
+<div class="background">
+<div class="container container-page">
 <div id="main">
     <header>
         <div class="header_middle">
@@ -199,7 +201,7 @@
                         <li><a href="{!! assetRemote('tho') !!}">Thơ</a></li>
                         <li><a href="{!! assetRemote('ve') !!}">Vè</a></li>
                         <li><a href="{!! assetRemote('cau-do') !!}">Câu đố</a></li>
-                        <li><a href="{!! assetRemote('tin-tuc') !!}">Tin tức</a></li>
+                        <!-- <li><a href="{!! assetRemote('tin-tuc') !!}">Tin tức</a></li> -->
                         <li><a href="{!! assetRemote('truyen-cuoi') !!}">Truyện cười</a></li>
                         <li><a href="{!! assetRemote('gop-y') !!}">Góp ý</a></li>
                     </ul>

@@ -32,7 +32,7 @@
                     </li>
                 </ul>
             </div>
-            @if (isset($connotation->connotation))
+            @if (isset($connotation->connotation) && !empty($connotation->connotation))
             <div class="connotation-post">
                 <h2>Ý nghĩa bài viết:</h2>
                 <p>{!! $connotation->connotation !!}</p>

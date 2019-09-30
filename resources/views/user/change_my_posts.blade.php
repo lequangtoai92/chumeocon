@@ -27,7 +27,7 @@
                         <textarea id="content_connotation" rows="6" name="connotation_content" class="form-control"
                             placeholder="Ý nghĩa bài viết">{{$connotation->connotation}}</textarea>
                     </article>
-                    <!-- <article style="hidden" class="media news-items form-question">
+                    <article style="hidden" class="media news-items form-question">
                         <div class="input-question">
                             <input type="text" name="question" placeholder="Câu hỏi" autocomplete="off">
                             <input type="text" name="answer" placeholder="Câu trả lời" autocomplete="off">
@@ -38,7 +38,7 @@
                     </article>
                     <article style="hidden" class="media news-items">
                         <h3>Câu hỏi thảo luận</h3>
-                    </article> -->
+                    </article>
                 </div>
             </div>
             <div class="sidebar">
