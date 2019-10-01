@@ -1090,4 +1090,11 @@ footer .container .social-footer>li a:hover {
   .container-page{background-color: #fff}
 .container-page .container.media{padding: 0px 15px 0px 15px;}
 .container-page .header_middle{padding: 0px 15px 0px 15px;}
+.category-bottom{float: right;padding-right: 15px;font-size: 1rem;}
+}
+@media (max-width: 767px) {
+  .category-bottom{ 
+    padding-right: 15px;
+    font-size: 1rem;
+    padding-left: 5px;}
 }

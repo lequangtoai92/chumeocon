@@ -43,7 +43,7 @@
                 </article>
                 @endforeach
             </div>
-            <div class="row">{{$list_posts->links()}}</div>
+            <div class="row">{{$list_posts->onEachSide(1)->links()}}</div>
         </div>
         @include('include.col_right_no_youtube')
     </div>

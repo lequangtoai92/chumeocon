@@ -53,7 +53,8 @@
                 </article>
                 @endforeach
             </div>
-            <div class="row">{{$list_posts->links()}}</div>
+            <a class="category-bottom" href="../danh-muc/{{$page_view}}">Danh mục</a>
+            <div class="row">{{$list_posts->onEachSide(1)->links()}}</div>
         </div>
         @include('include.col-right')
     </div>

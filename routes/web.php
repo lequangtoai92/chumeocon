@@ -121,6 +121,11 @@ Route::get('tac-gia/{id}',[
 	'uses'=>'PageController@getViewAuthor'
 ]);
 
+Route::get('danh-muc/{id}',[
+	'as'=>'danhmuc',
+	'uses'=>'PageController@getCategory'
+]);
+
 // user
 
 Route:: get('tai-khoan', [

@@ -29,7 +29,7 @@
         j.src =
             'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NCTRQXF');
+    })(window, document, 'script', 'dataLayer', 'GTM-NCTRQXF-FA');
     </script>
     <!-- End Google Tag Manager -->
     <meta name="author" content="@yield('meta_author')">

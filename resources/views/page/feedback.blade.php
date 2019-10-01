@@ -42,7 +42,7 @@
                 </div>
                 @endforeach
             </div>
-            <div class="row">{{$list_feedback->links()}}</div>
+            <div class="row">{{$list_feedback->onEachSide(1)->links()}}</div>
         </div>
         @include('include.col_right_no_youtube')
     </div>

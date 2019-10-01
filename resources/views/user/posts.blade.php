@@ -46,7 +46,7 @@ cho bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố
                             <input type="text" id="answer" placeholder="Câu trả lời" autocomplete="off">
                         </div>
                         <div>
-                            <span class="btn btn-primary add-question">Thêm</span>
+                            <span class="btn btn-primary add-question">+</span>
                         </div>
                     </article>
                     <div>
