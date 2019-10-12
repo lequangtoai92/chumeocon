@@ -32,7 +32,7 @@ cho bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố
                     <input type="text" name="name_posts" placeholder="Tên tác phẩm(*)">
                 </div>
                 <div class="content-main">
-                    <textarea id="content_main_tinymce" rows="20" name="main_content" class="form-control"
+                    <textarea rows="20" name="main_content" class="form-control content_main_tinymce"
                         placeholder="Nội dung(*)"></textarea>
                 </div>
                 <div class="list-news form-connotation">
@@ -40,20 +40,10 @@ cho bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố
                         <textarea id="content_connotation" rows="6" name="connotation_content" class="form-control"
                             placeholder="Ý nghĩa bài viết"></textarea>
                     </article>
-                    <article class="media news-items form-question">
-                        <div class="input-question">
-                            <input type="text" id="question" placeholder="Câu hỏi" autocomplete="off">
-                            <input type="text" id="answer" placeholder="Câu trả lời" autocomplete="off">
-                        </div>
-                        <div>
-                            <span class="btn btn-primary add-question">+</span>
-                        </div>
-                    </article>
-                    <div>
-                        <h2>Câu hỏi thảo luận</h2>
-                    </div>
-                    <article class="content-question">
-                        <input type="hidden" id="content_question" name="question_content">
+                    <h2>Câu hỏi thảo luận cùng bé</h2>
+                    <article class="media news-items">
+                        <textarea id="content_question" rows="6" name="question_content" class="form-control question_content_main_tinymce"
+                            placeholder="Câu hỏi thảo luận cùng bé"></textarea>
                     </article>
                 </div>
             </div>

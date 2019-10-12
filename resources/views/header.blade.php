@@ -2,7 +2,7 @@
     <div class="container header_top">
         <div class="right">
             <ul class="social">
-                <li><a href="../#" target="_blank"><i class="icon icon-social-facebook"></i></a></li>
+                <li><a href="https://www.facebook.com/Truy%E1%BB%87n-ch%C3%BA-m%C3%A8o-con-104213484322000/" target="_blank"><i class="icon icon-social-facebook"></i></a></li>
                 <li><a href="../#" target="_blank"><i class="icon icon-social-youtube"></i></a></li>
                 <li><a href="../#" target="_blank"><i class="icon icon-social-twitter"></i></a></li>
             </ul>
@@ -66,9 +66,12 @@
     <div class="left" hidden>
         <nav class="menu-main">
             <ul>
-                <li class="nav-item show">
-                    <a class="chevron right" href="javascript:void(0)"><i class="icon icon-wholesale"></i> Chú mèo
-                        con</a>
+                <li class="nav-item search">    
+                    <form class="search-form hidden-xs hidden-sm" action="/search" method="get">
+                        <div class="txt-search-top">
+                            <input type="text" name="q" placeholder="Search..">
+                            <button class="icon icon-search btn"></button></div>
+                    </form>   
                     <nav class="navbar hidden-md hidden-lg menu-media">
                         <ul class="navbar-nav">
                             @if(Auth::check())
@@ -100,8 +103,6 @@
                                         Nhật Bản</a>
                                     <a class="dropdown-item" href="{!! assetRemote('truyen-co-grimms') !!}">Truyện cổ
                                         Grimms</a>
-                                    <a class="dropdown-item" href="{!! assetRemote('than-thoai-hi-lap') !!}">Thần
-                                        thoại Hi Lạp</a>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -139,6 +140,10 @@
                         </ul>
                     </nav>
                 </li>
+                <!-- <li class="nav-item logo">
+                <a class="logo" href="{!! assetRemote('index') !!}"><img src="{!! assetRemote('img/img-logo.png') !!}"
+                        alt="Logo truyện chú mèo con"></a>
+                </li> -->
             </ul>
         </nav>
     </div>
@@ -158,7 +163,7 @@
                             <a class="chevron left btn-back " href="#">Back</a>
                             <h3>Search</h3>
                         </div>
-                        <div class="txt-search-top"><input type="text" name="q" placeholder="Search.."><i
+                        <div class="txt-search-top hidden-md hidden-lg"><input type="text" name="q" placeholder="Search.."><i
                                 class="icon icon-search"></i></div>
                     </form>
                 </div>
@@ -181,8 +186,6 @@
                                             tích Nhật Bản</a></li>
                                     <li><a class="chevron right" href="{!! assetRemote('truyen-co-grimms') !!}">Truyện
                                             cổ Grimms</a></li>
-                                    <li><a class="chevron right" href="{!! assetRemote('than-thoai-hi-lap') !!}">Thần
-                                            thoại Hi Lạp</a></li>
                                 </ul>
                             </div>
                         </li>

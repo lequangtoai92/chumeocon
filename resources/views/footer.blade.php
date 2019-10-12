@@ -6,7 +6,7 @@
         </a>
         <p>Hãy đọc truyện cho con bạn nghe mỗi ngày</p>
         <ul class="social-footer">
-            <li><a href="#"><i class="icon icon-footer-facebook"></i></a></li>
+            <li><a href="https://www.facebook.com/Truy%E1%BB%87n-ch%C3%BA-m%C3%A8o-con-104213484322000/"><i class="icon icon-footer-facebook"></i></a></li>
             <li><a href="#"><i class="icon icon-footer-youtube"></i></a></li>
             <li><a href="#"><i class="icon icon-footer-twitter"></i></a></li>
         </ul>

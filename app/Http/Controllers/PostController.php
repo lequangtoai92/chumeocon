@@ -77,7 +77,7 @@ class PostController extends Controller
         $connotation->id_post = $posts->id;
         $connotation->id_author = Auth::user()->id;//id tac gia
         $connotation->connotation = isset($req->connotation_content) ? $req->connotation_content : '';//ý nghĩa
-        $connotation->question = isset($req->connotation_question) ? $req->connotation_question : '';//ý nghĩa
+        $connotation->question = isset($req->question_content) ? $req->question_content : '';//ý nghĩa
         $connotation->save();
         return redirect()->back()->with('success','');
     }
@@ -165,7 +165,7 @@ class PostController extends Controller
         $connotation->id_post = $req->id_post;
         $connotation->id_author = Auth::user()->id;//id tac gia
         $connotation->connotation = isset($req->connotation_content) ? $req->connotation_content : '';//ý nghĩa
-        $connotation->question = isset($req->connotation_question) ? $req->connotation_question : '';//ý nghĩa
+        $connotation->question = isset($req->question_content) ? $req->question_content : '';//ý nghĩa
         $connotation->save();
 
         return redirect()->back();

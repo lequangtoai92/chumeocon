@@ -38,6 +38,12 @@
                 <p>{!! $connotation->connotation !!}</p>
             </div>
             @endif
+            @if (isset($connotation->question) && !empty($connotation->question))
+            <div class="connotation-post">
+                <h2>Câu hỏi thảo luận cùng bé:</h2>
+                <p>{!! $connotation->question !!}</p>
+            </div>
+            @endif
             <div class="related-post">
                 <div class="heading02">
                     <h2>Bài cùng chủ đề</h2>

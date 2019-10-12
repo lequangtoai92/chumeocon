@@ -22,7 +22,7 @@ function assetRemote($image_path)
         }
     }
 
-    return ($useGetParameter ? $url . '?time=1' : $url);
+    return ($useGetParameter ? $url . '?time=2' : $url);
 }
 
 /**

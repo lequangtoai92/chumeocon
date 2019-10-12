@@ -19,7 +19,7 @@
                     <input type="text" name="name_posts"  value="{{$posts->title}}" placeholder="Tên tác phẩm(*)" autocomplete="off">
                 </div>
                 <div class="content-main">
-                    <textarea id="content_main_tinymce" rows="20" name="main_content" class="form-control"
+                    <textarea rows="20" name="main_content" class="form-control content_main_tinymce"
                         placeholder="Nội dung(*)">{{$posts->content}}</textarea>
                 </div>
                 <div class="list-news form-connotation">
@@ -27,17 +27,10 @@
                         <textarea id="content_connotation" rows="6" name="connotation_content" class="form-control"
                             placeholder="Ý nghĩa bài viết">{{$connotation->connotation}}</textarea>
                     </article>
-                    <article style="hidden" class="media news-items form-question">
-                        <div class="input-question">
-                            <input type="text" name="question" placeholder="Câu hỏi" autocomplete="off">
-                            <input type="text" name="answer" placeholder="Câu trả lời" autocomplete="off">
-                        </div>
-                        <div>
-                            <span id="" class="btn btn-primary">Thêm</span>
-                        </div>
-                    </article>
-                    <article style="hidden" class="media news-items">
-                        <h3>Câu hỏi thảo luận</h3>
+                    <h2>Câu hỏi thảo luận cùng bé</h2>
+                    <article class="media news-items">
+                        <textarea id="content_question" rows="6" name="question_content" class="form-control question_content_main_tinymce"
+                            placeholder="Câu hỏi thảo luận cùng bé">{{$connotation->question}}</textarea>
                     </article>
                 </div>
             </div>

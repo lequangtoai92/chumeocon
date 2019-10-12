@@ -115,6 +115,7 @@
                             </ul>
                         </nav>
                     </li>
+                    <li class="nav-item"><a href="#" class="chevron right"><i class="icon icon-deals"></i> Special Deals</a></li>
                 </ul>
             </nav>
         </div>

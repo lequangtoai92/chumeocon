@@ -14,10 +14,10 @@ class SearchController extends Controller
     }
 
     public function getSearch(Request $req) {
+        $page_view = 0;
         $keyword= $this->vn_str_filter($req->q);
         $slug = str_slug($req->q);
     	$list_ranking_week = $this->getRankingWeek(0);
-        $list_ranking_month = $this->getRankingMonth(0);
         $list_yotube_top = $this->getYoutubeTop(0);
         $list_posts = DB::table('posts')
                         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
@@ -28,7 +28,7 @@ class SearchController extends Controller
                         ->where('posts.status', '5')
                         ->paginate(15);
 
-        return view('page.category',compact('list_posts', 'list_ranking_week', 'list_ranking_month', 'list_yotube_top'));
+        return view('page.category',compact('page_view', 'list_posts', 'list_ranking_week', 'list_yotube_top'));
     }
 
     public function getYoutubeTop(){

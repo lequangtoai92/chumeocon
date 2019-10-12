@@ -74,7 +74,7 @@ $(document).ready(function () {
 function tinymce_init() {
     tinymce.init({
         height: 500,
-        selector: "#content_main_tinymce",
+        selector: ".content_main_tinymce",
         plugins: "code link textcolor colorpicker emoticons visualchars searchreplace wordcount charmap anchor textpattern preview image",
         menubar: "edit format insert view image",
         toolbar: 'fontselect | fontsizeselect | undo redo | styleselect image | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor emoticons',
@@ -111,6 +111,15 @@ function tinymce_init() {
         },
         file_browser_callback: function (field_name, url, type, win) {
         },
+        content_style: ".mce-content-body {font-size:16px;}",
+    });
+    tinymce.init({
+        height: 100,
+        width : "100%",
+        selector: ".question_content_main_tinymce",
+        plugin: 'a_tinymce_plugin',
+        a_plugin_option: true,
+        content_style: ".mce-content-body {font-size:16px;}",
     });
 }
 
