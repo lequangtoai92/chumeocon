@@ -355,6 +355,7 @@ class PageController extends Controller
             ->where('posts.id','!=' ,$id_post)
             ->where('posts.categories', $category)
             ->where('posts.status','=',5)
+            ->inRandomOrder()
             ->paginate(4);
             return $list_top;
     }

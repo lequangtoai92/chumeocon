@@ -1,8 +1,13 @@
 <div id="mySidenav" class="sidenav">
+    <div class="nav-logo-mobile hidden-md hidden-lg">
+        <li class="nav-item logo hidden-md hidden-lg"><a class="logo" href="{!! assetRemote('index') !!}"><img
+                    src="{!! assetRemote('img/img-logo.png') !!}" alt="Logo truyện chú mèo con"></a>
+    </div>
     <div class="container header_top">
         <div class="right">
             <ul class="social">
-                <li><a href="https://www.facebook.com/Truy%E1%BB%87n-ch%C3%BA-m%C3%A8o-con-104213484322000/" target="_blank"><i class="icon icon-social-facebook"></i></a></li>
+                <li><a href="https://www.facebook.com/Truy%E1%BB%87n-ch%C3%BA-m%C3%A8o-con-104213484322000/"
+                        target="_blank"><i class="icon icon-social-facebook"></i></a></li>
                 <li><a href="../#" target="_blank"><i class="icon icon-social-youtube"></i></a></li>
                 <li><a href="../#" target="_blank"><i class="icon icon-social-twitter"></i></a></li>
             </ul>
@@ -60,18 +65,19 @@
                 @endif
             </ul>
         </div>
-        </li>
-        </ul>
     </div>
     <div class="left" hidden>
         <nav class="menu-main">
             <ul>
-                <li class="nav-item search">    
+                <li class="nav-item logo hidden-xs hidden-sm"><a class="logo" href="{!! assetRemote('index') !!}"><img
+                            src="{!! assetRemote('img/img-logo.png') !!}" alt="Logo truyện chú mèo con"></a></li>
+                <li class="nav-item search">
+
                     <form class="search-form hidden-xs hidden-sm" action="/search" method="get">
                         <div class="txt-search-top">
                             <input type="text" name="q" placeholder="Search..">
                             <button class="icon icon-search btn"></button></div>
-                    </form>   
+                    </form>
                     <nav class="navbar hidden-md hidden-lg menu-media">
                         <ul class="navbar-nav">
                             @if(Auth::check())
@@ -105,10 +111,6 @@
                                         Grimms</a>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="dropdown-item" href="{!! assetRemote('ca-dao-tuc-ngu') !!}">Ca dao - Tục
-                                    ngữ</a>
-                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="phim-hoat-hinh" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Phim hoạt
@@ -140,76 +142,72 @@
                         </ul>
                     </nav>
                 </li>
-                <!-- <li class="nav-item logo">
-                <a class="logo" href="{!! assetRemote('index') !!}"><img src="{!! assetRemote('img/img-logo.png') !!}"
-                        alt="Logo truyện chú mèo con"></a>
-                </li> -->
             </ul>
         </nav>
     </div>
+
 </div>
 </div>
 <div class="background">
-<div class="container container-page">
-<div id="main">
-    <header>
-        <div class="header_middle">
-            <div class="container header">
-                <div class="search">
-                    <button type="submit" class="hidden-md hidden-lg btn-search-mobile"><i
-                            class="icon icon-search"></i></button>
-                    <form class="search-form" action="/search" method="get">
-                        <div class="hidden-md hidden-lg header-search">
-                            <a class="chevron left btn-back " href="#">Back</a>
-                            <h3>Search</h3>
+    <div class="container container-page">
+        <div id="main">
+            <header>
+                <div class="header_middle">
+                    <div class="container header">
+                        <div class="search">
+                            <form class="search-form hidden-md hidden-lg" action="/search" method="get">
+                                <div class="txt-search-top">
+                                    <input type="text" name="q" placeholder="Search..">
+                                    <button class="icon icon-search btn"></button></div>
+                            </form>
                         </div>
-                        <div class="txt-search-top hidden-md hidden-lg"><input type="text" name="q" placeholder="Search.."><i
-                                class="icon icon-search"></i></div>
-                    </form>
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
+                        <span class="btn-navmenu" onclick="openNav()">&#9776;</span>
+                        <!-- <a class="logo" href="{!! assetRemote('index') !!}"><img src="{!! assetRemote('img/img-logo.png') !!}"
+                        alt="Logo truyện chú mèo con"></a> -->
+                    </div>
+                    <div class="media container menu_second">
+                        <nav class="media-body">
+                            <ul>
+                                <li><a href="{!! assetRemote('truyen-moi') !!}">Truyện mới</a></li>
+                                <li class="dropdown">
+                                    <a class="nav-link" href="{!! assetRemote('co-tich') !!}">Cổ tích</a>
+                                    <div class="dropdown-menu">
+                                        <ul>
+                                            <li><a class="chevron right"
+                                                    href="{!! assetRemote('co-tich-viet-nam') !!}">Cổ
+                                                    tích Việt Nam</a></li>
+                                            <li><a class="chevron right"
+                                                    href="{!! assetRemote('co-tich-nhat-ban') !!}">Cổ
+                                                    tích Nhật Bản</a></li>
+                                            <li><a class="chevron right"
+                                                    href="{!! assetRemote('truyen-co-grimms') !!}">Truyện
+                                                    cổ Grimms</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="dropdown hidden-xs hidden-sm">
+                                    <a class="nav-link" href="{!! assetRemote('phim-hoat-hinh') !!}">Phim hoạt
+                                        hình</a>
+                                    <div class="dropdown-menu">
+                                        <ul>
+                                            <li><a class="chevron right" href="{!! assetRemote('do-re-mon') !!}">Đô rê
+                                                    mon</a>
+                                            </li>
+                                            <li><a class="chevron right" href="{!! assetRemote('tom-and-jerry') !!}">Tom
+                                                    and
+                                                    Jerry</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class=""><a href="{!! assetRemote('tho') !!}">Thơ</a></li>
+                                <li class="hidden-xs hidden-sm"><a href="{!! assetRemote('ve') !!}">Vè</a></li>
+                                <li class="hidden-xs hidden-sm"><a href="{!! assetRemote('cau-do') !!}">Câu đố</a></li>
+                                <li><a href="{!! assetRemote('truyen-cuoi') !!}">Truyện cười</a></li>
+                                <li class="hidden-xs hidden-sm"><a href="{!! assetRemote('gop-y') !!}">Góp ý</a></li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
-                <span class="btn-navmenu" onclick="openNav()">&#9776;</span>
-                <a class="logo" href="{!! assetRemote('index') !!}"><img src="{!! assetRemote('img/img-logo.png') !!}"
-                        alt="Logo truyện chú mèo con"></a>
-            </div>
-            <div class="media container menu_second">
-                <nav class="media-body">
-                    <ul>
-                        <li><a href="{!! assetRemote('truyen-moi') !!}">Truyện mới</a></li>
-                        <li class="dropdown">
-                            <a class="nav-link" href="{!! assetRemote('co-tich') !!}">Cổ tích</a>
-                            <div class="dropdown-menu">
-                                <ul>
-                                    <li><a class="chevron right" href="{!! assetRemote('co-tich-viet-nam') !!}">Cổ
-                                            tích Việt Nam</a></li>
-                                    <li><a class="chevron right" href="{!! assetRemote('co-tich-nhat-ban') !!}">Cổ
-                                            tích Nhật Bản</a></li>
-                                    <li><a class="chevron right" href="{!! assetRemote('truyen-co-grimms') !!}">Truyện
-                                            cổ Grimms</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="dropdown">
-                            <a class="nav-link" href="{!! assetRemote('phim-hoat-hinh') !!}">Phim hoạt hình</a>
-                            <div class="dropdown-menu">
-                                <ul>
-                                    <li><a class="chevron right" href="{!! assetRemote('do-re-mon') !!}">Đô rê mon</a>
-                                    </li>
-                                    <li><a class="chevron right" href="{!! assetRemote('tom-and-jerry') !!}">Tom and
-                                            Jerry</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li><a href="{!! assetRemote('ca-dao-tuc-ngu') !!}">Cao dao tục ngữ</a></li>
-                        <li><a href="{!! assetRemote('tho') !!}">Thơ</a></li>
-                        <li><a href="{!! assetRemote('ve') !!}">Vè</a></li>
-                        <li><a href="{!! assetRemote('cau-do') !!}">Câu đố</a></li>
-                        <!-- <li><a href="{!! assetRemote('tin-tuc') !!}">Tin tức</a></li> -->
-                        <li><a href="{!! assetRemote('truyen-cuoi') !!}">Truyện cười</a></li>
-                        <li><a href="{!! assetRemote('gop-y') !!}">Góp ý</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-    <!--End Header-->
+            </header>
+            <!--End Header-->

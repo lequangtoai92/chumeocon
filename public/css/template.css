@@ -386,8 +386,6 @@ header, footer, section {
   display: block;
 }
 
-
-
 .sidenav .header_top {
   padding: 0;
 }
@@ -509,7 +507,7 @@ header, footer, section {
 }
 
 .sidenav .header_top .left>.menu-main>ul>li>a:hover {
-  background-color: #e61e25;
+  /* background-color: #e61e25; */
 }
 
 .sidenav .header_top .left>.menu-main>ul>li>.navbar {
@@ -718,7 +716,7 @@ header, footer, section {
   cursor: pointer;
   text-align: center;
   position: absolute;
-  top: 10px;
+  top: 3px;
   left: 0;
 }
 
@@ -737,14 +735,12 @@ header, footer, section {
 
 .header .search>form {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 5px;
+  right: 5px;
   width: 100%;
   height: 100%;
-  z-index: 999;
-  background-color: #fff;
-  display: none;
-  overflow-x: auto;
+}
+
 }
 
 .header .search>form>.header-search {
@@ -775,16 +771,19 @@ header, footer, section {
 }
 
 .header .search>form>.txt-search-top {
-  padding: 10px;
   display: block;
   background-color: #F6F6F6;
   position: relative;
+  height: 30px;
+  width: 85%;
+  float: right;
+  height: 30px;
 }
 
 .header .search>form>.txt-search-top>input {
   width: 100%;
   display: inline-block;
-  height: 44px;
+  height: 35px;
   border-radius: 5px;
   background-color: #fff;
   border: 1px solid #dcdcdc;
@@ -794,8 +793,8 @@ header, footer, section {
 
 .header .search>form>.txt-search-top>.icon-search {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 7px;
+  right: 10px;
   opacity: 0.5;
 }
 
@@ -1108,18 +1107,15 @@ footer .container .social-footer>li a:hover {
   text-align: center;
 }
 
-
 @media (min-width: 768px) {
   .sidenav {
     background-color: #4267b2;
     border-bottom: 0px;
     display: block;
   }
-
   .sidenav .header_top .right .social {
     background-color: #29487d;
   }
-
   .sidenav .header_top .right>.login>li {
     width: auto;
     position: relative;
@@ -1129,11 +1125,11 @@ footer .container .social-footer>li a:hover {
     border-left: 0px !important;
     border-right: 0px!important;
   }
-
-  #mySidenav{min-height: 36px;}
-
+  #mySidenav {
+    min-height: 36px;
+  }
   .sidenav .header_top .right>.login>li .login-ct>.btn-login:hover {
-    background-color: #c8070e;
+    /* background-color: #c8070e; */
   }
   .sidenav .header_top .right>.login>li .login-ct>.btn-login-facebook {
     background-color: #3B5999;
@@ -1144,32 +1140,60 @@ footer .container .social-footer>li a:hover {
   .sidenav .header_top .right>.login>li .login-ct>.btn-login-facebook:hover {
     background-color: #283d6b;
   }
-  .sidenav .header_top .left .nav-item .search-form .txt-search-top{
+  .sidenav .header_top .left .nav-item .search-form .txt-search-top {
     display: flex;
     position: absolute;
     width: 20%;
     background: aliceblue;
     border-radius: 4px;
   }
-  .sidenav .header_top .left .nav-item .search-form .txt-search-top input{
+  .sidenav .header_top .left .nav-item .search-form .txt-search-top input {
     height: 36px;
   }
-  .sidenav .header_top .left .nav-item .search-form .txt-search-top button{
+  .sidenav .header_top .left .nav-item .search-form .txt-search-top button {
     margin: 6px 5px 0px 10px;
   }
-
-  .sidenav .header_top .left .nav-item.search{
+  .sidenav .header_top .left .nav-item.search {
     width: 40%;
     height: 35px;
   }
-
-  .sidenav .header_top .left .nav-item.logo img{
+  .sidenav .header_top .left .nav-item.logo img {
+    height: 36px;
+    border-radius: 5px;
+  }
+  .sidenav .header_top .left .nav-item.logo a {
+    padding: 0px;
     height: 35px;
   }
-
-  #main .header_middle .menu_second nav ul li{
+  #main .header_middle .menu_second nav ul li {
     /* background: antiquewhite;
     border-radius: 4px;
     margin: 2px; */
   }
+  ins {
+    width: 100% !important;
+  }
+  ins iframe {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .adsbygoogle-noablate {
+    display: none !important;
+  }
+  .nav-logo-mobile{
+    height: 50px;
+  }
+  .nav-logo-mobile img{
+    width: 100%;
+  }
+}
+
+.google-auto-placed {
+  display: none !important;
+}
+
+.fb-comments iframe {
+  width: 100% !important;
 }
