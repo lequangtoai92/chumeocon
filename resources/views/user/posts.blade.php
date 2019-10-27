@@ -119,18 +119,6 @@ cho bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố
 </section>
 <script>
 
-var arr = [];
-
-$(".add-question").click(function(){
-var cauhoi = {cauhoi:$("#question").val(), traloi:$("#answer").val()};
-arr.push(cauhoi);
-
-$(".content-question").append("<h4>Câu hỏi: "  + $("#question").val() + "</h4><br>");
-$(".content-question").append("<p>Trả lời: " + $("#answer").val() + "</p>");
-$(".content-question").append("<hr>");
-});
-
-
 function readURL(input) {
     dialog_select_image.close();
     if (input.files && input.files[0]) {

@@ -322,3 +322,8 @@ Route:: post('dang-nhap/quen-mat-khau', [
 
 Route::get('/search',['uses' => 'SearchController@getSearch','as' => 'search']);
 
+
+Route::post('upload_image',[
+	'as'=>'upload_image',
+	'uses'=>'PostController@upload_image'
+]);

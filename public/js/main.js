@@ -79,42 +79,41 @@ function tinymce_init() {
         menubar: "edit format insert view image",
         toolbar: 'fontselect | fontsizeselect | undo redo | styleselect image | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor emoticons',
         removed_menuitems: 'newdocument',
-        image_list: [
-            {title: 'My image 1', value: 'https://www.tinymce.com/my1.gif'},
-            {title: 'My image 2', value: 'http://www.moxiecode.com/my2.gif'}
-          ],
         relative_urls: false,
         remove_script_host: false,
         document_base_url: (!window.location.origin ? window.location.protocol + "//" + window.location.host : window.location.origin) + "/",
         image_title: true,
         automatic_uploads: true,
+        images_upload_url: 'upload_image',
         file_picker_types: 'image',
-        file_picker_callback: function (cb, value, meta) {
-            var input = document.createElement('input');
-            input.setAttribute('type', 'file');
-            input.setAttribute('accept', 'image/*');
-            input.onchange = function () {
-                var file = this.files[0];
-                var reader = new FileReader();
-
-                reader.onload = function () {
-                    var id = 'blobid' + (new Date()).getTime();
-                    var blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                    var base64 = reader.result.split(',')[1];
-                    var blobInfo = blobCache.create(id, file, base64);
-                    blobCache.add(blobInfo);
-                    cb(blobInfo.blobUri(), { title: file.name });
-                };
-                reader.readAsDataURL(file);
-            };
-            input.click();
-        },
+        images_upload_handler : function(blobInfo, success, failure) {
+			var xhr, formData;
+			xhr = new XMLHttpRequest();
+			xhr.withCredentials = false;
+            xhr.open('POST', 'upload_image');
+			xhr.onload = function() {
+				var json;
+				if (xhr.status != 200) {
+					failure('HTTP Error: ' + xhr.status);
+					return;
+				}
+				json = JSON.parse(xhr.responseText);
+				if (!json || typeof json.file_path != 'string') {
+					failure('Invalid JSON: ' + xhr.responseText);
+					return;
+				}
+				success(json.file_path);
+			};
+			formData = new FormData();
+			formData.append('file', blobInfo.blob(), blobInfo.filename());
+			xhr.send(formData);
+		},
         file_browser_callback: function (field_name, url, type, win) {
         },
         content_style: ".mce-content-body {font-size:16px;}",
     });
     tinymce.init({
-        height: 100,
+        height: 200,
         width : "100%",
         selector: ".question_content_main_tinymce",
         plugin: 'a_tinymce_plugin',

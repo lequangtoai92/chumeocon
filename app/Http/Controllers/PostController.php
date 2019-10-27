@@ -23,6 +23,29 @@ class PostController extends Controller
         return view('user.posts',compact('list_personality', 'list_categories', 'list_status'));
     }
 
+    public function upload_image(){
+        $this->middleware('auth');
+        reset($_FILES);
+        $file = current($_FILES);
+        if(is_uploaded_file($file['tmp_name']))
+        {
+            if(preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $file['name'])){
+                header("HTTP/1.1 400 Invalid file name,Bad request");
+                return;
+            }
+            // Validating Image file type by extensions
+            if(!in_array(strtolower(pathinfo($file['name'], PATHINFO_EXTENSION)), array("gif", "jpg", "png"))){
+                header("HTTP/1.1 400 Invalid extension,Bad request");
+                return;
+            }
+            $folder_image = $this->creatFolderUploadImage();
+            $file_name ='truyenchumeocon_posts_' . Auth::user()->id . '_' . round(microtime(true) * 1000) . '.' . substr($file['name'],-3);
+            $fileName = $folder_image . $file_name;
+            move_uploaded_file($file['tmp_name'], $fileName);
+            echo json_encode(array('file_path' => $fileName));
+        }
+    }
+
     public function postPosts(Request $req){
         $this->validate($req,
             [
@@ -85,6 +108,15 @@ class PostController extends Controller
     function creatFolder(){
         $month=date("Y-m");
         $structure = 'public/image_post/'.$month.'/';
+        if (!file_exists($structure)) {
+            mkdir($structure, 0777, true);
+        }
+        return $structure;
+    }
+
+    function creatFolderUploadImage(){
+        $month=date("Y-m");
+        $structure = 'public/uploads/'.$month.'/';
         if (!file_exists($structure)) {
             mkdir($structure, 0777, true);
         }

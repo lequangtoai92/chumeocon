@@ -2,7 +2,8 @@
     <div class="container header_top">
         <div class="right">
             <ul class="social">
-                <li><a href="../#" target="_blank"><i class="icon icon-social-facebook"></i></a></li>
+                <li><a href="https://www.facebook.com/Truy%E1%BB%87n-ch%C3%BA-m%C3%A8o-con-104213484322000/"
+                        target="_blank"><i class="icon icon-social-facebook"></i></a></li>
                 <li><a href="../#" target="_blank"><i class="icon icon-social-youtube"></i></a></li>
                 <li><a href="../#" target="_blank"><i class="icon icon-social-twitter"></i></a></li>
             </ul>
@@ -22,7 +23,7 @@
                     @endif
                     <div class="hidden-xs hidden-sm sub dropdown-menu sub-menu-user">
                         <ul class="sub-menu-user">
-                            @if(Auth::check())
+                            @if(Auth::check())                                
                             <li>
                                 <a href="../tai-khoan">Tài khoản</a>
                             </li>
@@ -61,61 +62,16 @@
         <div class="left" hidden>
             <nav class="menu-main">
                 <ul>
-                    <li class="nav-item show">
-                        <a class="chevron right" href="javascript:void(0)"><i class="icon icon-wholesale"></i> Chú mèo
-                            con</a>
-                        <nav class="navbar hidden-md hidden-lg menu-media">
-                            <ul class="navbar-nav">
-                            @if(Auth::check())
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="../#" role="button" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">Cá nhân</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="../tai-khoan">Tài khoản</a>
-                                        <a class="dropdown-item" href="../posts">Viết bài</a>
-                                        <a class="dropdown-item" href="../dang-phim-hoat-hinh">Đăng phim hoạt hình</a>
-                                        <a class="dropdown-item" href="../my-posts">Bài viết</a>
-                                    </div>
-                                </li>
-                                @endif
-                                <li class="nav-item">
-                                    <a class="dropdown-item" href="../truyen-moi">Truyện mới</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="../co-tich" role="button" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">Cổ tích</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="../co-tich-viet-nam">Cổ tích Việt Nam</a>
-                                        <a class="dropdown-item" href="../co-tich-nhat-ban">Cổ tích Nhật Bản</a>
-                                        <a class="dropdown-item" href="../truyen-co-grimms">Truyện cổ Grimms</a>
-                                        <a class="dropdown-item" href="../than-thoai-hi-lap">Thần thoại Hi Lạp</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" href="../ca-dao-tuc-ngu">Ca dao - Tục ngữ</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="phim-hoat-hinh" role="button" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">Phim hoạt hình</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="do-re-mon">Đô rê mon</a>
-                                        <a class="dropdown-item" href="tom-and-jerry">Tom and Jerry</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" href="tho">Thơ</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" href="../truyen-cuoi">Truyện cười</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" href="../gop-y">Góp ý</a>
-                                </li>
+                <li class="nav-item logo hidden-xs hidden-sm"><a class="logo" href="{!! assetRemote('index') !!}"><img
+                            src="{!! assetRemote('img/img-logo.png') !!}" alt="Logo truyện chú mèo con"></a></li>
+                <li class="nav-item search">
 
-                            </ul>
-                        </nav>
+                    <form class="search-form hidden-xs hidden-sm" action="/search" method="get">
+                        <div class="txt-search-top">
+                            <input type="text" name="q" placeholder="Search..">
+                            <button class="icon icon-search btn"></button></div>
+                    </form>
                     </li>
-                    <li class="nav-item"><a href="#" class="chevron right"><i class="icon icon-deals"></i> Special Deals</a></li>
                 </ul>
             </nav>
         </div>

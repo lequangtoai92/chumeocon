@@ -82,7 +82,6 @@
     </form>
 </section>
 @include('include.modal_getid_youtube')
-@endsection
 <script>
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -97,3 +96,4 @@ function readURL(input) {
     }
 }
 </script>
+@endsection

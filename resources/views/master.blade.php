@@ -29,7 +29,7 @@
         j.src =
             'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NCTRQXF-FA');
+    })(window, document, 'script', 'dataLayer', 'GTM-NCTRQXF_local');
     </script>
     <!-- End Google Tag Manager -->
     <meta name="author" content="@yield('meta_author')">
@@ -48,11 +48,21 @@
         enable_page_level_ads: true
     });
     </script>
+
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+        OneSignal.init({
+            appId: "9dec366d-7f6a-461f-b627-1b301b1fb9ab",
+        });
+    });
+    </script>
 </head>
 
 <body class="">
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NCTRQXF" height="0" width="0"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NCTRQXF_local" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div id="fb-root"></div>
@@ -66,7 +76,7 @@
     @include('footer')
 
     <script src="{!! assetRemote('js/datepicker.js') !!}"></script>
-    <script src="{!! assetRemote('dist/tinymce_1/js/tinymce/tinymce.min.js') !!}"></script>
+    <script src="{!! assetRemote('dist/tinymce/js/tinymce/tinymce.min.js') !!}"></script>
     <script src="{!! assetRemote('vendor/unveil-master/jquery.unveil.min.js') !!}"></script>
     <script src="{!! assetRemote('vendor/bootstrap-4.3.1/js/bootstrap.min.js') !!}"></script>
     <script src="{!! assetRemote('vendor/OwlCarousel2-2.3.4/dist/owl.carousel.min.js') !!}"></script>

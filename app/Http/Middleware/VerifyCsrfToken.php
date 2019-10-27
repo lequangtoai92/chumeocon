@@ -30,6 +30,7 @@ class VerifyCsrfToken extends Middleware
         '/tai-khoan/update-password',
         '//tai-khoan/update-intro',
         '//dang-phim-hoat-hinh',
+        '//upload_image',
         //
     ];
 }

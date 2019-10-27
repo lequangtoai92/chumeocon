@@ -102,6 +102,7 @@ class PageController extends Controller
     }
 
     public function getGreekMythology(){
+        return redirect('index');
         $page_view = 5;
         $list_ranking_week = $this->getRankingWeek(5);
         $list_posts = DB::table('posts')
@@ -173,6 +174,7 @@ class PageController extends Controller
     }
 
     public function getNews(){
+        return redirect('index');
         $page_view = 16;
         $list_ranking_week = $this->getRankingWeek(9);
         $list_posts = DB::table('posts')
@@ -183,6 +185,7 @@ class PageController extends Controller
     }
 
     public function getVietnameseProverbs(){
+        return redirect('index');
         $page_view = 6;
         $list_ranking_week = $this->getRankingWeek(6);
         $list_posts = DB::table('posts')
@@ -193,6 +196,7 @@ class PageController extends Controller
     }
 
     public function getGoodWord(){
+        return redirect('index');
         $page_view = 7;
         $list_ranking_week = $this->getRankingWeek(7);
         $list_posts = DB::table('posts')

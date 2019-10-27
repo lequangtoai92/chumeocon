@@ -1,7 +1,8 @@
 <div id="mySidenav" class="sidenav">
     <div class="nav-logo-mobile hidden-md hidden-lg">
-        <li class="nav-item logo hidden-md hidden-lg"><a class="logo" href="{!! assetRemote('index') !!}"><img
-                    src="{!! assetRemote('img/img-logo.png') !!}" alt="Logo truyện chú mèo con"></a>
+        <li class="nav-item logo hidden-md hidden-lg">
+        <a class="logo" href="{!! assetRemote('index') !!}"><img
+                    src="{!! assetRemote('img/img-logo_1.png') !!}" alt="Logo truyện chú mèo con"></a>
     </div>
     <div class="container header_top">
         <div class="right">
@@ -28,7 +29,7 @@
                     @endif
                     <div class="hidden-xs hidden-sm sub dropdown-menu sub-menu-user">
                         <ul class="sub-menu-user">
-                            @if(Auth::check())
+                        @if(Auth::check())
                             @if (Auth::user()->authorities < 3 ) <li>
                                 <a href="{!! assetRemote('admin') !!}">Admin</a>
                 </li>
@@ -45,12 +46,7 @@
                 <li>
                     <a href="{!! assetRemote('my-posts') !!}">Bài viết</a>
                 </li>
-                <!-- <li>
-                                <a href="{!! assetRemote('messages') !!}">Tin nhắn</a>
-                            </li>
-                            <li>
-                                <a href="{!! assetRemote('notifice') !!}">Thông báo</a>
-                            </li> -->
+                
                 <li>
                     <a href="{!! assetRemote('dang-xuat') !!}" class="btn-logout"><i class="icon icon-sign-out"
                             aria-hidden="true"></i>
@@ -85,8 +81,8 @@
                                 <a class="nav-link dropdown-toggle" href="../#" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">Cá nhân</a>
                                 <div class="dropdown-menu">
-                                    @if (Auth::user()->authorities < 3 ) <a class="dropdown-item"
-                                        href="{!! assetRemote('tai-khoan') !!}">Admin</a>
+                                        @if (Auth::user()->authorities < 3 ) 
+                                            <a class="dropdown-item" href="{!! assetRemote('tai-khoan') !!}">Admin</a>
                                         @endif
                                         <a class="dropdown-item" href="{!! assetRemote('tai-khoan') !!}">Tài khoản</a>
                                         <a class="dropdown-item" href="{!! assetRemote('posts') !!}">Viết bài</a>

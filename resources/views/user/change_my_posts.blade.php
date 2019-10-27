@@ -119,7 +119,6 @@
         </div>
     </form>
 </section>
-@endsection
 <script>
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -134,4 +133,6 @@ function readURL(input) {
     }
 }
 </script>
+
+@endsection
 
