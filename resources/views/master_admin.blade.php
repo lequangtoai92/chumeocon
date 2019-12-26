@@ -9,11 +9,20 @@
     <title>Truyện chú mèo con</title>
     <meta name="description" itemprop="description"
         content="Nơi lưu trữ những mẫu truyện hay, mang tính giáo dục để bố mẹ kể cho bé nghe nhằm giúp cho bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố mẹ và con cái">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/template.css">
-    <link rel="stylesheet" href="../css/top.css">
-    <link rel="stylesheet" href="../css/admin/admin.css">
-    <script src="../js/jquery.js"></script>
+    <link rel="stylesheet" href="{!! assetRemote('css/style.css') !!}">
+    <link rel="stylesheet" href="{!! assetRemote('css/template.css') !!}">
+    <link rel="stylesheet" href="{!! assetRemote('css/top.css') !!}">
+    <link rel="stylesheet" href="{!! assetRemote('css/admin/admin.css') !!}">
+    
+    <!-- Main styles for this application-->
+    <!-- <link rel="stylesheet" href="{!! assetRemote('admin/css/coreui-icons.min.css') !!}">
+    <link rel="stylesheet" href="{!! assetRemote('admin/css/flag-icon.min.css') !!}">
+    <link rel="stylesheet" href="{!! assetRemote('admin/css/font-awesome.min.css') !!}">
+    <link rel="stylesheet" href="{!! assetRemote('admin/css/simple-line-icons.css') !!}">
+    <link rel="stylesheet" href="{!! assetRemote('admin/css/style.min.css') !!}"> -->
+
+
+    <script src="{!! assetRemote('js/jquery.js') !!}"></script>
 </head>
 <body class="">
 @include('admin.header')

@@ -41,9 +41,6 @@
                     <a href="{!! assetRemote('posts') !!}">Viết bài</a>
                 </li>
                 <li>
-                    <a href="{!! assetRemote('dang-phim-hoat-hinh') !!}">Đăng phim hoạt hình</a>
-                </li>
-                <li>
                     <a href="{!! assetRemote('my-posts') !!}">Bài viết</a>
                 </li>
                 
@@ -82,12 +79,10 @@
                                     aria-haspopup="true" aria-expanded="false">Cá nhân</a>
                                 <div class="dropdown-menu">
                                         @if (Auth::user()->authorities < 3 ) 
-                                            <a class="dropdown-item" href="{!! assetRemote('tai-khoan') !!}">Admin</a>
+                                            <a class="dropdown-item" href="{!! assetRemote('admin') !!}">Admin</a>
                                         @endif
                                         <a class="dropdown-item" href="{!! assetRemote('tai-khoan') !!}">Tài khoản</a>
                                         <a class="dropdown-item" href="{!! assetRemote('posts') !!}">Viết bài</a>
-                                        <a class="dropdown-item" href="{!! assetRemote('dang-phim-hoat-hinh') !!}">Đăng
-                                            phim hoạt hình</a>
                                         <a class="dropdown-item" href="{!! assetRemote('my-posts') !!}">Bài viết</a>
                                 </div>
                             </li>
@@ -107,7 +102,7 @@
                                         Grimms</a>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown">
+                            <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="phim-hoat-hinh" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Phim hoạt
                                     hình</a>
@@ -115,7 +110,7 @@
                                     <a class="dropdown-item" href="do-re-mon">Đô rê mon</a>
                                     <a class="dropdown-item" href="tom-and-jerry">Tom and Jerry</a>
                                 </div>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="dropdown-item" href="tho">Thơ</a>
                             </li>
@@ -133,6 +128,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="dropdown-item" href="{!! assetRemote('gop-y') !!}">Góp ý</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="{!! assetRemote('danh-muc/1') !!}">Danh mục</a>
                             </li>
 
                         </ul>
@@ -182,7 +180,7 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li class="dropdown hidden-xs hidden-sm">
+                                <!-- <li class="dropdown hidden-xs hidden-sm">
                                     <a class="nav-link" href="{!! assetRemote('phim-hoat-hinh') !!}">Phim hoạt
                                         hình</a>
                                     <div class="dropdown-menu">
@@ -195,12 +193,13 @@
                                                     Jerry</a></li>
                                         </ul>
                                     </div>
-                                </li>
+                                </li> -->
                                 <li class=""><a href="{!! assetRemote('tho') !!}">Thơ</a></li>
                                 <li class="hidden-xs hidden-sm"><a href="{!! assetRemote('ve') !!}">Vè</a></li>
                                 <li class="hidden-xs hidden-sm"><a href="{!! assetRemote('cau-do') !!}">Câu đố</a></li>
                                 <li><a href="{!! assetRemote('truyen-cuoi') !!}">Truyện cười</a></li>
                                 <li class="hidden-xs hidden-sm"><a href="{!! assetRemote('gop-y') !!}">Góp ý</a></li>
+                                <li class="hidden-xs hidden-sm"><a href="{!! assetRemote('danh-muc/1') !!}">Danh mục</a></li>
                             </ul>
                         </nav>
                     </div>

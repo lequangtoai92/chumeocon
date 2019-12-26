@@ -11,7 +11,12 @@
  */
 function assetRemote($image_path)
 {
-    $url = DOMAIN_ROOT . '/' . $image_path;
+    if (strpos($image_path, 'truyencotich') == true) { 
+        $url = $image_path;
+    } 
+    else { 
+        $url = DOMAIN_ROOT . '/' . $image_path;
+    } 
 
     $useGetParameter = false;
     $extensions = ['.css', '.js'];
@@ -22,7 +27,7 @@ function assetRemote($image_path)
         }
     }
 
-    return ($useGetParameter ? $url . '?time=6' : $url);
+    return ($useGetParameter ? $url . '?time=9' : $url);
 }
 
 /**

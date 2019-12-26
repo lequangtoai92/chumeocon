@@ -1,16 +1,19 @@
 @extends('master_admin')
 @section('content')
-<link rel="stylesheet" href="{!! assetRemote('css/admin/acount.css') !!}">z
+<link rel="stylesheet" href="{!! assetRemote('css/admin/acount.css') !!}">
 <section class="wrapper page-admin-acount">
     <div class="media container_page">
-    @include('admin.menu_left')
+        @include('admin.menu_left')
         <div class="media-body">
             <select class="form-control select-option-top" id="select_account_status">
-                <option class="select-option" value="0">Người dùng </option>
+                <option class="select-option" value="1">Tất cả</option>
                 <option class="select-option" value="2">Admin 1</option>
                 <option class="select-option" value="3">Admin 2</option>
+                <option class="select-option" value="5">Người dùng</option>
+                <option class="select-option" value="6">Người mới</option>
+                <option class="select-option" value="7">Cảnh cáo</option>
                 <option class="select-option" value="8">Tạm khóa</option>
-                <option class="select-option" value="9">Xóa</option>
+                <option class="select-option" value="9">Banner</option>
             </select>
             <table id="table_account" class="table table-striped table-hover">
                 <thead>
@@ -28,7 +31,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($account as $item)
+                    @foreach($account as $item)
                     <tr class="td-hover">
                         <td class="td-1" title="{{$item->full_name}}">{{$item->full_name}}</td>
                         <td class="td-2" title="{{$item->user_name}}">{{$item->user_name}}</td>
@@ -41,11 +44,12 @@
                         <td class="td-9">
                             <select class="form-control select-option" id="select_account_status_{{$item->id}}">
                                 <option class="select-option" disabled value="">Duyệt</option>
-                                <option class="select-option" value="0">Người dùng</option>
                                 <option class="select-option" value="2">Admin 1</option>
                                 <option class="select-option" value="3">Admin 2</option>
-                                <option class="select-option" value="8">Khóa</option>
-                                <option class="select-option" value="9">Xóa</option>
+                                <option class="select-option" value="5">Người dùng</option>
+                                <option class="select-option" value="7">Cảnh cáo</option>
+                                <option class="select-option" value="8">Tạm khóa</option>
+                                <option class="select-option" value="9">Banner</option>
                             </select>
                         </td>
                         <td class="td-11">
@@ -65,6 +69,11 @@
 </section>
 @include('include.dialog_show_account')
 <script>
+$('#select_account_status').val(window.location.href.split('/admin/account/')[1]);
+$('#select_account_status').on('change', function() {
+    window.location.href = "/admin/account/" + this.value;
+});
+
 $("#select_account_status").change(function() {
     $.ajax({
         url: '/admin/getAccountStatus/' + $("#select_account_status").val()
@@ -109,6 +118,5 @@ $(".td-2").click(function() {
 $(".close-dialog").click(function() {
     document.getElementById('dialog_show_account').close();
 });
-
 </script>
 @endsection

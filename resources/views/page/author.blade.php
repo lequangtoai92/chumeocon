@@ -17,12 +17,12 @@
                 <div class="row">
                     <div class="body-info body-left">
                         <div class="show-image">
-                            <img id="image_select" src="{{assetRemote($user->avatar)}}" alt="your image" />
+                            <img id="image_select" src="{{isset($user->avatar) ? assetRemote($user->avatar) : ''}}" alt="your image" />
                         </div>
                         <!-- <div class="group-scores">
                             <div class="form-group">
                                 <label>Ngày tham gia: </label>
-                                <span> {{$user->time_creat}}</span>
+                                <span> {{isset($user->time_creat) ? $user->time_creat : ''}}</span>
                             </div>
                             <div class="form-group">
                                 <label>Đánh giá: </label>

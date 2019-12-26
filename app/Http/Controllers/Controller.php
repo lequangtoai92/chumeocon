@@ -10,7 +10,21 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    // public function __construct() {
-    //     var_dump(Auth::user());exit;
-    // }z
+
+    protected $view_component;
+    protected $view_meta;
+    
+    public function __construct() {
+        $this->view_component = (object)array();
+        $this->view_meta = (object)array();
+        $this->view_meta->seo_title = 'Truyện chú mèo con - truyện cổ tích';
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - truyện cổ tích';
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - truyện cổ tích';
+        $this->view_meta->seo_author = 'Truyện chú mèo con - truyện cổ tích'; 
+        $this->view_meta->seo_description = 'Nơi lưu trữ những mẫu truyện hay, mang tính giáo dục để bố mẹ kể cho bé nghe nhằm giúp cho bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố mẹ và con cái';
+        $this->view_meta->seo_og_description = 'Nơi lưu trữ những mẫu truyện hay, mang tính giáo dục để bố mẹ kể cho bé nghe nhằm giúp cho bé phát triển tư duy tốt hơn và gắn kết tình cảm giữa bố mẹ và con cái';
+        $this->view_meta->seo_og_url = 'http://truyenchumeocon.com';
+        $this->view_meta->seo_og_image = 'http://truyenchumeocon.com/img/img-logo.png';
+        $this->view_meta->seo_og_type = 'website';
+    }
 }

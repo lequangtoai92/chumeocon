@@ -8,6 +8,7 @@ use App\Intro;
 use App\Ranking;
 use App\Rate;
 use App\Connotation;
+use App\Categories;
 use Session;
 use Hash;
 use Auth;
@@ -18,209 +19,290 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    // public function __construct() {
-    //     var_dump(Auth::user());
-    // }
-
     public function getIndex(){
-        $page_view = 0;
-        $list_ranking_week = $this->getRankingWeek(0);
-        $list_yotube_top = $this->getYoutubeTop(0);
-        $list_top = DB::table('posts')
+        $this->view_component->page_view = 0;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(0);
+        $this->view_component->list_yotube_top = $this->getYoutubeTop(0);
+        $this->view_component->list_new_story = DB::table('posts')
             ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('posts.status', '5')
-            ->where('categories.group', '=' , 1)
+            ->where('categories.id', '1')
             ->orderBy('id', 'DESC')
-            ->skip(0)->take(3)->get();
-        $list_posts = DB::table('posts')
+            ->paginate(10);
+        $this->view_component->list_fairy_tales = DB::table('posts')
             ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('posts.status', '5')
-            ->where('categories.group', '=' , 1)
+            ->whereIn('categories.id', ['2', '3', '4', '5'])
             ->orderBy('id', 'DESC')
-            ->skip(3)->paginate(15);
-        return view('page.index', compact('page_view', 'list_top', 'list_posts', 'list_ranking_week', 'list_yotube_top'));
+            ->paginate(10);
+        $this->view_component->list_verse = DB::table('posts')
+            ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
+            ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
+            ->where('posts.status', '5')
+            ->where('categories.id', '9')
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+        $this->view_component->list_ve = DB::table('posts')
+            ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
+            ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
+            ->where('posts.status', '5')
+            ->where('categories.id', '13')
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+        $this->view_component->list_quiz = DB::table('posts')
+            ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
+            ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
+            ->where('posts.status', '5')
+            ->where('categories.id', '14')
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+        $this->view_component->list_funny_story = DB::table('posts')
+            ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
+            ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
+            ->where('posts.status', '5')
+            ->where('categories.id', '8')
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Truyện cổ tích';    
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Truyện cổ tích';    
+        $this->view_meta->seo_title = 'Truyện chú mèo con - Truyện cổ tích';    
+        return view('page.index', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getNewStory(){
-        $page_view = 1;
-        $list_ranking_week = $this->getRankingWeek(1);
-        $list_posts = DB::table('posts')
+        $this->view_component->page_view = 1;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(1);
+        $this->view_component->list_posts = DB::table('posts')
             ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('categories.id', '1')
             ->where('posts.status', '5')
             ->orderBy('id', 'DESC')
             ->paginate(15);
-        return view('page.category',compact('page_view', 'list_posts', 'list_ranking_week'));
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Truyện kể cho bé';
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Truyện kể cho bé';
+        $this->view_meta->seo_title = 'Truyện chú mèo con - Truyện kể cho bé';
+        return view('page.category', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getFairyTales (){
-        $page_view = 0;
-        $list_ranking_week = $this->getRankingWeek(2);
-        $list_posts =DB::table('posts')
+        $this->view_component->page_view = 0;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(2);
+        $this->view_component->list_posts =DB::table('posts')
                         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
                         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
                         ->whereIn('categories.id', ['2', '3', '4', '5'])
                         ->where('posts.status', 5)
                         ->orderBy('id', 'DESC')->paginate(15);
-        return view('page.category',compact('page_view', 'list_posts', 'list_ranking_week'));
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Truyện cổ tích';
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Truyện cổ tích';
+        $this->view_meta->seo_title = 'Truyện chú mèo con - Truyện cổ tích';
+        return view('page.category', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getVietnameseFairyTales (){
-        $page_view = 2;
-        $list_ranking_week = $this->getRankingWeek(2);
-        $list_posts = DB::table('posts')
+        $this->view_component->page_view = 2;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(2);
+        $this->view_component->list_posts = DB::table('posts')
                         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
                         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
                         ->where([['categories.id','=',2], ['posts.status','=',5]])
                         ->orderBy('id', 'DESC')->paginate(15);
-        return view('page.category',compact('page_view', 'list_posts', 'list_ranking_week'));
+                        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Truyện cổ tích';
+                        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Truyện cổ tích';
+                        $this->view_meta->seo_title = 'Truyện chú mèo con - Truyện cổ tích';
+        return view('page.category', (array)$this->view_component, (array)$this->view_meta);
     }
 
-    public function getJapanFairyTales(){
-        $page_view = 3;
-        $list_ranking_week = $this->getRankingWeek(3);
-        $list_posts = DB::table('posts')
+    public function getWordFairyTales(){
+        $this->view_component->page_view = 3;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(3);
+        $this->view_component->list_posts = DB::table('posts')
                         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
                         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
                         ->where([['categories.id','=',3], ['posts.status','=',5]])
                         ->orderBy('id', 'DESC')->paginate(15);
-        return view('page.category',compact('page_view', 'list_posts', 'list_ranking_week'));
+                        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Truyện cổ tích thế giới';
+                        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Truyện cổ tích thế giới';
+                        $this->view_meta->seo_title = 'Truyện chú mèo con - Truyện cổ tích thế giới';
+        return view('page.category', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getGrimmsFairyTales(){
-        $page_view = 4;
-        $list_ranking_week = $this->getRankingWeek(4);
-        $list_posts = DB::table('posts')
+        $this->view_component->page_view = 4;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(4);
+        $this->view_component->list_posts = DB::table('posts')
                         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
                         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
                         ->where([['categories.id','=',4], ['posts.status','=',5]])
                         ->orderBy('id', 'DESC')->paginate(15);
-        return view('page.category',compact('page_view', 'list_posts', 'list_ranking_week'));
+                        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Truyện cổ Grimms';
+                        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Truyện cổ Grimms';
+                        $this->view_meta->seo_title = 'Truyện chú mèo con - Truyện cổ Grimms';
+        return view('page.category', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getGreekMythology(){
         return redirect('index');
-        $page_view = 5;
-        $list_ranking_week = $this->getRankingWeek(5);
-        $list_posts = DB::table('posts')
+        $this->view_component->page_view = 5;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(5);
+        $this->view_component->list_posts = DB::table('posts')
                         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
                         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
                         ->where([['categories.id','=',5], ['posts.status','=',5]])
                         ->orderBy('id', 'DESC')->paginate(15);
-        return view('page.category',compact('page_view', 'list_posts', 'list_ranking_week'));
+                        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Truyện thần thoại Hi Lạp';
+                        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Truyện thần thoại Hi Lạp';
+                        $this->view_meta->seo_title = 'Truyện chú mèo con - Truyện thần thoại Hi Lạp';
+        return view('page.category', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getCartoon(){
-        $page_view = 0;
-        $list_ranking_week = $this->getRankingWeek(10);
-        $list_posts = DB::table('posts')
+        return redirect('index');
+        $this->view_component->page_view = 0;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(10);
+        $this->view_component->list_posts = DB::table('posts')
         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
         ->whereIn('categories.id', ['10', '11', '12'])->where('posts.status','=',5)->orderBy('id', 'DESC')->paginate(20);
-        return view('page.cartoon',compact('page_view', 'list_posts', 'list_ranking_week'));
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Truyện cổ tích';
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Truyện cổ tích';
+        $this->view_meta->seo_title = 'Truyện chú mèo con - Truyện cổ tích';
+        return view('page.cartoon', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getDoremon(){
-        $page_view = 11;
-        $list_ranking_week = $this->getRankingWeek(11);
-        $list_posts = DB::table('posts')
+        return redirect('index');
+        $this->view_component->page_view = 11;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(11);
+        $this->view_component->list_posts = DB::table('posts')
         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
         ->where([['categories.id','=',11], ['posts.status','=',5]])->orderBy('id', 'DESC')->paginate(20);
-        return view('page.cartoon',compact('page_view', 'list_posts', 'list_ranking_week'));
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Truyện cổ tích';
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Truyện cổ tích';
+        $this->view_meta->seo_title = 'Truyện chú mèo con - Truyện cổ tích';
+        return view('page.cartoon', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getTomAndJerry(){
-        $page_view = 12;
-        $list_ranking_week = $this->getRankingWeek(12);
-        $list_posts = DB::table('posts')
+        return redirect('index');
+        $this->view_component->page_view = 12;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(12);
+        $this->view_component->list_posts = DB::table('posts')
         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
         ->where([['categories.id','=',12], ['posts.status','=',5]])->orderBy('id', 'DESC')->paginate(20);
-        return view('page.cartoon',compact('page_view', 'list_posts', 'list_ranking_week'));
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Truyện cổ tích';
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Truyện cổ tích';
+        $this->view_meta->seo_title = 'Truyện chú mèo con - Truyện cổ tích';
+        return view('page.cartoon', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getVerse(){
-        $page_view = 9;
-        $list_ranking_week = $this->getRankingWeek(9);
-        $list_posts = DB::table('posts')
+        $this->view_component->page_view = 9;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(9);
+        $this->view_component->list_posts = DB::table('posts')
         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
         ->where([['categories.id','=',9], ['posts.status','=',5]])->orderBy('id', 'DESC')->paginate(15);
-        return view('page.category',compact('page_view', 'list_posts', 'list_ranking_week'));
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Thơ thiếu nhi';
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Thơ thiếu nhi';
+        $this->view_meta->seo_title = 'Truyện chú mèo con - Thơ thiếu nhi';
+        return view('page.category', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getVe(){
-        $page_view = 13;
-        $list_ranking_week = $this->getRankingWeek(9);
-        $list_posts = DB::table('posts')
+        $this->view_component->page_view = 13;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(9);
+        $this->view_component->list_posts = DB::table('posts')
         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
         ->where([['categories.id','=',13], ['posts.status','=',5]])->orderBy('id', 'DESC')->paginate(15);
-        return view('page.category',compact('page_view', 'list_posts', 'list_ranking_week'));
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Vè dan gian';
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Vè dan gian';
+        $this->view_meta->seo_title = 'Truyện chú mèo con - Vè dan gian';
+        return view('page.category', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getQuiz(){
-        $page_view = 14;
-        $list_ranking_week = $this->getRankingWeek(9);
-        $list_posts = DB::table('posts')
+        $this->view_component->page_view = 14;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(9);
+        $this->view_component->list_posts = DB::table('posts')
         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
         ->where([['categories.id','=',14], ['posts.status','=',5]])->orderBy('id', 'DESC')->paginate(15);
-        return view('page.category',compact('page_view', 'list_posts', 'list_ranking_week'));
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Câu đố';
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Câu đố';
+        $this->view_meta->seo_title = 'Truyện chú mèo con - Câu đố';
+        return view('page.category', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getNews(){
         return redirect('index');
-        $page_view = 16;
-        $list_ranking_week = $this->getRankingWeek(9);
-        $list_posts = DB::table('posts')
+        $this->view_component->page_view = 16;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(9);
+        $this->view_component->list_posts = DB::table('posts')
         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
         ->where([['categories.id','=',16], ['posts.status','=',5]])->orderBy('id', 'DESC')->paginate(15);
-        return view('page.category',compact('page_view', 'list_posts', 'list_ranking_week'));
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Tin tức';
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Tin tức';
+        $this->view_meta->seo_title = 'Truyện chú mèo con - Tin tức';
+        return view('page.category', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getVietnameseProverbs(){
         return redirect('index');
-        $page_view = 6;
-        $list_ranking_week = $this->getRankingWeek(6);
-        $list_posts = DB::table('posts')
+        $this->view_component->page_view = 6;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(6);
+        $this->view_component->list_posts = DB::table('posts')
         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
         ->where([['categories.id','=',6], ['posts.status','=',5]])->orderBy('id', 'DESC')->paginate(15);
-        return view('page.category',compact('page_view', 'list_posts', 'list_ranking_week'));
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Ca dao tục ngữ';
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Ca dao tục ngữ';
+        $this->view_meta->seo_title = 'Truyện chú mèo con - Ca dao tục ngữ';
+        return view('page.category', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getGoodWord(){
         return redirect('index');
-        $page_view = 7;
-        $list_ranking_week = $this->getRankingWeek(7);
-        $list_posts = DB::table('posts')
+        $this->view_component->page_view = 7;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(7);
+        $this->view_component->list_posts = DB::table('posts')
         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
         ->where([['categories.id','=',7], ['posts.status','=',5]])->orderBy('id', 'DESC')->paginate(15);
-        return view('page.category',compact('page_view', 'list_posts', 'list_ranking_week'));
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Lời hay ý đẹp';
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Lời hay ý đẹp';
+        $this->view_meta->seo_title = 'Truyện chú mèo con - Lời hay ý đẹp';
+        return view('page.category', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getFunnyStory(){
-        $page_view = 8;
-        $list_ranking_week = $this->getRankingWeek(8);
-        $list_posts = DB::table('posts')
+        $this->view_component->page_view = 8;
+        $this->view_component->list_ranking_week = $this->getRankingWeek(8);
+        $this->view_component->list_posts = DB::table('posts')
         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
         ->where([['categories.id','=',8], ['posts.status','=',5]])->orderBy('id', 'DESC')->paginate(15);
-        return view('page.category',compact('page_view', 'list_posts', 'list_ranking_week'));
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Truyện cười';
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Truyện cười';
+        $this->view_meta->seo_title = 'Truyện chú mèo con - Truyện cười';
+        return view('page.category', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getFeedback(){
-        $list_ranking_week = $this->getRankingWeek(0);
-        $list_ranking_month = $this->getRankingMonth(0);
-        $list_feedback = Feedback::where('status','=',6)->orderBy('id', 'DESC')->paginate(30);
-        return view('page.feedback',compact('list_feedback', 'list_ranking_week'));
+        $this->view_component->list_ranking_week = $this->getRankingWeek(0);
+        $this->view_component->list_ranking_month = $this->getRankingMonth(0);
+        $this->view_component->list_feedback = Feedback::where('status','=',6)->orderBy('id', 'DESC')->paginate(30);
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - truyện cổ tích';
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - truyện cổ tích';
+        $this->view_meta->seo_title = 'Truyện chú mèo con - truyện cổ tích';
+        return view('page.feedback', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function postFeedback(Request $req){
@@ -256,8 +338,12 @@ class PageController extends Controller
         }
 
         $posts = Posts::where('slug',$req->slug)->first();
-        $list_ranking_week = $this->getRankingWeek($posts->categories);
-        $list_ranking_month = $this->getRankingMonth($posts->categories);
+        $this->view_component->posts = $posts;
+
+        if(!isset($posts)){
+            return redirect('index');
+        }
+        $this->view_component->list_ranking_week = $this->getRankingWeek($posts->categories);
         $ranking = new Ranking();
         $ranking->id_post = isset($posts->id) ? $posts->id : 0;
         $ranking->id_author = isset($posts->id_account) ? $posts->id_account : 0;
@@ -266,42 +352,50 @@ class PageController extends Controller
         DB::table('posts')
         ->where('id', $posts->id)
         ->update(['num_view' => $posts->num_view + 1]);
-        $connotation = Connotation::where('id_post',$posts->id)->first();
-        $related_post = $this->getRelatedPost($posts->categories, $posts->id);
-        return view('page.detail',compact('posts', 'related_post', 'list_ranking_week', 'list_ranking_month', 'connotation'));
+        $this->view_component->connotation = Connotation::where('id_post',$posts->id)->first();
+        $this->view_component->related_post = $this->getRelatedPost($posts->categories, $posts->id);
+        $this->view_meta->seo_og_title = $posts->title;
+        $this->view_meta->seo_og_site_name = $posts->title;
+        $this->view_meta->seo_title = $posts->title;
+        $this->view_meta->seo_description = $posts->summary;
+        $this->view_meta->seo_og_description = $posts->summary;
+        return view('page.detail', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getViewAuthor(Request $req){
-        $list_ranking_week = $this->getRankingWeek(0);
-        $list_ranking_month = $this->getRankingMonth(0);
-        $user = User::where('id', $req->id)->first();
-        $intro = Intro::where([['id_author', $req->id],['group', 1]])->first();
-        $list_posts = DB::table('posts')
+        $this->view_component->list_ranking_week = $this->getRankingWeek(0);
+        $this->view_component->user = User::where('id', $req->id)->first();
+        $this->view_component->intro = Intro::where([['id_author', $req->id],['group', 1]])->first();
+        $this->view_component->list_posts = DB::table('posts')
         ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
         ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
         ->where('id_account','=',$req->id)
         ->where('posts.status', '5')
         ->paginate(15);
-        if (!isset($intro)) {
-            $intro = (object) array('content' => 'Tác giả vẫn chưa giới thiệu về bản thân!');
+        if (!isset($this->view_component->intro)) {
+            $this->view_component->$intro = (object) array('content' => 'Tác giả vẫn chưa giới thiệu về bản thân!');
         }
-        return view('page.author',compact('user', 'intro', 'list_posts', 'list_ranking_week', 'list_ranking_month'));
+        $this->view_meta->seo_og_title = 'Truyện chú mèo con - Truyện cổ tích';
+        $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Truyện cổ tích';
+        $this->view_meta->seo_title = 'Truyện chú mèo con - Truyện cổ tích';
+        return view('page.author', (array)$this->view_component, (array)$this->view_meta);
     }
 
     public function getCategory(Request $req){
-        $list_ranking_week = $this->getRankingWeek(0);
+        $this->view_component->list_categories = Categories::where('status','=',1)->where('group','=',1)->get();
+        $this->view_component->list_ranking_week = $this->getRankingWeek(0);
         if ($req->id == 0) {
-            $list_posts = DB::table('posts')
+            $this->view_component->list_posts = DB::table('posts')
             ->select('posts.*', 'categories.name_categories', 'categories.categories AS categories_slug')
             ->leftJoin('categories', 'posts.categories', '=', 'categories.id')
             ->where('posts.status', '5')
             ->where('categories.group', '1')
             ->orderBy('id', 'DESC')->orderBy('id', 'DESC')->paginate(500);
         } else {
-            $list_posts = Posts::wherein('categories', [$req->id])->orderBy('id', 'DESC')->orderBy('id', 'DESC')->paginate(500);
+            $this->view_component->list_posts = Posts::wherein('categories', [$req->id])->where('posts.status', '5')->orderBy('id', 'DESC')->orderBy('id', 'DESC')->paginate(100);
             // $list_posts = Posts::where([['categories','=',$req->id], ['posts.status','=',5]])->orderBy('id', 'DESC')->paginate(50);
         }
-        return view('page.list-posts', compact('list_posts', 'list_ranking_week'));
+        return view('page.list-posts', (array)$this->view_component);
     }
 
     public function getYoutubeTop(){
@@ -316,9 +410,9 @@ class PageController extends Controller
 
     public function getRankingWeek($category){
         if ($category == 0) {
-            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 10');
+            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 15');
         } else {
-            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 10');
+            $ranking = DB::select('select id_post, id_categories, COUNT(id_post) AS view_post from ranking where time BETWEEN NOW() - INTERVAL 7 DAY AND NOW() GROUP BY id_post ORDER BY view_post DESC, ranking.time LIMIT 15');
         }
         $array=array();
         for ($i = 0; $i < count($ranking); $i++){
@@ -350,7 +444,7 @@ class PageController extends Controller
     }
 
     public function deleteRanking(){
-        // DELETE FROM wp_ranking_log WHERE date_log < NOW() - INTERVAL 30 DAY
+        // DELETE FROM ranking WHERE time < NOW() - INTERVAL 30 DAY
     }
 
     public function getRelatedPost($category, $id_post){

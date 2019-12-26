@@ -36,9 +36,9 @@ Route:: get('co-tich-viet-nam', [
     'uses' => 'PageController@getVietnameseFairyTales'
 ]);
 
-Route:: get('co-tich-nhat-ban', [
+Route:: get('co-tich-the-gioi', [
     'as' => 'trang-chu',
-    'uses' => 'PageController@getJapanFairyTales'
+    'uses' => 'PageController@getWordFairyTales'
 ]);
 
 Route:: get('truyen-co-grimms', [
@@ -224,17 +224,17 @@ Route:: get('admin', [
     'uses' => 'AdminController@getAdmin'
 ]);
 
-Route:: get('admin/account', [
+Route:: get('admin/account/{id}', [
     'as' => 'thong-tin',
     'uses' => 'AdminController@getAdminAccount'
 ]);
 
-Route:: get('admin/post', [
+Route:: get('admin/post/{id}', [
     'as' => 'thong-tin',
     'uses' => 'AdminController@getAdminPosts'
 ]);
 
-Route:: get('admin/feedback', [
+Route:: get('admin/feedback/{id}', [
     'as' => 'admin-feed-back',
     'uses' => 'AdminController@getAdminFeeback'
 ]);
@@ -274,6 +274,38 @@ Route::post('admin/accessAccountStatus',[
 	'as'=>'access-account',
 	'uses'=>'AdminController@accessAdminAccountById'
 ]);
+
+Route::get('admin/crawl',[
+	'as'=>'crawl-truyen-co-tich',
+	'uses'=>'AdminController@getCrawl'
+]);
+
+Route::get('admin/new',[
+	'as'=>'theme-new',
+	'uses'=>'AdminController@getThemeNew'
+]);
+
+Route::get('admin/getTuoiTre',[
+	'as'=>'theme-new',
+	'uses'=>'AdminController@getTuoiTre'
+]);
+
+Route::post('admin/crawlTuoitre',[
+	'as'=>'theme-new',
+	'uses'=>'AdminController@crawlTuoitre'
+]);
+
+Route::post('admin/crawl',[
+	'as'=>'crawl-truyen-co-tich',
+	'uses'=>'AdminController@crawlTruyenCoTich'
+]);
+
+
+// Route:: get('admin/tintuc', [
+//     'as' => 'admin',
+//     'uses' => 'AdminController@getNews'
+// ]);
+
 
 // end admin
 
@@ -327,3 +359,10 @@ Route::post('upload_image',[
 	'as'=>'upload_image',
 	'uses'=>'PostController@upload_image'
 ]);
+
+
+Route::get('/schedule_run', function () {
+
+    \Artisan::call('schedule:run');
+
+});

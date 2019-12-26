@@ -267,6 +267,29 @@ CREATE TABLE IF NOT EXISTS `connotation`(
     `updated_at` TIMESTAMP,
 PRIMARY KEY(`id`))
 
+CREATE TABLE IF NOT EXISTS `connotation`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `id_post` INT(11) NOT NULL,
+    `id_author` INT(11),
+    `connotation` TEXT(0), 
+    `question` TEXT(0), 
+    `created_at` TIMESTAMP,
+    `updated_at` TIMESTAMP,
+PRIMARY KEY(`id`))
+
+CREATE TABLE IF NOT EXISTS `tuoi_tre`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(255),
+    `content` VARCHAR(255),
+    `category` VARCHAR(255),
+    `time` VARCHAR(255), 
+    `link` VARCHAR(255),
+    `image` VARCHAR(255),
+    `status` INT(1),
+    `created_at` TIMESTAMP,
+    `updated_at` TIMESTAMP,
+PRIMARY KEY(`id`))
+
 user:
 1: admin cao nhất
 2: admin cao xếp thứ 2 - có quyền duyệt user

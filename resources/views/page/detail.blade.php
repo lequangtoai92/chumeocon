@@ -24,7 +24,7 @@
                     </li>
                 </ul>
                 <div class="image-top">
-                    <img src="{!! assetRemote($posts->image) !!}" alt="{{$posts->title}}">
+                    <img src="{!! ($posts->image) !!}" alt="{{$posts->title}}">
                 </div>
                 <div>{!! $posts->content !!}</div>
                 <p class="source"><a href="{!! assetRemote('tac-gia/'.$posts->id_account) !!}">{{$posts->author}} </a>
@@ -50,13 +50,6 @@
                 <p>{!! $connotation->question !!}</p>
             </div>
             @endif
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- quangcao_detail -->
-                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4664812161671730"
-                    data-ad-slot="6741293709" data-ad-format="auto" data-full-width-responsive="true"></ins>
-                <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             <div class="related-post">
                 <div class="heading02">
                     <h2>Bài cùng chủ đề</h2>

@@ -6,9 +6,11 @@
         @include('admin.menu_left')
         <div class="media-body">
             <select id="select_feedback" class="form-control select-option-top">
-                <option class="select-option" value="7">Chưa Duyệt </option>
+                <option class="select-option" value="1">Tất cả</option>
                 <option class="select-option" value="6">Đã duyệt</option>
-                <option class="select-option" value="9">Đã xóa</option>
+                <option class="select-option" value="7">Chưa duyệt</option>
+                <option class="select-option" value="8">Đã sửa</option>
+                <option class="select-option" value="9">Xóa</option>
             </select>
             <table id="table_feedback" class="table table-striped table-hover">
                 <thead>
@@ -34,8 +36,9 @@
                         <td class="td-6">{{$item->time_creat}}</td>
                         <td class="td-7">
                             <select class="form-control select-option" id="select_feedback_{{$item->id}}">
-                                <option class="select-option" disabled value="">Duyệt</option>
-                                <option class="select-option" value="6">Chấp nhận</option>
+                                <option class="select-option" value="6">Duyệt</option>
+                                <option class="select-option" value="7">Chưa duyệt</option>
+                                <option class="select-option" value="8">Đã sửa</option>
                                 <option class="select-option" value="9">Xóa</option>
                             </select>
                         </td>
@@ -56,6 +59,10 @@
 </section>
 @include('include.dialog_show_feedback')
 <script>
+$('#select_feedback').val(window.location.href.split('/admin/feedback/')[1]);
+$('#select_feedback').on('change', function() {
+    window.location.href = "/admin/feedback/" + this.value;
+});
 $("#select_feedback").change(function() {
     $.ajax({
         url: '/admin/getFeedback/' + $("#select_feedback").val()

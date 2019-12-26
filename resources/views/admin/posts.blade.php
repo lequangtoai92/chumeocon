@@ -6,9 +6,12 @@
     @include('admin.menu_left')
         <div class="media-body">
             <select class="form-control select-option-top" id="select_posts_status">
-                <option class="select-option" value="0">Chưa Duyệt </option>
-                <option class="select-option" value="1">Đã duyệt</option>
-                <option class="select-option" value="2">Xóa</option>
+                <option class="select-option" value="1">Tất cả</option>
+                <option class="select-option" value="5">Đã duyệt</option>
+                <option class="select-option" value="6">Chờ duyêt</option>
+                <option class="select-option" value="7">Bài nháp</option>
+                <option class="select-option" value="8">Tạm khóa</option>
+                <option class="select-option" value="9">Xóa vĩnh viển</option>
             </select>
             <table id="table_posts" class="table table-striped table-hover">
                 <thead>
@@ -33,9 +36,9 @@
                         <td class="td-7">{{$item->num_like}}/{{$item->num_dislike}}</td>
                         <td class="td-8">
                             <select class="form-control select-option" id="select_posts_status_{{$item->id}}">
-                                <option class="select-option" disabled value="">Duyệt</option>
-                                <option class="select-option" value="5">Chấp nhận</option>
-                                <option class="select-option" value="8">Xóa</option>
+                                <option class="select-option" value="5">Duyệt</option>
+                                <option class="select-option" value="8">Tạm khóa</option>
+                                <option class="select-option" value="9">Xóa vĩnh viển</option>
                             </select>
                         </td>
                         <td class="td-9">
@@ -59,6 +62,10 @@
 <!--Footer-->
 @include('include.dialog_show_posts')
 <script>
+$('#select_posts_status').val(window.location.href.split('/admin/post/')[1]);
+$('#select_posts_status').on('change', function() {
+    window.location.href = "/admin/post/" + this.value;
+});
 $("#select_posts_status").change(function() {
     $.ajax({
         url: '/admin/getPostsStatus/' + $("#select_posts_status").val()

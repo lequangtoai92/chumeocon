@@ -11,27 +11,72 @@ function closeNav() {
 }
 $(document).ready(function () {
     // Slide
-    $('.owl-carousel').owlCarousel({
+    // $('.owl-carousel.list-news').owlCarousel({
+    //     loop: true,
+    //     nav: false,
+    //     dots: true,
+    //     autoplay: true,
+    //     autoplayTimeout: 7000,
+    //     lazyLoad: true,
+    //     autoplayHoverPause: true,
+    //     items: 3,
+    //     responsive: {
+    //         0: {
+    //             items: 1,
+    //         },
+    //         600: {
+    //             items: 1,
+    //         },
+    //         1000: {
+    //             items: 3,
+    //             dots: false,
+    //         }
+    //     }
+    // });
+
+    $(".owl-carousel.list-news").owlCarousel({
         loop: true,
         nav: false,
-        dots: true,
+        dots: false,
         autoplay: true,
-        autoplayTimeout: 7000,
         lazyLoad: true,
-        autoplayHoverPause: true,
+        autoplayTimeout: 5000,
+        items: 1,
+    });
+
+    $(".slider-top-one").owlCarousel({
+        animateOut: "fadeOut",
+        loop: true,
+        nav: false,
+        dots: false,
+        autoplay: true,
+        lazyLoad: true,
+        autoplayTimeout: 5000,
+        items: 1,
+    });
+
+    $(".slider-top-two").owlCarousel({
+        loop: true,
+        nav: true,
         items: 3,
-        responsive: {
-            0: {
-                items: 1,
-            },
-            600: {
-                items: 1,
-            },
-            1000: {
-                items: 3,
-                dots: false,
-            }
-        }
+        margin: 10,
+        autoplay: true,
+        dots: false,
+        center: true,
+        autoplayTimeout: 5000,
+        navText: ["", ""]
+    });
+
+    $(".slider-top-ranking").owlCarousel({
+        loop: true,
+        nav: true,
+        items: 7,
+        margin: 10,
+        autoplay: true,
+        dots: false,
+        center: true,
+        autoplayTimeout: 5000,
+        navText: ["", ""]
     });
     // Lazy loading
     $(".lazy").unveil(200, function () {
@@ -68,6 +113,10 @@ $(document).ready(function () {
     tinymce_init();
 
     $('[data-toggle="datepicker-birthday"]').datepicker();
+    $('#select_account_status').val(window.location.href.split('/danh-muc/')[1]);
+    $('.menu-categories .categories').on('change', function() {
+        window.location.href = "/danh-muc/" + this.value;
+      });
 });
 
 
