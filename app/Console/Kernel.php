@@ -14,7 +14,6 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'App\Console\Commands\TestSignature'
         //
     ];
 
@@ -28,13 +27,6 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->call(function () {
-            DB::table('signature')->insert([
-                'title' => 'Nguyen Thi ha',
-                'content' => 'Day la noi dung bai viet'
-            ]);
-        });
-        $schedule->command('test_signature:creat')->everyMinute();
     }
 
     /**
