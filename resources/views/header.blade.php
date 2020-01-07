@@ -120,9 +120,9 @@
                             <li class="nav-item">
                                 <a class="dropdown-item" href="{!! assetRemote('cau-do') !!}">Câu đố</a>
                             </li>
-                            <!-- <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="dropdown-item" href="{!! assetRemote('tin-tuc') !!}">Tin tức</a>
-                            </li> -->
+                            </li>
                             <li class="nav-item">
                                 <a class="dropdown-item" href="{!! assetRemote('truyen-cuoi') !!}">Truyện cười</a>
                             </li>
@@ -194,9 +194,10 @@
                                         </ul>
                                     </div>
                                 </li> -->
-                                <li class=""><a href="{!! assetRemote('tho') !!}">Thơ</a></li>
+                                <li class="hidden-xs hidden-sm"><a href="{!! assetRemote('tho') !!}">Thơ</a></li>
                                 <li class="hidden-xs hidden-sm"><a href="{!! assetRemote('ve') !!}">Vè</a></li>
                                 <li class="hidden-xs hidden-sm"><a href="{!! assetRemote('cau-do') !!}">Câu đố</a></li>
+                                <li class=""><a href="{!! assetRemote('tin-tuc') !!}">Tin tức</a></li>
                                 <li><a href="{!! assetRemote('truyen-cuoi') !!}">Truyện cười</a></li>
                                 <li class="hidden-xs hidden-sm"><a href="{!! assetRemote('gop-y') !!}">Góp ý</a></li>
                                 <li class="hidden-xs hidden-sm"><a href="{!! assetRemote('danh-muc/1') !!}">Danh mục</a></li>

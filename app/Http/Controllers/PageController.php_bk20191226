@@ -241,6 +241,7 @@ class PageController extends Controller
     }
 
     public function getNews(){
+        return redirect('index');
         $this->view_component->page_view = 16;
         $this->view_component->list_ranking_week = $this->getRankingWeek(9);
         $this->view_component->list_posts = DB::table('posts')
@@ -358,8 +359,6 @@ class PageController extends Controller
         $this->view_meta->seo_title = $posts->title;
         $this->view_meta->seo_description = $posts->summary;
         $this->view_meta->seo_og_description = $posts->summary;
-        $this->view_meta->seo_og_url = assetRemote('bai-viet/'.$posts->slug);
-        $this->view_meta->seo_og_image = assetRemote($posts->image);
         return view('page.detail', (array)$this->view_component, (array)$this->view_meta);
     }
 

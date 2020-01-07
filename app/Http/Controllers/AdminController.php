@@ -13,6 +13,7 @@ use App\Status;
 use App\Connotation;
 use App\FunctionDefault;
 use App\TuoiTre;
+use DB;
 use Auth;
 
 class AdminController extends Controller
@@ -322,10 +323,13 @@ class AdminController extends Controller
         return;
     }
 
-    public function crawlTuoitre_v2(Request $req){
+    public function accessTuoitre(Request $req){
+        DB::table('tuoi_tre')
+        ->where('id', $req->id)
+        ->update(['status' => 1]);
         $content = new Simple_html_dom();
         $function_default = new FunctionDefault();
-        $crawl = 'https://tuoitre.vn/benh-nhan-nghi-dot-benh-vien-bac-si-ta-hoa-bo-chay-luc-rang-sang-20191226093413369.htm';
+        $crawl = 'https://tuoitre.vn' .  $req->link;
         $content->load_file($crawl);
             
         $ua = $function_default->getBrowser();
@@ -337,11 +341,11 @@ class AdminController extends Controller
         $posts->id_account = Auth::user()->id;//id tac gia
         $posts->title = strip_tags($content->find('#content h1.article-title')[0]);// tieu de
         $posts->slug = isset($content->find('#content h1.article-title')[0]) ? str_slug(strip_tags($content->find('#content h1.article-title')[0])).'-' .round(microtime(true) * 1000): '';// slug
-        // $posts->content = $content->find('#content #main-detail-body')[0];// noi dung
+        $posts->content = $content->find('#content #main-detail-body')[0];// noi dung
         $posts->summary = strip_tags($content->find('#mainContentDetail .main-content-body h2.sapo')[0]); // tom tatz
         $posts->description = strip_tags($content->find('#mainContentDetail .main-content-body h2.sapo')[0]); // tom tat
         $posts->categories = 16; // nhom danh muc
-        $posts->image = isset($content->image) ? $content->image: 'img/no_image.png'; // hinh anh
+        $posts->image = isset($req->image) ? $req->image: 'img/no_image.png'; // hinh anh
         $posts->age = isset($req->ages) ? $req->ages : 5; // tuoi
         $posts->source =isset($req->source) ? $req->source: 'Sưu tầm'; //nguon
         $posts->author =isset($req->author) ? $req->author: 'Ẩn danh'; //Tác giả
@@ -356,7 +360,6 @@ class AdminController extends Controller
         } else {
             $posts->status = 6; // trang thai
         }
-        dd($posts);
         $posts->save();
         
         $connotation = new Connotation();

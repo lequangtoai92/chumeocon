@@ -33,6 +33,7 @@ class VerifyCsrfToken extends Middleware
         '//upload_image',
         '//admin/crawl',
         '//admin/crawlTuoitre',
+        '//admin/accessTuoitre',
         //
     ];
 }

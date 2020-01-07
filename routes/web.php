@@ -280,9 +280,9 @@ Route::get('admin/crawl',[
 	'uses'=>'AdminController@getCrawl'
 ]);
 
-Route::get('admin/new',[
-	'as'=>'theme-new',
-	'uses'=>'AdminController@getThemeNew'
+Route::post('admin/crawl',[
+	'as'=>'crawl-truyen-co-tich',
+	'uses'=>'AdminController@crawlTruyenCoTich'
 ]);
 
 Route::get('admin/getTuoiTre',[
@@ -295,17 +295,10 @@ Route::post('admin/crawlTuoitre',[
 	'uses'=>'AdminController@crawlTuoitre'
 ]);
 
-Route::post('admin/crawl',[
-	'as'=>'crawl-truyen-co-tich',
-	'uses'=>'AdminController@crawlTruyenCoTich'
+Route::post('admin/accessTuoitre',[
+	'as'=>'theme-new',
+	'uses'=>'AdminController@accessTuoitre'
 ]);
-
-
-// Route:: get('admin/tintuc', [
-//     'as' => 'admin',
-//     'uses' => 'AdminController@getNews'
-// ]);
-
 
 // end admin
 
@@ -359,10 +352,3 @@ Route::post('upload_image',[
 	'as'=>'upload_image',
 	'uses'=>'PostController@upload_image'
 ]);
-
-
-Route::get('/schedule_run', function () {
-
-    \Artisan::call('schedule:run');
-
-});

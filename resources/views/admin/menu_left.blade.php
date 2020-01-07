@@ -15,7 +15,7 @@
                     <a href="{!! assetRemote('admin/crawl') !!}">Crawl</a>
                 </li>
                 <li class="news-items">
-                    <a href="{!! assetRemote('admin/post-image') !!}">Duyệt ảnh</a>
+                    <a href="{!! assetRemote('admin/getTuoiTre') !!}">Duyệt tin tức</a>
                 </li>
                 <li class="news-items">
                     <a href="{!! assetRemote('admin/post-image') !!}">Duyệt ảnh</a>

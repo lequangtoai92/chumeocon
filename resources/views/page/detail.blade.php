@@ -23,9 +23,11 @@
                             data-share="true"></div>
                     </li>
                 </ul>
+                @if($posts->categories != 16)
                 <div class="image-top">
-                    <img src="{!! ($posts->image) !!}" alt="{{$posts->title}}">
+                    <img src="{!! assetRemote($posts->image) !!}" alt="{{$posts->title}}">
                 </div>
+                @endif
                 <div>{!! $posts->content !!}</div>
                 <p class="source"><a href="{!! assetRemote('tac-gia/'.$posts->id_account) !!}">{{$posts->author}} </a>
                     ({{$posts->source}})</p>

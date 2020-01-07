@@ -20,9 +20,7 @@
                         <div class="meta">
                             <ul class="list-button">
                                 @if ($item->status == 0)
-                                    <a class="btn btn-danger" onclick="function_delete_posts({{$item->id}}, '{{$item->title}}')">Xóa</a>
-                                @else
-                                    <a class="btn btn-primary" href="../change-my-posts/{{$item->id}}">Chỉnh sửa</a>
+                                    <a class="btn btn-primary button-{{$item->id}}" onclick="function_access({{$item->id}}, '{{$item->image}}', '{{$item->link}}')">Đồng ý</a>
                                 @endif
                             </ul>
                         </div>
@@ -36,13 +34,30 @@
 </section>
 
 <script>
-function updateData(id) {
+function updateData() {
     $.ajax({
         type: "POST",
         url: '/admin/crawlTuoitre',
         data: {"_token": "{{ csrf_token() }}"},
         success: function() {
             location.reload();
+        }
+    });
+}
+
+function function_access(id, image, link) {
+    $('.button-'+id).hide();
+    $.ajax({
+        type: "POST",
+        url: '/admin/accessTuoitre',
+        data: {
+            "_token": "{{ csrf_token() }}",
+            id: id,
+            image: image,
+            link: link,
+            },
+        success: function() {
+            // location.reload();
         }
     });
 }

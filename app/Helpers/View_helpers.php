@@ -11,7 +11,7 @@
  */
 function assetRemote($image_path)
 {
-    if (strpos($image_path, 'truyencotich') == true) { 
+    if (strpos($image_path, 'truyencotich') == true || strpos($image_path, 'tuoitre.vn') == true) { 
         $url = $image_path;
     } 
     else { 
