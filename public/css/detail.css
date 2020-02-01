@@ -500,6 +500,7 @@
 @media (max-width: 768px) {
   .detail-news img {
     max-width: 93vw !important;
+    height: auto;
   }
   .detail-news div {
     max-width: 93vw !important;

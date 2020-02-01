@@ -370,6 +370,32 @@ class AdminController extends Controller
         $connotation->save();
     }
 
+    // public function creatSitemMap(){
+    //     $sitemap = \App::make('sitemap');
+    //     // add home pages mặc định
+    //     $sitemap->add(\URL::to('/'), \Carbon::now(), 1, 'daily');
+    //     $sitemap->add(URL::to('page'), \Carbon::now(), '0.9', 'monthly');
+    
+    //     // add bài viết
+    //     $posts = \DB::table('posts')->orderBy('time_creat', 'desc')->get();
+        
+    //     foreach ($posts as $post) {
+    //         //$sitemap->add(url, thời gian, độ ưu tiên, thời gian quay lại)
+    //         $sitemap->add('http://truyenchumeocon.com/' . $post->slug, $post->time_creat, 1, 'daily');
+    //     }
+    
+    //     // lưu file và phân quyền
+    //     $sitemap->store('xml', 'sitemap');
+    //     if (\File::exists(public_path('sitemap.xml'))) {
+    //         chmod(public_path('sitemap.xml'), 0777);
+    //     }
+    // }
+
+    public function creatSitemMap(){
+        $list_posts = DB::table('posts')->orderBy('id', 'DESC')->get();
+        return view('admin.sitemap', compact('list_posts'));
+    }
+
 
     
 }

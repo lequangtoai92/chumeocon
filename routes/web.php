@@ -300,6 +300,11 @@ Route::post('admin/accessTuoitre',[
 	'uses'=>'AdminController@accessTuoitre'
 ]);
 
+Route::get('admin/creat-sitemap',[
+	'as'=>'creat-sitemap',
+	'uses'=>'AdminController@creatSitemMap'
+]);
+
 // end admin
 
 
@@ -352,3 +357,4 @@ Route::post('upload_image',[
 	'as'=>'upload_image',
 	'uses'=>'PostController@upload_image'
 ]);
+

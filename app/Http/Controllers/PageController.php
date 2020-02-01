@@ -374,8 +374,9 @@ class PageController extends Controller
         ->where('posts.status', '5')
         ->paginate(15);
         if (!isset($this->view_component->intro)) {
-            $this->view_component->$intro = (object) array('content' => 'Tác giả vẫn chưa giới thiệu về bản thân!');
+            $this->view_component->intro = (object) array('content' => 'Tác giả vẫn chưa giới thiệu về bản thân!');
         }
+        dd($this->view_component->intro);
         $this->view_meta->seo_og_title = 'Truyện chú mèo con - Truyện cổ tích';
         $this->view_meta->seo_og_site_name = 'Truyện chú mèo con - Truyện cổ tích';
         $this->view_meta->seo_title = 'Truyện chú mèo con - Truyện cổ tích';

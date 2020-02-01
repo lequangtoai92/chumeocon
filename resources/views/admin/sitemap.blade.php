@@ -1,0 +1,88 @@
+<?php echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<url>
+  <loc>http://truyenchumeocon.com/</loc>
+  <lastmod>2020-01-12T08:47:09+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>http://truyenchumeocon.com/index</loc>
+  <lastmod>2020-01-12T08:47:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://truyenchumeocon.com/truyen-moi</loc>
+  <lastmod>2020-01-12T08:47:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://truyenchumeocon.com/co-tich</loc>
+  <lastmod>2020-01-12T08:47:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://truyenchumeocon.com/co-tich-viet-nam</loc>
+  <lastmod>2020-01-12T08:47:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://truyenchumeocon.com/co-tich-nhat-ban</loc>
+  <lastmod>2020-01-12T08:47:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://truyenchumeocon.com/truyen-co-grimms</loc>
+  <lastmod>2020-01-12T08:47:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://truyenchumeocon.com/tho</loc>
+  <lastmod>2020-01-12T08:47:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://truyenchumeocon.com/ve</loc>
+  <lastmod>2020-01-12T08:47:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://truyenchumeocon.com/cau-do</loc>
+  <lastmod>2020-01-12T08:47:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://truyenchumeocon.com/truyen-cuoi</loc>
+  <lastmod>2020-01-12T08:47:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://truyenchumeocon.com/gop-y</loc>
+  <lastmod>2020-01-12T08:47:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://truyenchumeocon.com/tin-tuc</loc>
+  <lastmod>2020-01-12T08:47:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://truyenchumeocon.com/danh-muc/1</loc>
+  <lastmod>2020-01-12T08:47:09+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+@foreach($list_posts as $item)
+<?php 
+$datetime = new DateTime($item->time_creat);
+$result = $datetime->format('Y-m-d\TH:i:sP');
+?>
+<url>
+    <loc>http://truyenchumeocon.com/bai-viet/{{$item->slug}}</loc>
+    <lastmod>{{$result}}</lastmod>
+    <priority>0.80</priority>
+</url>
+ @endforeach
+</urlset>
