@@ -358,3 +358,18 @@ Route::post('upload_image',[
 	'uses'=>'PostController@upload_image'
 ]);
 
+
+Route:: get('crazy-english', [
+    'as' => 'crazy-english',
+    'uses' => 'LearnEnglish@getIndex'
+]);
+
+Route::get('note-english', [
+    'as' => 'note-english',
+    'uses' => 'LearnEnglish@note'
+]);
+// Route::post('note-english', [
+//     'as' => 'note-english',
+//     'uses' => 'LearnEnglish@note'
+// ]);
+

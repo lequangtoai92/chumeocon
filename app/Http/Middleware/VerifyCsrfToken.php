@@ -34,6 +34,7 @@ class VerifyCsrfToken extends Middleware
         '//admin/crawl',
         '//admin/crawlTuoitre',
         '//admin/accessTuoitre',
+        '//note-english',
         //
     ];
 }

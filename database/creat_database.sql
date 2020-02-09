@@ -290,6 +290,23 @@ CREATE TABLE IF NOT EXISTS `tuoi_tre`(
     `updated_at` TIMESTAMP,
 PRIMARY KEY(`id`))
 
+CREATE TABLE IF NOT EXISTS `crazy_english`(
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `id_author` INT(11),
+    `english` text(0),
+    `vietnam` text(0),
+    `num_test` int(7),
+    `num_true` int(7),
+    `num_false` int(7),
+    `audio_origin` VARCHAR(255),
+    `audio_owner` VARCHAR(255),
+    `status` INT(1),
+    `created_at` TIMESTAMP,
+    `updated_at` TIMESTAMP,
+PRIMARY KEY(`id`))
+
+crazy_english
+
 user:
 1: admin cao nhất
 2: admin cao xếp thứ 2 - có quyền duyệt user
